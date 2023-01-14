@@ -36,7 +36,6 @@ public class BeautifyClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.JUNGLE_TRELLIS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.ACACIA_TRELLIS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.DARK_OAK_TRELLIS, RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.MANGROVE_TRELLIS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.CRIMSON_TRELLIS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.WARPED_TRELLIS, RenderType.cutout());
 
@@ -49,7 +48,6 @@ public class BeautifyClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.OAK_BLINDS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.BIRCH_BLINDS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.WARPED_BLINDS, RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.MANGROVE_BLINDS, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.IRON_BLINDS, RenderType.cutout());
 
         // FRAMES
@@ -61,7 +59,6 @@ public class BeautifyClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.OAK_PICTURE_FRAME, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.BIRCH_PICTURE_FRAME, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.WARPED_PICTURE_FRAME, RenderType.cutout());
-        BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.MANGROVE_PICTURE_FRAME, RenderType.cutout());
         BlockRenderLayerMap.INSTANCE.putBlock(BlockInit.QUARTZ_PICTURE_FRAME, RenderType.cutout());
     }
 }

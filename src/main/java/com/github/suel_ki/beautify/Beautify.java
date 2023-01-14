@@ -54,6 +54,7 @@ public class Beautify implements ModInitializer {
 
 		// Add new buildings to villages
 		ServerLifecycleEvents.SERVER_STARTED.register(this::addNewVillageBuilding);
+
 	}
 
 	public static ResourceLocation id(String name) {

@@ -40,10 +40,6 @@ public final class ItemInit {
 			new BlockItem(BlockInit.DARK_OAK_TRELLIS,
 					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
 
-	public static final BlockItem MANGROVE_TRELLIS_ITEM = register("mangrove_trellis",
-			new BlockItem(BlockInit.MANGROVE_TRELLIS,
-					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
-
 	public static final BlockItem CRIMSON_TRELLIS_ITEM = register("crimson_trellis",
 			new BlockItem(BlockInit.CRIMSON_TRELLIS,
 					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
@@ -85,10 +81,6 @@ public final class ItemInit {
 			new BlockItem(BlockInit.WARPED_BLINDS,
 					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
 
-	public static final BlockItem MANGROVE_BLINDS_ITEM = register("mangrove_blinds",
-			new BlockItem(BlockInit.MANGROVE_BLINDS,
-					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
-
 	public static final BlockItem IRON_BLINDS_ITEM = register("iron_blinds",
 			new BlockItem(BlockInit.IRON_BLINDS,
 					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
@@ -126,9 +118,6 @@ public final class ItemInit {
 			new BlockItem(BlockInit.WARPED_PICTURE_FRAME,
 					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
 
-	public static final BlockItem MANGROVE_PICTURE_FRAME_ITEM = register("mangrove_picture_frame",
-			new BlockItem(BlockInit.MANGROVE_PICTURE_FRAME,
-					new FabricItemSettings().tab(Beautify.BEAUTIFY_TAB)));
 
 	public static final BlockItem QUARTZ_PICTURE_FRAME_ITEM = register("quartz_picture_frame",
 			new BlockItem(BlockInit.QUARTZ_PICTURE_FRAME,
@@ -243,7 +232,6 @@ public final class ItemInit {
 		FuelRegistry.INSTANCE.add(JUNGLE_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(ACACIA_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(DARK_OAK_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(MANGROVE_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(CRIMSON_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(WARPED_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(OAK_BLINDS_ITEM, 300);
@@ -254,7 +242,6 @@ public final class ItemInit {
 		FuelRegistry.INSTANCE.add(DARK_OAK_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(CRIMSON_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(WARPED_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(MANGROVE_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(OAK_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(SPRUCE_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(BIRCH_PICTURE_FRAME_ITEM, 300);
@@ -263,7 +250,6 @@ public final class ItemInit {
 		FuelRegistry.INSTANCE.add(DARK_OAK_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(CRIMSON_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(WARPED_PICTURE_FRAME_ITEM , 300);
-		FuelRegistry.INSTANCE.add(MANGROVE_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(ROPE_ITEM, 100);
 	}
 }

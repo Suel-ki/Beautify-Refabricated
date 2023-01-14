@@ -61,11 +61,6 @@ public class TradesInit {
                 .add((trader, rand) ->
                         new MerchantOffer(
                                 new ItemStack(Items.EMERALD, 1),
-                                new ItemStack(ItemInit.MANGROVE_TRELLIS_ITEM, 2), 16, 3, 0.02F)));
-        TradeOfferHelper.registerVillagerOffers(ModVillagers.BOTANIST, 2, factories -> factories
-                .add((trader, rand) ->
-                        new MerchantOffer(
-                                new ItemStack(Items.EMERALD, 1),
                                 new ItemStack(ItemInit.CRIMSON_TRELLIS_ITEM, 2), 16, 3, 0.02F)));
         TradeOfferHelper.registerVillagerOffers(ModVillagers.BOTANIST, 2, factories -> factories
                 .add((trader, rand) ->

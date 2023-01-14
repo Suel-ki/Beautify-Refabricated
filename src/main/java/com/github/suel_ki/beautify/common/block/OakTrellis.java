@@ -3,18 +3,17 @@ package com.github.suel_ki.beautify.common.block;
 import java.util.Arrays;
 import java.util.List;
 
-import com.github.suel_ki.beautify.core.init.BlockInit;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -23,7 +22,6 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -147,19 +145,19 @@ public class OakTrellis extends HorizontalDirectionalBlock {
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown() && !Screen.hasControlDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-			component.add(Component.translatable("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.trellis.1").withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.trellis.2").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.trellis.1").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.trellis.2").withStyle(ChatFormatting.GRAY));
 		}
 
 		if (Screen.hasControlDown()) {
-			component.add(Component.translatable("tooltip.beautify.trellis.plant_header").withStyle(ChatFormatting.UNDERLINE)
+			component.add(new TranslatableComponent("tooltip.beautify.trellis.plant_header").withStyle(ChatFormatting.UNDERLINE)
 					.withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.trellis.plants")
+			component.add(new TranslatableComponent("tooltip.beautify.trellis.plants")
 					.withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, level, component, flag);

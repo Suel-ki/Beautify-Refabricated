@@ -1,6 +1,7 @@
 package com.github.suel_ki.beautify.common.block;
 
 import java.util.List;
+import java.util.Random;
 
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
@@ -10,9 +11,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -95,7 +96,7 @@ public class LampCandleabra extends LanternBlock {
 
 	@Environment(EnvType.CLIENT)
 	@Override
-	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
+	public void animateTick(BlockState state, Level level, BlockPos pos, Random rand) {
 		double d0 = (double) pos.getX() + 0.5D;
 		double d1 = (double) pos.getY() + 1D;
 		double d2 = (double) pos.getZ() + 0.5D;
@@ -129,15 +130,15 @@ public class LampCandleabra extends LanternBlock {
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.candelabra.1")
+			component.add(new TranslatableComponent("tooltip.beautify.candelabra.1")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.candelabra.2")
+			component.add(new TranslatableComponent("tooltip.beautify.candelabra.2")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.candelabra.3")
+			component.add(new TranslatableComponent("tooltip.beautify.candelabra.3")
 					.withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, level, component, flag);

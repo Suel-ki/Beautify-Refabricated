@@ -40,9 +40,6 @@ import com.github.suel_ki.beautify.common.block.LampCandleabraWhite;
 import com.github.suel_ki.beautify.common.block.LampCandleabraYellow;
 import com.github.suel_ki.beautify.common.block.LampJar;
 import com.github.suel_ki.beautify.common.block.LampLightBulb;
-import com.github.suel_ki.beautify.common.block.MangroveBlinds;
-import com.github.suel_ki.beautify.common.block.MangrovePictureFrame;
-import com.github.suel_ki.beautify.common.block.MangroveTrellis;
 import com.github.suel_ki.beautify.common.block.OakBlinds;
 import com.github.suel_ki.beautify.common.block.OakPictureFrame;
 import com.github.suel_ki.beautify.common.block.OakTrellis;
@@ -109,10 +106,6 @@ public class BlockInit {
 
     public static final DarkOakTrellis DARK_OAK_TRELLIS = register("dark_oak_trellis",
             new DarkOakTrellis(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD)
-                    .strength(0.3F, 0.3F).sound(SoundType.BAMBOO).noOcclusion()));
-
-    public static final MangroveTrellis MANGROVE_TRELLIS = register("mangrove_trellis",
-            new MangroveTrellis(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD)
                     .strength(0.3F, 0.3F).sound(SoundType.BAMBOO).noOcclusion()));
 
     public static final CrimsonTrellis CRIMSON_TRELLIS = register("crimson_trellis",
@@ -375,10 +368,6 @@ public class BlockInit {
             new WarpedBlinds(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noOcclusion()
                     .strength(0.4f, 0.4f).sound(SoundType.WOOD)));
 
-    public static final MangroveBlinds MANGROVE_BLINDS = register("mangrove_blinds",
-            new MangroveBlinds(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noOcclusion()
-                    .strength(0.4f, 0.4f).sound(SoundType.WOOD)));
-
     public static final IronBlinds IRON_BLINDS = register("iron_blinds",
             new IronBlinds(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).noOcclusion()
                     .strength(0.4f, 0.4f).sound(SoundType.CHAIN).requiresCorrectToolForDrops()));
@@ -422,11 +411,6 @@ public class BlockInit {
             new WarpedPictureFrame(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noOcclusion()
                     .strength(0.1f, 0.1f).sound(SoundType.WOOD).noOcclusion()));
 
-    public static final MangrovePictureFrame MANGROVE_PICTURE_FRAME = register(
-            "mangrove_picture_frame",
-            new MangrovePictureFrame(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).noOcclusion()
-                    .strength(0.1f, 0.1f).sound(SoundType.WOOD).noOcclusion()));
-
     public static final WarpedPictureFrame QUARTZ_PICTURE_FRAME = register(
             "quartz_picture_frame",
             new WarpedPictureFrame(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.QUARTZ)
@@ -448,7 +432,6 @@ public class BlockInit {
         flammableRegistry.add(JUNGLE_TRELLIS, 5, 5);
         flammableRegistry.add(ACACIA_TRELLIS, 5, 5);
         flammableRegistry.add(DARK_OAK_TRELLIS, 5, 5);
-        flammableRegistry.add(MANGROVE_TRELLIS, 5, 5);
         flammableRegistry.add(CRIMSON_TRELLIS, 5, 5);
         flammableRegistry.add(WARPED_TRELLIS, 5, 5);
     }

@@ -11,9 +11,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -83,7 +83,7 @@ public class BookStack extends HorizontalDirectionalBlock implements Enchantment
 
 
 	@Override
-	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
+	public void tick(BlockState state, ServerLevel level, BlockPos pos, Random rand) {
 		if (!state.canSurvive(level, pos)) {
 			level.destroyBlock(pos, true);
 		}
@@ -144,13 +144,13 @@ public class BookStack extends HorizontalDirectionalBlock implements Enchantment
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter getter, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.bookstack.1")
+			component.add(new TranslatableComponent("tooltip.beautify.bookstack.1")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.bookstack.2")
+			component.add(new TranslatableComponent("tooltip.beautify.bookstack.2")
 					.withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, getter, component, flag);

@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -95,13 +96,13 @@ public class OakPictureFrame extends HorizontalDirectionalBlock {
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.picture_frame.1")
+			component.add(new TranslatableComponent("tooltip.beautify.picture_frame.1")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.picture_frame.2")
+			component.add(new TranslatableComponent("tooltip.beautify.picture_frame.2")
 					.withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, level, component, flag);

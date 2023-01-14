@@ -4,12 +4,13 @@ import java.util.List;
 
 import com.github.suel_ki.beautify.Beautify;
 import com.github.suel_ki.beautify.core.init.SoundInit;
-import io.github.fabricators_of_create.porting_lib.block.PlayerDestroyBlock;
+import io.github.fabricators_of_create.porting_lib.util.PlayerDestroyBlock;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -290,12 +291,12 @@ public class OakBlinds extends HorizontalDirectionalBlock implements PlayerDestr
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.blinds.1").withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.blinds.2").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.blinds.1").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.blinds.2").withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, level, component, flag);
 	}

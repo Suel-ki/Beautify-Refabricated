@@ -1,16 +1,14 @@
 package com.github.suel_ki.beautify.compat.jade.provider;
 
-import com.github.suel_ki.beautify.common.block.HangingPot;
 import com.github.suel_ki.beautify.common.block.OakTrellis;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
+import snownee.jade.Jade;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
-import snownee.jade.api.ui.IDisplayHelper;
-import snownee.jade.api.ui.IElementHelper;
 
 public enum TrellisProvider implements IBlockComponentProvider {
 
@@ -25,8 +23,8 @@ public enum TrellisProvider implements IBlockComponentProvider {
                 ItemStack iconFlower = new ItemStack(trellis.getValidFlowers().get(state.getValue(OakTrellis.FLOWERS)));
                 if (iconFlower.isEmpty())
                     return;
-                tooltip.add(IElementHelper.get().smallItem(iconFlower));
-                tooltip.append(IDisplayHelper.get().stripColor(iconFlower.getHoverName()));
+                tooltip.add(Jade.smallItem(tooltip.getElementHelper(), iconFlower));
+                tooltip.append(iconFlower.getHoverName());
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.github.suel_ki.beautify.common.block;
 
 import java.util.List;
+import java.util.Random;
 
 import com.github.suel_ki.beautify.particle.ParticleInit;
 import net.fabricmc.api.EnvType;
@@ -10,9 +11,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -76,7 +77,7 @@ public class LampJar extends LanternBlock {
 
 	@Environment(EnvType.CLIENT)
 	@Override
-	public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource rand) {
+	public void animateTick(BlockState state, Level level, BlockPos pos, Random rand) {
 		final int particleProbability = 5;
 
 		double posX = (pos.getX() + 0.35) + rand.nextDouble() / 3.5;
@@ -120,20 +121,20 @@ public class LampJar extends LanternBlock {
 		}*/
 	}
 
-	private static double randomDir(RandomSource rand) {
-		return (rand.nextIntBetweenInclusive(0, 2) - 1) * rand.nextFloat() / 34;
+	private static double randomDir(Random rand) {
+		return (rand.nextInt(0, 2) - 1) * rand.nextFloat() / 34;
 	}
 
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.lamp_jar.1").withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.lamp_jar.2").withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.lamp_jar.3").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.lamp_jar.1").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.lamp_jar.2").withStyle(ChatFormatting.GRAY));
+			component.add(new TranslatableComponent("tooltip.beautify.lamp_jar.3").withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, level, component, flag);
 	}

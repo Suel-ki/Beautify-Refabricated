@@ -8,6 +8,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -182,23 +183,23 @@ public class HangingPot extends LanternBlock {
 	@Override
 	public void appendHoverText(ItemStack stack, BlockGetter getter, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown() && !Screen.hasControlDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-			component.add(Component.translatable("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			component.add(new TranslatableComponent("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.1")
+			component.add(new TranslatableComponent("tooltip.beautify.hanging_pot.1")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.2").
+			component.add(new TranslatableComponent("tooltip.beautify.hanging_pot.2").
 					withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.3")
+			component.add(new TranslatableComponent("tooltip.beautify.hanging_pot.3")
 					.withStyle(ChatFormatting.GRAY));
 		}
 
 		if (Screen.hasControlDown()) {
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.plant_header").withStyle(ChatFormatting.UNDERLINE)
+			component.add(new TranslatableComponent("tooltip.beautify.hanging_pot.plant_header").withStyle(ChatFormatting.UNDERLINE)
 					.withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.plants")
+			component.add(new TranslatableComponent("tooltip.beautify.hanging_pot.plants")
 					.withStyle(ChatFormatting.GRAY));
 		}
 		super.appendHoverText(stack, getter, component, flag);
