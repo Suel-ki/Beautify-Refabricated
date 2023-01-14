@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "beautify:rope"
+    },
+    "title": {
+      "translate": "advancements.beautify.rope.title"
+    },
+    "description": {
+      "translate": "advancements.beautify.rope.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "beautify:progression/root",
+  "criteria": {
+    "obtain": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "beautify:rope"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

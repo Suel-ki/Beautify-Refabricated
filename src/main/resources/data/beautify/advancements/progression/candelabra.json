@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "beautify:lamp_candleabra"
+    },
+    "title": {
+      "translate": "advancements.beautify.candelabra.title"
+    },
+    "description": {
+      "translate": "advancements.beautify.candelabra.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "beautify:progression/root",
+  "criteria": {
+    "obtain": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "beautify:lamp_candleabra"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}
