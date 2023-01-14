@@ -19,10 +19,10 @@ repositories {
 		name 'ParchmentMC Maven'
 		url 'https://maven.parchmentmc.org'
 	}
-    maven {
-        name = "Shedaniel Maven"
-        url "https://maven.shedaniel.me/"
-    }
+        maven {
+                name = "Shedaniel Maven"
+                url "https://maven.shedaniel.me/"
+        }
 	maven {
 		name = 'TerraformersMC Maven'
 		url = 'https://maven.terraformersmc.com/releases'
