@@ -16,7 +16,7 @@ What is Beautify?
 - My goal with this mod is to increase the detail in builds without killing the need for imagination and creativity.
 - Additionally, most blocks include new features. For example, potted plants (such as 1 tall flowers) can be duplicated using bone meal.
 
-Versions [Fabric]: 1.18.2 | 1.19 | 1.19.1 | 1.19.2
+Versions [Fabric]: 1.18.2 | 1.19.2
 
 More Pictures:
  ![ ](https://i.imgur.com/7wHu3qe.png)
