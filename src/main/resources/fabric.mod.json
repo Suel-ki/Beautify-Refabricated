@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "id": "beautify",
+  "version": "${version}",
+  "name": "Beautify",
+  "description": "Beautify adds lots of vanilla-styled ways to spice up your builds with custom models that'll fit right in to your houses etc.",
+  "authors": [
+    "Suel_ki"
+  ],
+  "contributors": [
+    "Pandarix"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated",
+    "sources": "https://github.com/Suel-ki/Beautify-Refabricated",
+    "issues": "https://github.com/Suel-ki/Beautify-Refabricated/issues"
+  },
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "accessWidener": "beautify.accesswidener",
+  "entrypoints": {
+    "main": [
+      "com.github.suel_ki.beautify.Beautify"
+    ],
+    "client": [
+      "com.github.suel_ki.beautify.BeautifyClient"
+    ],
+    "jade": [
+      "com.github.suel_ki.beautify.compat.jade.JadePlugin"
+    ],
+    "modmenu": [
+      "com.github.suel_ki.beautify.util.ModMenuConfig"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.6",
+    "fabric": "*",
+    "minecraft": "~1.19",
+    "java": ">=17",
+    "cloth-config": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "modmenu.curseforge": "https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated"
+      }
+    }
+  }
+}
