@@ -2,8 +2,8 @@
 
 <img align="right" width="160" src="src/main/resources/icon.png">
 
-[![](http://cf.way2muchnoise.eu/full_776426_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated)
-[![Minecraft Versions](https://cf.way2muchnoise.eu/versions/776426.svg)](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated)
+[![](http://cf.way2muchnoise.eu/full_809311_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated)
+[![Minecraft Versions](https://cf.way2muchnoise.eu/versions/809311.svg)](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated)
 
 This is the Unofficial Fabric version of [Beautify](https://github.com/Pandarix/Beautify), licensed under [MIT](https://github.com/Pandarix/Beautify/blob/main/LICENSE), please support the original work!
 
