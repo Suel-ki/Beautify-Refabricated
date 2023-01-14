@@ -19,21 +19,21 @@ repositories {
 		name 'ParchmentMC Maven'
 		url 'https://maven.parchmentmc.org'
 	}
-        maven {
-                name = "Shedaniel Maven"
-                url "https://maven.shedaniel.me/"
-        }
+	maven {
+		name = "Shedaniel Maven"
+		url "https://maven.shedaniel.me/"
+	}
 	maven {
 		name = 'TerraformersMC Maven'
 		url = 'https://maven.terraformersmc.com/releases'
 	}
 	maven {
-		name = "Jitpack"
-		url = "https://jitpack.io"
-	}
-	maven {
 		name = "Porting Lib"
 		url = "https://mvn.devos.one/snapshots/"
+	}
+	maven {
+		name = "Jitpack"
+		url = "https://jitpack.io"
 	}
 	maven {
 		name = "Curse Maven"
@@ -59,7 +59,7 @@ dependencies {
 
 	modImplementation "curse.maven:jade-324717:${jade_id}"
 
-	modImplementation(include("io.github.fabricators_of_create.Porting-Lib:porting-lib:${porting_lib_version}+${minecraft_version}"))
+	modImplementation(include("io.github.fabricators_of_create:Porting-Lib:${porting_lib_version}+${minecraft_version}"))
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
