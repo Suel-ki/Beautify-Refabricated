@@ -23,7 +23,7 @@ More Pictures:
  ![ ](https://i.imgur.com/LGUotre.png)
  ![ ](https://i.imgur.com/M7AfS0o.png?1)
  ![ ](https://i.imgur.com/63BR9j4.png)
-- [more example images](https://www.curseforge.com/minecraft/mc-mods/beautify-decorate/screenshots)
+- [more example images](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated/screenshots)
 
 Showcase Video by Jeikir:
 [![](https://i.ytimg.com/vi/5uXGHUit038/maxresdefault.jpg)](https://www.youtube.com/watch?v=5uXGHUit038 "")
