@@ -140,6 +140,20 @@ public class OakTrellis extends HorizontalDirectionalBlock {
 		return InteractionResult.CONSUME;
 	}
 
+	@Override
+	public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+		return this.isEmpty(state) ? super.getCloneItemStack(level, pos, state) : new ItemStack(getContent(state));
+	}
+
+	private boolean isEmpty(BlockState state) {
+		return state.getValue(FLOWERS) == 0;
+	}
+
+	public Block getContent(BlockState state) {
+		return Block.byItem(validFlowers.get(state.getValue(FLOWERS)));
+	}
+
+	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		builder.add(FACING, CEILLING, FLOWERS);
 	}
