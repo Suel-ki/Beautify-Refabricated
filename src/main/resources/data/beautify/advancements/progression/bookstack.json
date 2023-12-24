@@ -1,0 +1,32 @@
+{
+  "display": {
+    "icon": {
+      "item": "beautify:bookstack"
+    },
+    "title": {
+      "translate": "advancements.beautify.bookstack.title"
+    },
+    "description": {
+      "translate": "advancements.beautify.bookstack.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "parent": "beautify:progression/root",
+  "criteria": {
+    "obtain": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "beautify:bookstack"
+            ]
+          }
+        ]
+      }
+    }
+  }
+}

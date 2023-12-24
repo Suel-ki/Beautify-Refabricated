@@ -1,0 +1,8 @@
+{
+	"parent": "beautify:block/blinds/oak_blinds_down",
+	"textures": {
+		"0": "minecraft:block/jungle_planks",
+		"particle": "minecraft:block/jungle_planks"
+	},
+	"render_type": "cutout"
+}
