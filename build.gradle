@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.2-SNAPSHOT'
+	id 'fabric-loom' version '1.6.+'
 	id 'maven-publish'
 }
 
@@ -22,10 +22,6 @@ repositories {
 	maven {
 		name = 'TerraformersMC Maven'
 		url = 'https://maven.terraformersmc.com/releases'
-	}
-	maven {
-		name = 'isXander Maven'
-		url = "https://maven.isxander.dev/releases"
 	}
 	maven {
 		name = "Curse Maven"

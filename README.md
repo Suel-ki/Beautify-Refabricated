@@ -2,6 +2,7 @@
 
 <img align="right" width="160" src="src/main/resources/icon.png">
 
+[![Modrinth](https://img.shields.io/modrinth/dt/beautify-refabricated?color=00AF5C&label=downloads&logo=modrinth)](https://modrinth.com/mod/beautify-refabricated)
 [![](http://cf.way2muchnoise.eu/full_809311_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated)
 [![Minecraft Versions](https://cf.way2muchnoise.eu/versions/809311.svg)](https://www.curseforge.com/minecraft/mc-mods/beautify-refabricated)
 
@@ -16,7 +17,7 @@ What is Beautify?
 - My goal with this mod is to increase the detail in builds without killing the need for imagination and creativity.
 - Additionally, most blocks include new features. For example, potted plants (such as 1 tall flowers) can be duplicated using bone meal.
 
-Versions [Fabric]: 1.18.2 | 1.19.2
+Versions [Fabric]: 1.18.2 | 1.19.2 | 1.20.X
 
 More Pictures:
  ![ ](https://i.imgur.com/7wHu3qe.png)

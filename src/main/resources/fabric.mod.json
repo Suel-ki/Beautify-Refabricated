@@ -21,22 +21,25 @@
   "accessWidener": "beautify.accesswidener",
   "entrypoints": {
     "main": [
-      "com.github.suel_ki.beautify.Beautify"
+      "io.github.suel_ki.beautify.Beautify"
     ],
     "client": [
-      "com.github.suel_ki.beautify.BeautifyClient"
+      "io.github.suel_ki.beautify.client.BeautifyClient"
     ],
     "jade": [
-      "com.github.suel_ki.beautify.compat.jade.JadePlugin"
+      "io.github.suel_ki.beautify.compat.jade.JadePlugin"
     ],
     "modmenu": [
-      "com.github.suel_ki.beautify.util.ModMenuConfig"
+      "io.github.suel_ki.beautify.util.ModMenuConfig"
     ]
   },
+  "mixins": [
+    "beautify.mixins.json"
+  ],
   "depends": {
-    "fabricloader": ">=0.14.6",
+    "fabricloader": ">=0.15.11",
     "fabric": "*",
-    "minecraft": "~1.19",
+    "minecraft": "~1.20",
     "java": ">=17",
     "cloth-config": "*"
   },
