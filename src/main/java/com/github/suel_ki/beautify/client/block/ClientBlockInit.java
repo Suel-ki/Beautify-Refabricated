@@ -24,7 +24,7 @@ public class ClientBlockInit {
                 BlockInit.SPRUCE_TRELLIS,
                 BlockInit.BIRCH_TRELLIS,
                 BlockInit.JUNGLE_TRELLIS,
-                BlockInit.ACACIA_BLINDS,
+                BlockInit.ACACIA_TRELLIS,
                 BlockInit.DARK_OAK_TRELLIS,
                 BlockInit.MANGROVE_TRELLIS,
                 BlockInit.CRIMSON_TRELLIS,
