@@ -1,252 +1,190 @@
 package io.github.suel_ki.beautify.core.init;
 
 import io.github.suel_ki.beautify.Beautify;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import io.github.suel_ki.beautify.common.block.HangingPot;
+import io.github.suel_ki.beautify.common.block.Trellis;
+import io.github.suel_ki.beautify.common.tooltip.PlantableItemStackTooltip;
 import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Block;
+import org.jetbrains.annotations.NotNull;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import java.util.*;
 
 public final class ItemInit {
 
 	public static final Map<Item, ResourceLocation> ITEMS = new LinkedHashMap<>();
 
 	// trellis
-	public static final BlockItem OAK_TRELLIS_ITEM = register("oak_trellis",
-			new BlockItem(BlockInit.OAK_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem OAK_TRELLIS_ITEM = registerTrellis("oak_trellis", BlockInit.OAK_TRELLIS);
 
-	public static final BlockItem SPRUCE_TRELLIS_ITEM = register("spruce_trellis",
-			new BlockItem(BlockInit.SPRUCE_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem SPRUCE_TRELLIS_ITEM = registerTrellis("spruce_trellis", BlockInit.SPRUCE_TRELLIS);
 
-	public static final BlockItem BIRCH_TRELLIS_ITEM = register("birch_trellis",
-			new BlockItem(BlockInit.BIRCH_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem BIRCH_TRELLIS_ITEM = registerTrellis("birch_trellis", BlockInit.BIRCH_TRELLIS);
 
-	public static final BlockItem JUNGLE_TRELLIS_ITEM = register("jungle_trellis",
-			new BlockItem(BlockInit.JUNGLE_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem JUNGLE_TRELLIS_ITEM = registerTrellis("jungle_trellis", BlockInit.JUNGLE_TRELLIS);
 
-	public static final BlockItem ACACIA_TRELLIS_ITEM = register("acacia_trellis",
-			new BlockItem(BlockInit.ACACIA_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem ACACIA_TRELLIS_ITEM = registerTrellis("acacia_trellis", BlockInit.ACACIA_TRELLIS);
 
-	public static final BlockItem DARK_OAK_TRELLIS_ITEM = register("dark_oak_trellis",
-			new BlockItem(BlockInit.DARK_OAK_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem DARK_OAK_TRELLIS_ITEM = registerTrellis("dark_oak_trellis", BlockInit.DARK_OAK_TRELLIS);
 
-	public static final BlockItem MANGROVE_TRELLIS_ITEM = register("mangrove_trellis",
-			new BlockItem(BlockInit.MANGROVE_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem MANGROVE_TRELLIS_ITEM = registerTrellis("mangrove_trellis", BlockInit.MANGROVE_TRELLIS);
 
-	public static final BlockItem CRIMSON_TRELLIS_ITEM = register("crimson_trellis",
-			new BlockItem(BlockInit.CRIMSON_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem CRIMSON_TRELLIS_ITEM = registerTrellis("crimson_trellis", BlockInit.CRIMSON_TRELLIS);
 
-	public static final BlockItem CHERRY_TRELLIS_ITEM = register("cherry_trellis",
-			new BlockItem(BlockInit.CHERRY_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem CHERRY_TRELLIS_ITEM = registerTrellis("cherry_trellis", BlockInit.CHERRY_TRELLIS);
 
-	public static final BlockItem WARPED_TRELLIS_ITEM = register("warped_trellis",
-			new BlockItem(BlockInit.WARPED_TRELLIS,
-					new FabricItemSettings()));
+	public static final BlockItem WARPED_TRELLIS_ITEM = registerTrellis("warped_trellis", BlockInit.WARPED_TRELLIS);
 
 	// blinds
-	public static final BlockItem OAK_BLINDS_ITEM = register("oak_blinds",
-			new BlockItem(BlockInit.OAK_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem OAK_BLINDS_ITEM = registerBlockItem("oak_blinds", BlockInit.OAK_BLINDS);
 
-	public static final BlockItem SPRUCE_BLINDS_ITEM = register("spruce_blinds",
-			new BlockItem(BlockInit.SPRUCE_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem SPRUCE_BLINDS_ITEM = registerBlockItem("spruce_blinds", BlockInit.SPRUCE_BLINDS);
 
-	public static final BlockItem BIRCH_BLINDS_ITEM = register("birch_blinds",
-			new BlockItem(BlockInit.BIRCH_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem BIRCH_BLINDS_ITEM = registerBlockItem("birch_blinds", BlockInit.BIRCH_BLINDS);
 
-	public static final BlockItem JUNGLE_BLINDS_ITEM = register("jungle_blinds",
-			new BlockItem(BlockInit.JUNGLE_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem JUNGLE_BLINDS_ITEM = registerBlockItem("jungle_blinds", BlockInit.JUNGLE_BLINDS);
 
-	public static final BlockItem ACACIA_BLINDS_ITEM = register("acacia_blinds",
-			new BlockItem(BlockInit.ACACIA_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem ACACIA_BLINDS_ITEM = registerBlockItem("acacia_blinds", BlockInit.ACACIA_BLINDS);
 
-	public static final BlockItem DARK_OAK_BLINDS_ITEM = register("dark_oak_blinds",
-			new BlockItem(BlockInit.DARK_OAK_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem DARK_OAK_BLINDS_ITEM = registerBlockItem("dark_oak_blinds", BlockInit.DARK_OAK_BLINDS);
 
-	public static final BlockItem CRIMSON_BLINDS_ITEM = register("crimson_blinds",
-			new BlockItem(BlockInit.CRIMSON_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem CRIMSON_BLINDS_ITEM = registerBlockItem("crimson_blinds", BlockInit.CRIMSON_BLINDS);
 
-	public static final BlockItem CHERRY_BLINDS_ITEM = register("cherry_blinds",
-			new BlockItem(BlockInit.CHERRY_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem CHERRY_BLINDS_ITEM = registerBlockItem("cherry_blinds", BlockInit.CHERRY_BLINDS);
 
-	public static final BlockItem WARPED_BLINDS_ITEM = register("warped_blinds",
-			new BlockItem(BlockInit.WARPED_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem WARPED_BLINDS_ITEM = registerBlockItem("warped_blinds", BlockInit.WARPED_BLINDS);
 
-	public static final BlockItem MANGROVE_BLINDS_ITEM = register("mangrove_blinds",
-			new BlockItem(BlockInit.MANGROVE_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem MANGROVE_BLINDS_ITEM = registerBlockItem("mangrove_blinds", BlockInit.MANGROVE_BLINDS);
 
-	public static final BlockItem IRON_BLINDS_ITEM = register("iron_blinds",
-			new BlockItem(BlockInit.IRON_BLINDS,
-					new FabricItemSettings()));
+	public static final BlockItem IRON_BLINDS_ITEM = registerBlockItem("iron_blinds", BlockInit.IRON_BLINDS);
 
 	// picture frame
-	public static final BlockItem OAK_PICTURE_FRAME_ITEM = register("oak_picture_frame",
-			new BlockItem(BlockInit.OAK_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem OAK_PICTURE_FRAME_ITEM = registerBlockItem("oak_picture_frame", BlockInit.OAK_PICTURE_FRAME);
 
-	public static final BlockItem SPRUCE_PICTURE_FRAME_ITEM = register("spruce_picture_frame",
-			new BlockItem(BlockInit.SPRUCE_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem SPRUCE_PICTURE_FRAME_ITEM = registerBlockItem("spruce_picture_frame", BlockInit.SPRUCE_PICTURE_FRAME);
 
-	public static final BlockItem BIRCH_PICTURE_FRAME_ITEM = register("birch_picture_frame",
-			new BlockItem(BlockInit.BIRCH_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem BIRCH_PICTURE_FRAME_ITEM = registerBlockItem("birch_picture_frame", BlockInit.BIRCH_PICTURE_FRAME);
 
-	public static final BlockItem JUNGLE_PICTURE_FRAME_ITEM = register("jungle_picture_frame",
-			new BlockItem(BlockInit.JUNGLE_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem JUNGLE_PICTURE_FRAME_ITEM = registerBlockItem("jungle_picture_frame", BlockInit.JUNGLE_PICTURE_FRAME);
 
-	public static final BlockItem ACACIA_PICTURE_FRAME_ITEM = register("acacia_picture_frame",
-			new BlockItem(BlockInit.ACACIA_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem ACACIA_PICTURE_FRAME_ITEM = registerBlockItem("acacia_picture_frame", BlockInit.ACACIA_PICTURE_FRAME);
 
-	public static final BlockItem DARK_OAK_PICTURE_FRAME_ITEM = register("dark_oak_picture_frame",
-			new BlockItem(BlockInit.DARK_OAK_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem DARK_OAK_PICTURE_FRAME_ITEM = registerBlockItem("dark_oak_picture_frame", BlockInit.DARK_OAK_PICTURE_FRAME);
 
-	public static final BlockItem CRIMSON_PICTURE_FRAME_ITEM = register("crimson_picture_frame",
-			new BlockItem(BlockInit.CRIMSON_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem CRIMSON_PICTURE_FRAME_ITEM = registerBlockItem("crimson_picture_frame", BlockInit.CRIMSON_PICTURE_FRAME);
 
-	public static final BlockItem CHERRY_PICTURE_FRAME_ITEM = register("cherry_picture_frame",
-			new BlockItem(BlockInit.CHERRY_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem CHERRY_PICTURE_FRAME_ITEM = registerBlockItem("cherry_picture_frame", BlockInit.CHERRY_PICTURE_FRAME);
 
-	public static final BlockItem WARPED_PICTURE_FRAME_ITEM = register("warped_picture_frame",
-			new BlockItem(BlockInit.WARPED_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem WARPED_PICTURE_FRAME_ITEM = registerBlockItem("warped_picture_frame", BlockInit.WARPED_PICTURE_FRAME);
 
-	public static final BlockItem MANGROVE_PICTURE_FRAME_ITEM = register("mangrove_picture_frame",
-			new BlockItem(BlockInit.MANGROVE_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem MANGROVE_PICTURE_FRAME_ITEM = registerBlockItem("mangrove_picture_frame", BlockInit.MANGROVE_PICTURE_FRAME);
 
-	public static final BlockItem QUARTZ_PICTURE_FRAME_ITEM = register("quartz_picture_frame",
-			new BlockItem(BlockInit.QUARTZ_PICTURE_FRAME,
-					new FabricItemSettings()));
+	public static final BlockItem QUARTZ_PICTURE_FRAME_ITEM = registerBlockItem("quartz_picture_frame", BlockInit.QUARTZ_PICTURE_FRAME);
 
-	public static BlockItem ROPE_ITEM = register("rope",
-			new BlockItem(BlockInit.ROPE,
-					new FabricItemSettings()));
+	public static BlockItem ROPE_ITEM = registerBlockItem("rope", BlockInit.ROPE);
 
 	public static final BlockItem HANGING_POT_ITEM = register("hanging_pot",
 			new BlockItem(BlockInit.HANGING_POT,
-					new FabricItemSettings()));
+					new Item.Properties()) {
+				@Override
+				public Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
+					if (Screen.hasControlDown()) {
 
-	public static final BlockItem BOOKSTACK_ITEM = register("bookstack",
-			new BlockItem(BlockInit.BOOKSTACK,
-					new FabricItemSettings()));
+						List<ItemStack> plants = HangingPot.VALID_FLOWERS
+								.stream()
+								.filter(item -> item != Items.AIR)
+								.map(ItemStack::new)
+								.toList();
+						return Optional.of(new PlantableItemStackTooltip(plants));
+					} else {
+						return super.getTooltipImage(stack);
+					}
+				}
 
-	public static final BlockItem LAMP_LIGHT_BULB_ITEM = register("lamp_light_bulb",
-			new BlockItem(BlockInit.LAMP_LIGHT_BULB,
-					new FabricItemSettings()));
+			});
 
-	public static final BlockItem LAMP_BAMBOO_ITEM = register("lamp_bamboo",
-			new BlockItem(BlockInit.LAMP_BAMBOO,
-					new FabricItemSettings()));
+	public static final BlockItem BOOKSTACK_ITEM = registerBlockItem("bookstack", BlockInit.BOOKSTACK);
 
-	public static final BlockItem LAMP_JAR_ITEM = register("lamp_jar",
-			new BlockItem(BlockInit.LAMP_JAR,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_LIGHT_BULB_ITEM = registerBlockItem("lamp_light_bulb", BlockInit.LAMP_LIGHT_BULB);
 
-	// candleabras
-	public static final BlockItem LAMP_CANDLEABRA_ITEM = register("lamp_candleabra",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_BAMBOO_ITEM = registerBlockItem("lamp_bamboo", BlockInit.LAMP_BAMBOO);
 
-	public static final BlockItem LAMP_CANDLEABRA_LIGHT_BLUE_ITEM = register("lamp_candleabra_light_blue",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_LIGHT_BLUE,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_JAR_ITEM = registerBlockItem("lamp_jar", BlockInit.LAMP_JAR);
 
-	public static final BlockItem LAMP_CANDLEABRA_LIGHT_GRAY_ITEM = register("lamp_candleabra_light_gray",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_LIGHT_GRAY,
-					new FabricItemSettings()));
+	// candelabras
+	public static final BlockItem LAMP_CANDELABRA_ITEM = registerBlockItem("lamp_candelabra", BlockInit.LAMP_CANDELABRA);
 
-	public static final BlockItem LAMP_CANDLEABRA_BLACK_ITEM = register("lamp_candleabra_black",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_BLACK,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_LIGHT_BLUE_ITEM = registerBlockItem("lamp_candelabra_light_blue", BlockInit.LAMP_CANDELABRA_LIGHT_BLUE);
 
-	public static final BlockItem LAMP_CANDLEABRA_BLUE_ITEM = register("lamp_candleabra_blue",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_BLUE,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_LIGHT_GRAY_ITEM = registerBlockItem("lamp_candelabra_light_gray", BlockInit.LAMP_CANDELABRA_LIGHT_GRAY);
 
-	public static final BlockItem LAMP_CANDLEABRA_BROWN_ITEM = register("lamp_candleabra_brown",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_BROWN,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_BLACK_ITEM =registerBlockItem("lamp_candelabra_black", BlockInit.LAMP_CANDELABRA_BLACK);
 
-	public static final BlockItem LAMP_CANDLEABRA_CYAN_ITEM = register("lamp_candleabra_cyan",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_CYAN,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_BLUE_ITEM = registerBlockItem("lamp_candelabra_blue", BlockInit.LAMP_CANDELABRA_BLUE);
 
-	public static final BlockItem LAMP_CANDLEABRA_GRAY_ITEM = register("lamp_candleabra_gray",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_GRAY,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_BROWN_ITEM = registerBlockItem("lamp_candelabra_brown", BlockInit.LAMP_CANDELABRA_BROWN);
 
-	public static final BlockItem LAMP_CANDLEABRA_GREEN_ITEM = register("lamp_candleabra_green",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_GREEN,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_CYAN_ITEM = registerBlockItem("lamp_candelabra_cyan", BlockInit.LAMP_CANDELABRA_CYAN);
 
-	public static final BlockItem LAMP_CANDLEABRA_LIME_ITEM = register("lamp_candleabra_lime",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_LIME,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_GRAY_ITEM = registerBlockItem("lamp_candelabra_gray", BlockInit.LAMP_CANDELABRA_GRAY);
 
-	public static final BlockItem LAMP_CANDLEABRA_MAGENTA_ITEM = register("lamp_candleabra_magenta",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_MAGENTA,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_GREEN_ITEM = registerBlockItem("lamp_candelabra_green", BlockInit.LAMP_CANDELABRA_GREEN);
 
-	public static final BlockItem LAMP_CANDLEABRA_ORANGE_ITEM = register("lamp_candleabra_orange",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_ORANGE,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_LIME_ITEM = registerBlockItem("lamp_candelabra_lime", BlockInit.LAMP_CANDELABRA_LIME);
 
-	public static final BlockItem LAMP_CANDLEABRA_PINK_ITEM = register("lamp_candleabra_pink",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_PINK,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_MAGENTA_ITEM = registerBlockItem("lamp_candelabra_magenta", BlockInit.LAMP_CANDELABRA_MAGENTA);
 
-	public static final BlockItem LAMP_CANDLEABRA_PURPLE_ITEM = register("lamp_candleabra_purple",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_PURPLE,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_ORANGE_ITEM = registerBlockItem("lamp_candelabra_orange", BlockInit.LAMP_CANDELABRA_ORANGE);
 
-	public static final BlockItem LAMP_CANDLEABRA_RED_ITEM = register("lamp_candleabra_red",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_RED, new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_PINK_ITEM = registerBlockItem("lamp_candelabra_pink", BlockInit.LAMP_CANDELABRA_PINK);
 
-	public static final BlockItem LAMP_CANDLEABRA_WHITE_ITEM = register("lamp_candleabra_white",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_WHITE,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_PURPLE_ITEM = registerBlockItem("lamp_candelabra_purple", BlockInit.LAMP_CANDELABRA_PURPLE);
 
-	public static final BlockItem LAMP_CANDLEABRA_YELLOW_ITEM = register("lamp_candleabra_yellow",
-			new BlockItem(BlockInit.LAMP_CANDLEABRA_YELLOW,
-					new FabricItemSettings()));
+	public static final BlockItem LAMP_CANDELABRA_RED_ITEM = registerBlockItem("lamp_candelabra_red", BlockInit.LAMP_CANDELABRA_RED);
+
+	public static final BlockItem LAMP_CANDELABRA_WHITE_ITEM = registerBlockItem("lamp_candelabra_white", BlockInit.LAMP_CANDELABRA_WHITE);
+
+	public static final BlockItem LAMP_CANDELABRA_YELLOW_ITEM = registerBlockItem("lamp_candelabra_yellow", BlockInit.LAMP_CANDELABRA_YELLOW);
 
 	// workbench
-	public static final BlockItem BOTANIST_WORKBENCH_ITEM = register("botanist_workbench",
-			new BlockItem(BlockInit.BOTANIST_WORKBENCH,
-					new FabricItemSettings()));
+	public static final BlockItem BOTANIST_WORKBENCH_ITEM = registerBlockItem("botanist_workbench", BlockInit.BOTANIST_WORKBENCH);
 
 	private static <T extends Item> T register(String name, T item) {
 		ITEMS.put(item, Beautify.id(name));
 		return Registry.register(BuiltInRegistries.ITEM, Beautify.id(name), item);
+	}
+
+	private static BlockItem registerBlockItem(String name, Block block) {
+		return register(name, new BlockItem(block, new Item.Properties()));
+	}
+
+	private static BlockItem registerTrellis(String name, Block block) {
+		return register(name, new BlockItem(block, new Item.Properties()) {
+			@Override
+			public Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
+				if (Screen.hasControlDown()) {
+
+					List<ItemStack> plants = Trellis.VALID_FLOWERS
+							.stream()
+							.filter(item -> item != Items.AIR)
+							.map(ItemStack::new)
+							.toList();
+					return Optional.of(new PlantableItemStackTooltip(plants));
+				} else {
+					return super.getTooltipImage(stack);
+				}
+			}
+
+		});
 	}
 
 	public static void registerFuel() {
@@ -258,6 +196,8 @@ public final class ItemInit {
 		FuelRegistry.INSTANCE.add(DARK_OAK_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(MANGROVE_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(CHERRY_TRELLIS_ITEM, 300);
+		FuelRegistry.INSTANCE.add(CRIMSON_TRELLIS_ITEM, 300);
+		FuelRegistry.INSTANCE.add(WARPED_TRELLIS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(OAK_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(SPRUCE_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(BIRCH_BLINDS_ITEM, 300);
@@ -266,6 +206,8 @@ public final class ItemInit {
 		FuelRegistry.INSTANCE.add(DARK_OAK_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(CHERRY_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(MANGROVE_BLINDS_ITEM, 300);
+		FuelRegistry.INSTANCE.add(CRIMSON_BLINDS_ITEM, 300);
+		FuelRegistry.INSTANCE.add(WARPED_BLINDS_ITEM, 300);
 		FuelRegistry.INSTANCE.add(OAK_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(SPRUCE_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(BIRCH_PICTURE_FRAME_ITEM, 300);
@@ -274,6 +216,8 @@ public final class ItemInit {
 		FuelRegistry.INSTANCE.add(DARK_OAK_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(MANGROVE_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(CHERRY_PICTURE_FRAME_ITEM, 300);
+		FuelRegistry.INSTANCE.add(CRIMSON_PICTURE_FRAME_ITEM, 300);
+		FuelRegistry.INSTANCE.add(WARPED_PICTURE_FRAME_ITEM, 300);
 		FuelRegistry.INSTANCE.add(ROPE_ITEM, 100);
 	}
 }
