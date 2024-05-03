@@ -2,10 +2,10 @@
   "required": true,
   "minVersion": "0.8",
   "package": "io.github.suel_ki.beautify.mixin",
-  "compatibilityLevel": "JAVA_17",
+  "compatibilityLevel": "JAVA_21",
   "refmap": "beautify-refmap.json",
   "mixins": [
-    "EnchantmentTableBlockMixin"
+    "EnchantingTableBlockMixin"
   ],
   "client": [
   ],

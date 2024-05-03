@@ -37,10 +37,10 @@
     "beautify.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.15.1",
+    "fabricloader": ">=0.15.10",
     "fabric-api": "*",
-    "minecraft": "~1.20.3",
-    "java": ">=17",
+    "minecraft": "~1.20.5",
+    "java": ">=21",
     "cloth-config": "*"
   },
   "custom": {
