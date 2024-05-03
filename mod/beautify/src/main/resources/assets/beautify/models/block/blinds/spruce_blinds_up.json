@@ -1,8 +1,0 @@
-{
-	"parent": "beautify:block/blinds/oak_blinds_up",
-	"textures": {
-		"0": "minecraft:block/spruce_planks",
-		"particle": "minecraft:block/spruce_planks"
-	},
-	"render_type": "cutout"
-}

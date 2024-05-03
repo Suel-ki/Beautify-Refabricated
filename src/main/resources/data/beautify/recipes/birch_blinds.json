@@ -13,7 +13,7 @@
         }
     },
     "result": {
-        "item": "beautify:birch_blinds",
+        "id": "beautify:birch_blinds",
         "count": 1
     },
     "group": "blinds"

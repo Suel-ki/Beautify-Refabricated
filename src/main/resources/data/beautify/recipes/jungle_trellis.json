@@ -14,7 +14,7 @@
         }
     },
     "result": {
-        "item": "beautify:jungle_trellis",
+        "id": "beautify:jungle_trellis",
         "count": 4
     },
     "group": "trellis"

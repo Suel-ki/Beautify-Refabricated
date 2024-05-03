@@ -19,7 +19,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/lamp_jar1",
+					"value": "beautify:blocks/lamp_jar1",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -32,7 +32,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/lamp_jar2",
+					"value": "beautify:blocks/lamp_jar2",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -45,7 +45,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/lamp_jar3",
+					"value": "beautify:blocks/lamp_jar3",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",

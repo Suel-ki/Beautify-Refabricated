@@ -1,8 +1,10 @@
 package io.github.suel_ki.beautify.common.block;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.MapCodec;
 import io.github.suel_ki.beautify.core.init.SoundInit;
 import net.minecraft.ChatFormatting;
@@ -13,10 +15,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -31,19 +33,23 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BookStack extends HorizontalDirectionalBlock {
-	private static final int modelcount = 7; // number of models the bookstack has
-	public static final IntegerProperty BOOKSTACK_MODEL = IntegerProperty.create("bookstack_model", 0, modelcount - 1);
-	// Different Voxelshapes for models of BOOKSTACK_MODEL
-	private static final VoxelShape SHAPE0 = Block.box(1, 0, 1, 15, 4, 15);
-	private static final VoxelShape SHAPE1 = Block.box(1, 0, 1, 15, 4, 15);
-	private static final VoxelShape SHAPE2 = Block.box(0, 0, 0, 16, 1.5, 16);
-	private static final VoxelShape SHAPE3 = Block.box(0, 0, 0, 16, 9.5, 16);
-	private static final VoxelShape SHAPE4 = Block.box(1, 0, 1, 15, 5, 15);
-	private static final VoxelShape SHAPE5 = Block.box(0.5, 0, 0.5, 15.5, 7.25, 15.5);
-	private static final VoxelShape SHAPE6 = Block.box(1, 0, 1, 15, 12, 15);
+	private static final int MODELCOUNT = 7; // number of models the bookstack has
+	public static final IntegerProperty BOOKSTACK_MODEL = IntegerProperty.create("bookstack_model", 0, MODELCOUNT - 1);
+
+	//Map of hitboxes for every model the model can be
+	private static final Map<Integer, VoxelShape> SHAPES_FOR_MODEL = ImmutableMap.of(
+			0, Shapes.or(Block.box(1, 0, 1, 15, 4, 15)),
+			1, Shapes.or(Block.box(1, 0, 1, 15, 4, 15)),
+			2, Shapes.or(Block.box(0, 0, 0, 16, 1.5, 16)),
+			3, Shapes.or(Block.box(0, 0, 0, 16, 9.5, 16)),
+			4, Shapes.or(Block.box(1, 0, 1, 15, 5, 15)),
+			5, Shapes.or(Block.box(0.5, 0, 0.5, 15.5, 7.25, 15.5)),
+			6, Shapes.or(Block.box(1, 0, 1, 15, 12, 15))
+	);
 
 	public static final MapCodec<BookStack> CODEC = simpleCodec(BookStack::new);
 
@@ -60,19 +66,9 @@ public class BookStack extends HorizontalDirectionalBlock {
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		return switch (state.getValue(BOOKSTACK_MODEL)) {
-		case 0 -> SHAPE0;
-		case 1 -> SHAPE1;
-		case 2 -> SHAPE2;
-		case 3 -> SHAPE3;
-		case 4 -> SHAPE4;
-		case 5 -> SHAPE5;
-		case 6 -> SHAPE6;
-		default -> SHAPE0;
-		};
+		return SHAPES_FOR_MODEL.get(state.getValue(BOOKSTACK_MODEL));
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public BlockState updateShape(BlockState state, Direction direction, BlockState neighborState, LevelAccessor level,
 			BlockPos currentPos, BlockPos neighborPos) {
@@ -87,7 +83,6 @@ public class BookStack extends HorizontalDirectionalBlock {
 		return canSupportRigidBlock(level, pos.below());
 	}
 
-
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		if (!state.canSurvive(level, pos)) {
@@ -97,14 +92,16 @@ public class BookStack extends HorizontalDirectionalBlock {
 
 	// changing the model of the bookstack by shift-rightclicking
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-			BlockHitResult result) {
-		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND && player.getItemInHand(hand).isEmpty()
-				&& player.isShiftKeyDown()) {
+	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+											BlockHitResult result) {
+		if (level.isClientSide()) {
+			return InteractionResult.SUCCESS;
+		}
+		if (player.isShiftKeyDown()) {
 			int currentModel = state.getValue(BOOKSTACK_MODEL); // current index
 			level.playSound(null, pos, SoundInit.BOOKSTACK_NEXT, SoundSource.BLOCKS, 1, 1);
 			// reset if it surpasses the number of possible models
-			if (currentModel + 1 > modelcount - 1) {
+			if (currentModel + 1 > MODELCOUNT - 1) {
 				level.setBlock(pos, state.setValue(BOOKSTACK_MODEL, 0), 3);
 			} else { // increases index
 				level.setBlock(pos, state.setValue(BOOKSTACK_MODEL, currentModel + 1), 3);
@@ -122,10 +119,8 @@ public class BookStack extends HorizontalDirectionalBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		final int min = 0;
-		final int max = modelcount;
 		Random rand = new Random();
-		int randomNum = rand.nextInt((max - min));
+		int randomNum = rand.nextInt((MODELCOUNT));
 
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())
 				.setValue(BOOKSTACK_MODEL, randomNum);
@@ -139,7 +134,7 @@ public class BookStack extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter getter, List<Component> component, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
 			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
@@ -150,6 +145,6 @@ public class BookStack extends HorizontalDirectionalBlock {
 			component.add(Component.translatable("tooltip.beautify.bookstack.2")
 					.withStyle(ChatFormatting.GRAY));
 		}
-		super.appendHoverText(stack, getter, component, flag);
+		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

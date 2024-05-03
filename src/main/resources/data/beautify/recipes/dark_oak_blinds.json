@@ -13,7 +13,7 @@
         }
     },
     "result": {
-        "item": "beautify:dark_oak_blinds",
+        "id": "beautify:dark_oak_blinds",
         "count": 1
     },
     "group": "blinds"

@@ -13,7 +13,7 @@
         }
     },
     "result": {
-        "item": "beautify:mangrove_blinds",
+        "id": "beautify:mangrove_blinds",
         "count": 1
     },
     "group": "blinds"

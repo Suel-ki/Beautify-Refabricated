@@ -19,7 +19,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_rose_trellis",
+					"value": "beautify:blocks/mangrove_rose_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -32,7 +32,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_sunflower_trellis",
+					"value": "beautify:blocks/mangrove_sunflower_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -45,7 +45,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_peony_trellis",
+					"value": "beautify:blocks/mangrove_peony_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -58,7 +58,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_lilac_trellis",
+					"value": "beautify:blocks/mangrove_lilac_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -71,7 +71,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_vine_trellis",
+					"value": "beautify:blocks/mangrove_vine_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -84,7 +84,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_weeping_vines_trellis",
+					"value": "beautify:blocks/mangrove_weeping_vines_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -97,7 +97,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_twisting_vines_trellis",
+					"value": "beautify:blocks/mangrove_twisting_vines_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -110,7 +110,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/mangrove_lichen_trellis",
+					"value": "beautify:blocks/mangrove_lichen_trellis",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",

@@ -8,9 +8,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
@@ -36,18 +36,14 @@ public class LampBamboo extends LanternBlock {
 	}
 
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos,
-			CollisionContext context) {
-		if (state.getValue(HANGING)) {
-			return SHAPE_HANGING;
-		}
-		return SHAPE_STANDING;
+	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+		return state.getValue(HANGING) ? SHAPE_HANGING : SHAPE_STANDING;
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-			BlockHitResult result) {
-		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND && player.getItemInHand(hand).isEmpty()) {
+	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+											BlockHitResult result) {
+		if (!level.isClientSide()) {
 			level.setBlock(pos, state.setValue(ON, !state.getValue(ON)), 3);
 			float f = state.getValue(ON) ? 0.5F : 0.6F;
 			level.playSound(null, pos, SoundEvents.LEVER_CLICK, SoundSource.BLOCKS, 0.25F, f);
@@ -63,7 +59,7 @@ public class LampBamboo extends LanternBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter getter, List<Component> component, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
 			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
@@ -74,6 +70,6 @@ public class LampBamboo extends LanternBlock {
 			component.add(Component.translatable("tooltip.beautify.lamp.2")
 					.withStyle(ChatFormatting.GRAY));
 		}
-		super.appendHoverText(stack, getter, component, flag);
+		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

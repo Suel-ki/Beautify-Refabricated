@@ -19,7 +19,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/rose_pot",
+					"value": "beautify:blocks/rose_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -32,7 +32,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/lilac_pot",
+					"value": "beautify:blocks/lilac_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -45,7 +45,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/orchid_pot",
+					"value": "beautify:blocks/orchid_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -58,7 +58,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/vines_pot",
+					"value": "beautify:blocks/vines_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -71,7 +71,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/sunflower_pot",
+					"value": "beautify:blocks/sunflower_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -84,7 +84,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/peony_pot",
+					"value": "beautify:blocks/peony_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -97,7 +97,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/azure_bluet_pot",
+					"value": "beautify:blocks/azure_bluet_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -110,7 +110,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/red_tulip_pot",
+					"value": "beautify:blocks/red_tulip_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -123,7 +123,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/orange_tulip_pot",
+					"value": "beautify:blocks/orange_tulip_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -136,7 +136,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/white_tulip_pot",
+					"value": "beautify:blocks/white_tulip_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -149,7 +149,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/pink_tulip_pot",
+					"value": "beautify:blocks/pink_tulip_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -162,7 +162,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/allium_pot",
+					"value": "beautify:blocks/allium_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -175,7 +175,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/dandelion_pot",
+					"value": "beautify:blocks/dandelion_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -188,7 +188,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/poppy_pot",
+					"value": "beautify:blocks/poppy_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -201,7 +201,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/poppy_pot",
+					"value": "beautify:blocks/poppy_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -214,7 +214,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/glow_lichen_pot",
+					"value": "beautify:blocks/glow_lichen_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -227,7 +227,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/oxeye_daisy_pot",
+					"value": "beautify:blocks/oxeye_daisy_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -240,7 +240,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/lily_pot",
+					"value": "beautify:blocks/lily_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -253,7 +253,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/cornflower_pot",
+					"value": "beautify:blocks/cornflower_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -266,7 +266,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/weeping_vines_pot",
+					"value": "beautify:blocks/weeping_vines_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -279,7 +279,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/twisting_vines_pot",
+					"value": "beautify:blocks/twisting_vines_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -292,7 +292,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/wither_rose_pot",
+					"value": "beautify:blocks/wither_rose_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -305,7 +305,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/glowberry_pot",
+					"value": "beautify:blocks/glowberry_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -318,7 +318,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/berry_pot",
+					"value": "beautify:blocks/berry_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -331,7 +331,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/grass_pot",
+					"value": "beautify:blocks/grass_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",
@@ -344,7 +344,7 @@
 				},
 				{
 					"type": "minecraft:loot_table",
-					"name": "beautify:blocks/fern_pot",
+					"value": "beautify:blocks/fern_pot",
 					"conditions": [
 						{
 							"condition": "minecraft:block_state_property",

@@ -12,7 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -35,14 +35,14 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class HangingPot extends LanternBlock {
-	private static final List<Item> validFlowers = Arrays.asList(Items.AIR, Items.ROSE_BUSH, Items.LILAC,
+	public static final List<Item> VALID_FLOWERS = Arrays.asList(Items.AIR, Items.ROSE_BUSH, Items.LILAC,
 			Items.BLUE_ORCHID, Items.VINE, Items.SUNFLOWER, Items.PEONY, Items.AZURE_BLUET, Items.RED_TULIP,
 			Items.ORANGE_TULIP, Items.WHITE_TULIP, Items.PINK_TULIP, Items.ALLIUM, Items.DANDELION, Items.POPPY,
 			Items.GLOW_LICHEN, Items.OXEYE_DAISY, Items.LILY_OF_THE_VALLEY, Items.CORNFLOWER, Items.WEEPING_VINES,
-			Items.TWISTING_VINES, Items.WITHER_ROSE, Items.GLOW_BERRIES, Items.SWEET_BERRIES, Items.GRASS_BLOCK, Items.FERN);
+			Items.TWISTING_VINES, Items.WITHER_ROSE, Items.GLOW_BERRIES, Items.SWEET_BERRIES, Items.SHORT_GRASS, Items.FERN);
 
 	// POTFLOWER indicates which index of the flowers List below is active
-	public static final IntegerProperty POTFLOWER = IntegerProperty.create("potflower", 0, validFlowers.size() - 1);
+	public static final IntegerProperty POTFLOWER = IntegerProperty.create("potflower", 0, VALID_FLOWERS.size() - 1);
 
 	public static final BooleanProperty GROWN = BooleanProperty.create("grown");
 
@@ -57,28 +57,29 @@ public class HangingPot extends LanternBlock {
 	private static final VoxelShape STANDING_SHAPE = Shapes.or(box(5, 0, 5, 11, 5, 11), box(4, 5, 4, 12, 8, 12));
 
 	public List<Item> getValidFlowers() {
-		return validFlowers;
+		return VALID_FLOWERS;
 	}
 
 	@Override
 	public VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
-		if (state.getValue(HANGING)) {
-			return HANGING_SHAPE;
-		}
-		return STANDING_SHAPE;
+		return state.getValue(HANGING) ? HANGING_SHAPE : STANDING_SHAPE;
 	}
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block,
 			BlockPos blockPos, boolean bool) {
-		if (state.getValue(GROWN)) { //if the plant is grown long
+		//if the plant is grown long
+		if (state.getValue(GROWN)) {
+			//if the neighbour is a model that clips into the pot
 			if (blockPos.equals(pos.below())
-					&& level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)) { //if the neighbour is a model that clips into the pot
+					&& level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)) {
+				//make pot ungrown again
 				level.setBlock(pos, state.setValue(GROWN, false), 3);
+				//spawn item from plant inside
 				ItemEntity Item = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(),
-						new ItemStack(validFlowers.get(state.getValue(POTFLOWER))));
+						new ItemStack(VALID_FLOWERS.get(state.getValue(POTFLOWER))));
 				level.addFreshEntity(Item);
+				//play breaking sound
 				level.playSound(null, pos, SoundEvents.HANGING_ROOTS_BREAK, SoundSource.BLOCKS, 1, 1);
 			}
 		}
@@ -86,16 +87,16 @@ public class HangingPot extends LanternBlock {
 	}
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-			BlockHitResult result) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+										   BlockHitResult result) {
 
-		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
+		if (!level.isClientSide()) {
 			ItemStack playerStack = player.getItemInHand(hand); // saving ItemStack
 
 			// growing plant
 			// block below must not be sturdy to prevent clipping models
 			if (playerStack.getItem().equals(Items.BONE_MEAL) && state.getValue(POTFLOWER) != 0
-					/*&& !level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)*/) {
+					&& !level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)) {
 				if (!state.getValue(GROWN)) {
 					level.levelEvent(1505, result.getBlockPos(), 0);
 					//level.playSound(null, pos, SoundEvents.BONE_MEAL_USE, SoundSource.BLOCKS, 1, 1);
@@ -103,7 +104,7 @@ public class HangingPot extends LanternBlock {
 						playerStack.shrink(1);
 					}
 					level.setBlock(pos, state.setValue(GROWN, true), 3);
-					return InteractionResult.SUCCESS;
+					return ItemInteractionResult.SUCCESS;
 				}
 			}
 
@@ -113,35 +114,35 @@ public class HangingPot extends LanternBlock {
 				level.playSound(null, pos, SoundEvents.SHEEP_SHEAR, SoundSource.BLOCKS, 1, 1);
 				level.setBlock(pos, state.setValue(GROWN, false), 3);
 				ItemEntity Item = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(),
-						new ItemStack(validFlowers.get(state.getValue(POTFLOWER))));
+						new ItemStack(VALID_FLOWERS.get(state.getValue(POTFLOWER))));
 				level.addFreshEntity(Item);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 
 			// if there is a flower
 			if (state.getValue(POTFLOWER) != 0) {
 				// giving flower and clearing pot if hand empty
 				if (playerStack.isEmpty()) {
-					player.setItemInHand(hand, new ItemStack(validFlowers.get(state.getValue(POTFLOWER)),
+					player.setItemInHand(hand, new ItemStack(VALID_FLOWERS.get(state.getValue(POTFLOWER)),
 							state.getValue(GROWN) ? 2 : 1)); // giving 1 or 2 of plant (grown or not)
 					level.setBlock(pos, state.setValue(POTFLOWER, 0).setValue(GROWN, false), 3); // emptying the pot
 					level.playSound(null, pos, SoundEvents.COMPOSTER_READY, SoundSource.BLOCKS, 1, 1);
-					return InteractionResult.SUCCESS;
-				} else if (playerStack.is(validFlowers.get(state.getValue(POTFLOWER)))
+					return ItemInteractionResult.SUCCESS;
+				} else if (playerStack.is(VALID_FLOWERS.get(state.getValue(POTFLOWER)))
 						&& playerStack.getCount() < playerStack.getMaxStackSize()) {
 					playerStack.grow(state.getValue(GROWN) ? 2 : 1); // giving 1 or 2 of plant (grown or not)
 					level.setBlock(pos, state.setValue(POTFLOWER, 0).setValue(GROWN, false), 3);
 					level.playSound(null, pos, SoundEvents.AZALEA_LEAVES_BREAK, SoundSource.BLOCKS, 1, 1);
-					return InteractionResult.SUCCESS;
+					return ItemInteractionResult.SUCCESS;
 				}
 
 				// else just return
 			} else { // if there is no flower
 
 				// checks if the flower in hand matches the available types
-				for (Item flower : validFlowers) {
+				for (Item flower : VALID_FLOWERS) {
 					if (playerStack.getItem().equals(flower)) {
-						level.setBlock(pos, state.setValue(POTFLOWER, validFlowers.indexOf(flower)), 3);
+						level.setBlock(pos, state.setValue(POTFLOWER, VALID_FLOWERS.indexOf(flower)), 3);
 						player.awardStat(Stats.POT_FLOWER);
 						if (!flower.equals(Items.AIR)) {
 							level.playSound(null, pos, SoundEvents.AZALEA_PLACE, SoundSource.BLOCKS, 1, 1);
@@ -149,15 +150,15 @@ public class HangingPot extends LanternBlock {
 						if (!player.getAbilities().instabuild) {
 							playerStack.shrink(1);
 						}
-						return InteractionResult.SUCCESS;
+						return ItemInteractionResult.SUCCESS;
 					}
 				}
 				// if the flower is not a valid one
 			}
-			return InteractionResult.CONSUME;
+			return ItemInteractionResult.CONSUME;
 		}
 		// end of statement
-		return InteractionResult.CONSUME;
+		return ItemInteractionResult.CONSUME;
 	}
 
 	@Override
@@ -170,7 +171,7 @@ public class HangingPot extends LanternBlock {
 	}
 
 	public Block getContent(BlockState state) {
-		return Block.byItem(validFlowers.get(state.getValue(POTFLOWER)));
+		return Block.byItem(VALID_FLOWERS.get(state.getValue(POTFLOWER)));
 	}
 
 	// creating Blockstates
@@ -181,7 +182,7 @@ public class HangingPot extends LanternBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter getter, List<Component> component, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown() && !Screen.hasControlDown()) {
 			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 			component.add(Component.translatable("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
@@ -195,13 +196,6 @@ public class HangingPot extends LanternBlock {
 			component.add(Component.translatable("tooltip.beautify.hanging_pot.3")
 					.withStyle(ChatFormatting.GRAY));
 		}
-
-		if (Screen.hasControlDown()) {
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.plant_header").withStyle(ChatFormatting.UNDERLINE)
-					.withStyle(ChatFormatting.BOLD).withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.plants")
-					.withStyle(ChatFormatting.GRAY));
-		}
-		super.appendHoverText(stack, getter, component, flag);
+		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

@@ -1,9 +1,0 @@
-{
-	"parent": "beautify:block/pictureframes/base_picture_frame",
-	"textures": {
-		"0": "beautify:block/motive_beach",
-		"1": "beautify:block/quartz_frame_texture",
-		"particle": "beautify:block/quartz_frame_texture"
-	},
-	"render_type": "cutout"
-}

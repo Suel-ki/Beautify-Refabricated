@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "beautify:bookstack"
+      "id": "beautify:bookstack"
     },
     "title": {
       "translate": "advancements.beautify.bookstack.title"

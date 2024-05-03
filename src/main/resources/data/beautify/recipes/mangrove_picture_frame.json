@@ -17,7 +17,7 @@
 		}
 	},
 	"result": {
-		"item": "beautify:mangrove_picture_frame",
+		"id": "beautify:mangrove_picture_frame",
 		"count": 1
 	},
 	"group": "frames"

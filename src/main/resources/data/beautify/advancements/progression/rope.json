@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "beautify:rope"
+      "id": "beautify:rope"
     },
     "title": {
       "translate": "advancements.beautify.rope.title"

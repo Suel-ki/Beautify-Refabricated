@@ -12,7 +12,7 @@
 		}
 	],
 	"result": {
-		"item": "beautify:bookstack",
+		"id": "beautify:bookstack",
 		"count": 1
 	}
 }

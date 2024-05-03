@@ -13,7 +13,7 @@
         }
     },
     "result": {
-        "item": "beautify:acacia_blinds",
+        "id": "beautify:acacia_blinds",
         "count": 1
     },
     "group": "blinds"

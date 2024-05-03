@@ -14,7 +14,7 @@
         }
     },
     "result": {
-        "item": "beautify:acacia_trellis",
+        "id": "beautify:acacia_trellis",
         "count": 4
     },
     "group": "trellis"

@@ -1,9 +1,0 @@
-{
-	"parent": "beautify:block/pictureframes/base_picture_frame",
-	"textures": {
-		"0": "beautify:block/motive_river",
-		"1": "beautify:block/dark_oak_frame_texture",
-		"particle": "beautify:block/dark_oak_frame_texture"
-	},
-	"render_type": "cutout"
-}

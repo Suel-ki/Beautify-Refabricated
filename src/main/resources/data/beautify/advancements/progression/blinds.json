@@ -1,7 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "beautify:oak_blinds"
+      "id": "beautify:oak_blinds"
     },
     "title": {
       "translate": "advancements.beautify.blinds.title"

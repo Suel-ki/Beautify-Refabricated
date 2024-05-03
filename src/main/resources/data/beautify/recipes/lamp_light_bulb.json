@@ -14,7 +14,7 @@
         }
     },
     "result": {
-        "item": "beautify:lamp_light_bulb",
+        "id": "beautify:lamp_light_bulb",
         "count": 1
     }
 }

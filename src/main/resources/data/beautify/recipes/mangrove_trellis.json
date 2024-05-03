@@ -14,7 +14,7 @@
         }
     },
     "result": {
-        "item": "beautify:mangrove_trellis",
+        "id": "beautify:mangrove_trellis",
         "count": 4
     },
     "group": "trellis"

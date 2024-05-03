@@ -11,9 +11,9 @@ import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -30,8 +30,8 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class PictureFrame extends HorizontalDirectionalBlock {
-	private static final int modelcount = 13; // number of models the frame has
-	public static final IntegerProperty FRAME_MOTIVE = IntegerProperty.create("frame_motive", 0, modelcount - 1);
+	private static final int MODELCOUNT = 13; // number of models the frame has
+	public static final IntegerProperty FRAME_MOTIVE = IntegerProperty.create("frame_motive", 0, MODELCOUNT - 1);
 	protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 8, 11);
 
 	public static final MapCodec<PictureFrame> CODEC = simpleCodec(PictureFrame::new);
@@ -48,13 +48,12 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 
 	// changing the model of the picture frame by shift-rightclicking
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-			BlockHitResult result) {
-		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND && player.getItemInHand(hand).isEmpty()
-				&& player.isShiftKeyDown()) {
+	public InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player,
+											BlockHitResult result) {
+		if (!level.isClientSide() && player.isShiftKeyDown()) {
 			int currentModel = state.getValue(FRAME_MOTIVE); // current index
 			// reset if it surpasses the number of possible models
-			if (currentModel + 1 > modelcount - 1) {
+			if (currentModel + 1 > MODELCOUNT - 1) {
 				level.setBlock(pos, state.setValue(FRAME_MOTIVE, 0), 3);
 			} else { // increases index
 				level.setBlock(pos, state.setValue(FRAME_MOTIVE, currentModel + 1), 3);
@@ -78,10 +77,8 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		final int min = 0;
-		final int max = modelcount;
 		Random rand = new Random();
-		int randomNum = rand.nextInt((max - min));
+		int randomNum = rand.nextInt((MODELCOUNT));
 
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())
 				.setValue(FRAME_MOTIVE, randomNum);
@@ -95,7 +92,7 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
 			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
@@ -106,6 +103,6 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 			component.add(Component.translatable("tooltip.beautify.picture_frame.2")
 					.withStyle(ChatFormatting.GRAY));
 		}
-		super.appendHoverText(stack, level, component, flag);
+		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

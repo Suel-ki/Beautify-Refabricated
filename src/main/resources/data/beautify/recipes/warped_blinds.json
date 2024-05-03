@@ -13,7 +13,7 @@
         }
     },
     "result": {
-        "item": "beautify:warped_blinds",
+        "id": "beautify:warped_blinds",
         "count": 1
     },
     "group": "blinds"

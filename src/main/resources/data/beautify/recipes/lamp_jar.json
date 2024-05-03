@@ -9,7 +9,7 @@
         }
     ],
     "result": {
-        "item": "beautify:lamp_jar",
+        "id": "beautify:lamp_jar",
         "count": 1
     }
 }

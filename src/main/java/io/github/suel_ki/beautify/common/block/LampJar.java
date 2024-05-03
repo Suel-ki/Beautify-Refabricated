@@ -13,12 +13,12 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LanternBlock;
@@ -38,9 +38,9 @@ public class LampJar extends LanternBlock {
 
 	// Fill
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-			BlockHitResult result) {
-		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
+	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+										   BlockHitResult result) {
+		if (!level.isClientSide()) {
 
 			ItemStack playerStack = player.getItemInHand(hand);
 
@@ -53,7 +53,7 @@ public class LampJar extends LanternBlock {
 				level.setBlock(pos, state.setValue(FILL_LEVEL, 0), 3);
 				level.playSound(null, pos, SoundEvents.AMETHYST_CLUSTER_BREAK, SoundSource.BLOCKS, 0.5F,
 						0.5f);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 
 			// increasing
@@ -61,10 +61,10 @@ public class LampJar extends LanternBlock {
 				playerStack.shrink(1);
 				level.setBlock(pos, state.setValue(FILL_LEVEL, currentLevel + increase), 3);
 				level.playSound(null, pos, SoundEvents.AMETHYST_BLOCK_HIT, SoundSource.BLOCKS, 0.5F, 0.5f);
-				return InteractionResult.SUCCESS;
+				return ItemInteractionResult.SUCCESS;
 			}
 		}
-		return InteractionResult.SUCCESS;
+		return ItemInteractionResult.SUCCESS;
 	}
 
 	@Override
@@ -103,20 +103,6 @@ public class LampJar extends LanternBlock {
 			level.addParticle(ParticleInit.GLOWESSENCE_PARTICLES, posX, posY, posZ, randomDir(rand), 0.01, randomDir(rand));
 		}
 
-		/*if (state.getValue(FILL_LEVEL) >= 5 && state.getValue(FILL_LEVEL) < 10) {
-			if (rand.nextInt(particleProbability) == 0) {
-				level.addParticle(ParticleTypes.END_ROD, posX, posY, posZ, randomDir(rand), 0.01, randomDir(rand));
-			}
-		} else if (state.getValue(FILL_LEVEL) >= 10 && state.getValue(FILL_LEVEL) < 15) {
-			if (rand.nextInt(particleProbability) == 0) {
-				level.addParticle(ParticleTypes.END_ROD, posX, posY, posZ, randomDir(rand), 0.01, randomDir(rand));
-			}
-		} else if (state.getValue(FILL_LEVEL) == 15) {
-			posX = (pos.getX() + 0.35) + rand.nextDouble() / 3.5;
-			posY = (pos.getY() + 0.1) + rand.nextDouble() / 3.5;
-			posZ = (pos.getZ() + 0.35) + rand.nextDouble() / 3.5;
-			level.addParticle(ParticleTypes.END_ROD, posX, posY, posZ, randomDir(rand), 0.01, randomDir(rand));
-		}*/
 	}
 
 	private static double randomDir(RandomSource rand) {
@@ -124,7 +110,7 @@ public class LampJar extends LanternBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, BlockGetter level, List<Component> component, TooltipFlag flag) {
+	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
 		if (!Screen.hasShiftDown()) {
 			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
@@ -134,6 +120,6 @@ public class LampJar extends LanternBlock {
 			component.add(Component.translatable("tooltip.beautify.lamp_jar.2").withStyle(ChatFormatting.GRAY));
 			component.add(Component.translatable("tooltip.beautify.lamp_jar.3").withStyle(ChatFormatting.GRAY));
 		}
-		super.appendHoverText(stack, level, component, flag);
+		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

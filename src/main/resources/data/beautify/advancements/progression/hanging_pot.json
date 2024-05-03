@@ -1,7 +1,7 @@
 {
 	"display": {
 		"icon": {
-			"item": "beautify:hanging_pot"
+			"id": "beautify:hanging_pot"
 		},
 		"title": {
 			"translate": "advancements.beautify.hanging_pot.title"
