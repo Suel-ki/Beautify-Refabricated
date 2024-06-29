@@ -62,13 +62,11 @@ public class Beautify implements ModInitializer {
 	}
 
 	public static ResourceLocation id(String name) {
-		return new ResourceLocation(MODID, name);
+		return ResourceLocation.fromNamespaceAndPath(MODID, name);
 	}
 
 	private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey
-			.create(Registries.PROCESSOR_LIST, new ResourceLocation("minecraft", "empty"));
-
-
+			.create(Registries.PROCESSOR_LIST, ResourceLocation.withDefaultNamespace("empty"));
 
 	/**
 	 * Adds the building to the targeted pool. We will call this in
@@ -136,19 +134,19 @@ public class Beautify implements ModInitializer {
 		// Note, the resourcelocation is getting the pool files from the data folder.
 		// Not assets folder.
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				new ResourceLocation("minecraft:village/plains/streets"), "beautify:botanist_house_plains", weight);
+				ResourceLocation.withDefaultNamespace("village/plains/houses"), "beautify:botanist_house_plains", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				new ResourceLocation("minecraft:village/snowy/streets"), "beautify:botanist_house_snowy", weight);
+				ResourceLocation.withDefaultNamespace("village/snowy/houses"), "beautify:botanist_house_snowy", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				new ResourceLocation("minecraft:village/savanna/streets"), "beautify:botanist_house_savanna", weight);
+				ResourceLocation.withDefaultNamespace("village/savanna/houses"), "beautify:botanist_house_savanna", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				new ResourceLocation("minecraft:village/taiga/streets"), "beautify:botanist_house_taiga", weight);
+				ResourceLocation.withDefaultNamespace("village/taiga/houses"), "beautify:botanist_house_taiga", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				new ResourceLocation("minecraft:village/desert/streets"), "beautify:botanist_house_desert", weight);
+				ResourceLocation.withDefaultNamespace("village/desert/houses"), "beautify:botanist_house_desert", weight);
 	}
 
 }

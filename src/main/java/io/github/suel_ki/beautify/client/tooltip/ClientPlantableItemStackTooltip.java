@@ -14,7 +14,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
-    private static final ResourceLocation TEXTURE_LOCATION = new ResourceLocation("container/bundle/slot");
+    private static final ResourceLocation TEXTURE_LOCATION = ResourceLocation.withDefaultNamespace("container/bundle/slot");
     private static final Component TEXT = Component.translatable("tooltip.beautify.plantable").withStyle(ChatFormatting.GREEN);
 
     private static final int SLOT_SIZE = 18;

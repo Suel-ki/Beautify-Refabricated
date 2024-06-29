@@ -24,10 +24,6 @@ repositories {
 		url = 'https://maven.terraformersmc.com/releases'
 	}
 	maven {
-		name = 'isXander Maven'
-		url = "https://maven.isxander.dev/releases"
-	}
-	maven {
 		name = "Curse Maven"
 		url "https://www.cursemaven.com"
 		content {
