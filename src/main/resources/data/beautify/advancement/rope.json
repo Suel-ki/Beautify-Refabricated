@@ -6,10 +6,8 @@
 			"conditions": {
 				"items": [
 					{
-						"items": [
-							"minecraft:iron_ingot"
-						],
-						"min": 1
+						"items": "minecraft:string",
+						"count": 1
 					}
 				]
 			}
@@ -17,7 +15,7 @@
 	},
 	"rewards": {
 		"recipes": [
-			"beautify:iron_blinds"
+			"beautify:rope"
 		]
 	}
 }

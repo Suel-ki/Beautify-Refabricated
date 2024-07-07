@@ -6,10 +6,8 @@
 			"conditions": {
 				"items": [
 					{
-						"items": [
-							"beautify:rope"
-						],
-						"min": 1
+						"items": "beautify:rope",
+						"count": 1
 					}
 				]
 			}

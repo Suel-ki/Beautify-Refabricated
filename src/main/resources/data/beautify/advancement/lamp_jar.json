@@ -6,10 +6,8 @@
 			"conditions": {
 				"items": [
 					{
-						"items": [
-							"minecraft:glowstone_dust"
-						],
-						"min": 1
+						"items": "minecraft:glowstone_dust",
+						"count": 1
 					}
 				]
 			}

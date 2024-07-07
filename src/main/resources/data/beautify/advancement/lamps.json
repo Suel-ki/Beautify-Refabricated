@@ -6,10 +6,8 @@
 			"conditions": {
 				"items": [
 					{
-						"items": [
-							"minecraft:copper_ingot"
-						],
-						"min": 1
+						"items": "minecraft:copper_ingot",
+						"count": 1
 					}
 				]
 			}

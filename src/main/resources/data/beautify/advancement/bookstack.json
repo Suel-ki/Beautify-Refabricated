@@ -6,10 +6,8 @@
 			"conditions": {
 				"items": [
 					{
-						"items": [
-							"minecraft:flower_pot"
-						],
-						"min": 1
+						"items": "minecraft:book",
+						"count": 1
 					}
 				]
 			}
@@ -17,7 +15,7 @@
 	},
 	"rewards": {
 		"recipes": [
-			"beautify:botanist_workbench"
+			"beautify:bookstack"
 		]
 	}
 }
