@@ -109,6 +109,10 @@
   "advancements.beautify.rope.title": "你能打结吗?",
   "advancements.beautify.rope.description": "把绳子系在一起来接收绳子。",
 
+  "config.jade.plugin_beautify.lamp_jar.glowstone_dust": "显示荧石粉数量",
+  "config.jade.plugin_beautify.trellis.pot_plant": "显示所种植植物",
+  "config.jade.plugin_beautify.hanging_pot.pot_flower": "显示所种植植物",
+
   "text.autoconfig.beautify.title": "美化",
 
   "text.autoconfig.beautify.option.blinds": "百叶窗",

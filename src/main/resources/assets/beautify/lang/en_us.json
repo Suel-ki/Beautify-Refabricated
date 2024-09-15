@@ -109,6 +109,10 @@
 	"advancements.beautify.rope.title": "Could you knot?",
 	"advancements.beautify.rope.description": "Tie String together to receive Rope.",
 
+	"config.jade.plugin_beautify.lamp_jar.glowstone_dust": "Amount of Glowstone Dust",
+	"config.jade.plugin_beautify.trellis.pot_plant": "Show planting plant",
+	"config.jade.plugin_beautify.hanging_pot.pot_flower": "Show planting plant",
+
 	"text.autoconfig.beautify.title": "Beautify",
 
 	"text.autoconfig.beautify.option.blinds": "Blinds",
