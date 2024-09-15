@@ -3,6 +3,7 @@ package io.github.suel_ki.beautify;
 import io.github.suel_ki.beautify.core.init.BlockInit;
 import io.github.suel_ki.beautify.core.init.ItemInit;
 import io.github.suel_ki.beautify.core.init.TradesInit;
+import io.github.suel_ki.beautify.particle.ParticleInit;
 import io.github.suel_ki.beautify.util.BeautifyConfig;
 import com.mojang.datafixers.util.Pair;
 import me.shedaniel.autoconfig.AutoConfig;
@@ -56,6 +57,7 @@ public class Beautify implements ModInitializer {
 		TradesInit.addCustomTrades();
 		// Flammable
 		BlockInit.registerFlammableBlock();
+		ParticleInit.ensureLoadedServerside();
 		// Add new buildings to villages
 		ServerLifecycleEvents.SERVER_STARTED.register(this::addNewVillageBuilding);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Beautify.id("group"), BEAUTIFY_TAB);

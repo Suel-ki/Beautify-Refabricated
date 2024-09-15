@@ -18,6 +18,9 @@ public class ParticleInit {
         return Registry.register(BuiltInRegistries.PARTICLE_TYPE, Beautify.id(name), particle);
     }
 
+    public static void ensureLoadedServerside() {
+    }
+
     public static void registerParticle() {
         ParticleFactoryRegistry.getInstance().register(GLOWESSENCE_PARTICLES, GlowEssenceParticles.Provider::new);
     }
