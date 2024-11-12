@@ -15,7 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
@@ -33,7 +33,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
@@ -45,7 +45,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class LampCandelabra extends LanternBlock {
 	public static final BooleanProperty ON = BooleanProperty.create("on");
-	public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+	public static final EnumProperty<Direction> FACING = BlockStateProperties.HORIZONTAL_FACING;
 
 	private static final VoxelShape SHAPE_HANGING = Shapes.join(Block.box(0, 2, 6.5, 16, 16, 9.5), Block.box(6.5, 2, 0, 9.5, 16, 16), BooleanOp.OR);
 	private static final VoxelShape SHAPE_STANDING = Block.box(5, 0, 5, 11, 14, 11);
@@ -127,24 +127,24 @@ public class LampCandelabra extends LanternBlock {
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-										   BlockHitResult result) {
+	public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+									   BlockHitResult result) {
 		if (!level.isClientSide()) {
 			ItemStack playerStack = player.getItemInHand(hand);
 			// Ignite/Extinguish
 			if (state.getValue(WATERLOGGED)) {
-				return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+				return InteractionResult.PASS;
 			}
 			if (this.isOn(state) && !player.isShiftKeyDown() && playerStack.isEmpty()) {
 				extinguish(state, level, pos);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			} else if (!this.isOn(state) && playerStack.is(Items.FLINT_AND_STEEL)) {
 				setOn(level, state, pos, true);
 				playerStack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 		}
-		return ItemInteractionResult.SUCCESS;
+		return InteractionResult.SUCCESS;
 	}
 
 	@Environment(EnvType.CLIENT)

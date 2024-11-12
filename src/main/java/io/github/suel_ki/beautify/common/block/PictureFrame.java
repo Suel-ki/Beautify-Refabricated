@@ -71,7 +71,7 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+	public VoxelShape getOcclusionShape(BlockState blockState) {
 		return Shapes.empty();
 	}
 

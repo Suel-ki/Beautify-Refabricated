@@ -5,6 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -35,14 +36,14 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int tooltipX, int tooltipY, GuiGraphics graphics) {
+    public void renderImage(Font font, int tooltipX, int tooltipY, int k, int l, GuiGraphics graphics) {
         int slotSize = SLOT_SIZE;
         int x = tooltipX;
         int y = tooltipY + font.lineHeight + 3;
 
         for (var plant : this.plants) {
 
-            graphics.blitSprite(TEXTURE_LOCATION, x - 1, y - 1, 0, 18, 20);
+            graphics.blitSprite(RenderType::guiTextured, TEXTURE_LOCATION, x - 1, y - 1, 0, 18, 20);
             graphics.renderItem(plant, x, y);
             graphics.renderItemDecorations(font, plant, x, y);
 
@@ -58,7 +59,7 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public int getHeight() {
+    public int getHeight(Font font) {
         int columns = this.columns;
         int rows = (this.plants.size() + columns - 1) / columns;
         return rows * SLOT_SIZE + 15;

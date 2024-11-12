@@ -16,6 +16,8 @@ import io.github.suel_ki.beautify.common.block.Rope;
 import net.fabricmc.fabric.api.registry.FlammableBlockRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
@@ -23,19 +25,21 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 
+import java.util.function.Function;
+
 public class BlockInit {
 
     // BLOCKS
     public static final BookStack BOOKSTACK = register("bookstack",
-            new BookStack(BlockBehaviour.Properties.of().mapColor(MapColor.NONE)
-                    .strength(0.2F, 0.2F).sound(SoundInit.BOOKSTACK_SOUNDS).noOcclusion()));
+            BookStack::new, BlockBehaviour.Properties.of().mapColor(MapColor.NONE)
+                    .strength(0.2F, 0.2F).sound(SoundInit.BOOKSTACK_SOUNDS).noOcclusion());
 
     public static final Rope ROPE = register("rope",
-            new Rope(BlockBehaviour.Properties.of().mapColor(MapColor.NONE)
-                    .strength(0.2F, 0.2F).sound(SoundType.WOOL).noOcclusion()));
+            Rope::new, BlockBehaviour.Properties.of().mapColor(MapColor.NONE)
+                    .strength(0.2F, 0.2F).sound(SoundType.WOOL).noOcclusion());
 
     public static final HangingPot HANGING_POT = register("hanging_pot",
-            new HangingPot(BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN)
+            HangingPot::new, BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN)
                     .noOcclusion().strength(0.1f, 0.1f).sound(SoundType.STONE).lightLevel((state) -> {
                         if (state.getValue(HangingPot.POTFLOWER) == 15) {
                             return 7;
@@ -44,7 +48,7 @@ public class BlockInit {
                         } else {
                             return 0;
                         }
-                    })));
+                    }));
 
     // trellis
     public static final Trellis OAK_TRELLIS = registerTrellis("oak_trellis");
@@ -69,27 +73,27 @@ public class BlockInit {
 
     // lamps
     public static final LampLightBulb LAMP_LIGHT_BULB = register("lamp_light_bulb",
-            new LampLightBulb(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).noOcclusion()
+            LampLightBulb::new, BlockBehaviour.Properties.of().mapColor(MapColor.METAL).noOcclusion()
                     .strength(0.2f, 0.2f).sound(SoundType.LANTERN).lightLevel((state) -> {
                         if (state.getValue(LampLightBulb.ON)) {
                             return 14;
                         } else {
                             return 0;
                         }
-                    })));
+                    }));
 
     public static final LampBamboo LAMP_BAMBOO = register("lamp_bamboo",
-            new LampBamboo(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).noOcclusion()
+            LampBamboo::new, BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).noOcclusion()
                     .strength(0.1f, 0.1f).sound(SoundType.SCAFFOLDING).lightLevel((state) -> {
                         if (state.getValue(LampBamboo.ON)) {
                             return 14;
                         } else {
                             return 0;
                         }
-                    })));
+                    }));
 
     public static final LampJar LAMP_JAR = register("lamp_jar",
-            new LampJar(BlockBehaviour.Properties.of().mapColor(MapColor.NONE).noOcclusion()
+            LampJar::new, BlockBehaviour.Properties.of().mapColor(MapColor.NONE).noOcclusion()
                     .strength(0.05f, 0.05f).sound(SoundType.GLASS).lightLevel((state) -> {
                         final int fill = state.getValue(LampJar.FILL_LEVEL);
                         return switch (fill) {
@@ -98,7 +102,7 @@ public class BlockInit {
                             case 15 -> 14;
                             default -> 0;
                         };
-                    })));
+                    }));
 
     // candelabras
     public static final LampCandelabra LAMP_CANDELABRA = registerLampCandelabra("lamp_candelabra");
@@ -205,36 +209,38 @@ public class BlockInit {
 
     // workbench
     public static final BotanistWorkbench BOTANIST_WORKBENCH = register("botanist_workbench",
-            new BotanistWorkbench(BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE)));
+            BotanistWorkbench::new, BlockBehaviour.Properties.ofFullCopy(Blocks.CRAFTING_TABLE));
 
-    private static <T extends Block> T register(String name, T block) {
-        return Registry.register(BuiltInRegistries.BLOCK, Beautify.id(name), block);
+    private static <T extends Block> T register(String name, Function<Block.Properties, T> factory, BlockBehaviour.Properties properties) {
+        ResourceKey<Block> key = ResourceKey.create(Registries.BLOCK, Beautify.id(name));
+        T block = factory.apply(properties.setId(key));
+        return Registry.register(BuiltInRegistries.BLOCK, key, block);
     }
 
     private static LampCandelabra registerLampCandelabra(String name) {
-        return register(name, new LampCandelabra(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).noOcclusion()
+        return register(name, LampCandelabra::new, BlockBehaviour.Properties.of().mapColor(MapColor.METAL).noOcclusion()
                 .strength(0.2f, 0.2f).sound(SoundType.LANTERN).lightLevel((state) -> {
                     if (state.getValue(LampCandelabra.ON)) {
                         return 14;
                     } else {
                         return 0;
                     }
-                })));
+                }));
     }
 
     private static Trellis registerTrellis(String name) {
-        return register(name, new Trellis(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).mapColor(MapColor.WOOD)
-                .strength(0.3F, 0.3F).sound(SoundType.BAMBOO).noOcclusion()));
+        return register(name, Trellis::new, BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).mapColor(MapColor.WOOD)
+                .strength(0.3F, 0.3F).sound(SoundType.BAMBOO).noOcclusion());
     }
 
     private static PictureFrame registerPictureFrame(String name, MapColor color, SoundType type) {
-        return register(name, new PictureFrame(BlockBehaviour.Properties.of().mapColor(color).noOcclusion()
-                .strength(0.1f, 0.1f).sound(type).noOcclusion().pushReaction(PushReaction.DESTROY)));
+        return register(name, PictureFrame::new, BlockBehaviour.Properties.of().mapColor(color).noOcclusion()
+                .strength(0.1f, 0.1f).sound(type).noOcclusion().pushReaction(PushReaction.DESTROY));
     }
 
     private static Blinds registerBlinds(String name, MapColor color, SoundType type) {
-        return register(name, new Blinds(BlockBehaviour.Properties.of().mapColor(color).noOcclusion()
-                .strength(0.4f, 0.4f).sound(type)));
+        return register(name, Blinds::new, BlockBehaviour.Properties.of().mapColor(color).noOcclusion()
+                .strength(0.4f, 0.4f).sound(type));
     }
 
     public static void registerFlammableBlock() {

@@ -15,7 +15,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -89,7 +89,7 @@ public class Trellis extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+	public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
 										   BlockHitResult result) {
 
 		if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
@@ -104,17 +104,17 @@ public class Trellis extends HorizontalDirectionalBlock {
 					player.setItemInHand(hand, new ItemStack(VALID_FLOWERS.get(state.getValue(FLOWERS))));
 					level.setBlock(pos, state.setValue(FLOWERS, 0), 3);
 					level.playSound(null, pos, SoundEvents.AZALEA_LEAVES_BREAK, SoundSource.BLOCKS, 1, 1);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				} else if (playerStack.is(VALID_FLOWERS.get(state.getValue(FLOWERS)))
 						&& playerStack.getCount() < playerStack.getMaxStackSize()) {
 					playerStack.grow(1);
 					level.setBlock(pos, state.setValue(FLOWERS, 0), 3);
 					level.playSound(null, pos, SoundEvents.AZALEA_LEAVES_BREAK, SoundSource.BLOCKS, 1, 1);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 
 				// else just return
-				return ItemInteractionResult.CONSUME;
+				return InteractionResult.CONSUME;
 			} else { // if there is no flower
 
 				// checks if the flower in hand matches the available types
@@ -128,15 +128,15 @@ public class Trellis extends HorizontalDirectionalBlock {
 						if (!player.getAbilities().instabuild) {
 							playerStack.shrink(1);
 						}
-						return ItemInteractionResult.SUCCESS;
+						return InteractionResult.SUCCESS;
 					}
 				}
 				// if the flower is not a valid one
-				return ItemInteractionResult.CONSUME;
+				return InteractionResult.CONSUME;
 			}
 		}
 		// end of statement
-		return ItemInteractionResult.CONSUME;
+		return InteractionResult.CONSUME;
 	}
 
 	@Override

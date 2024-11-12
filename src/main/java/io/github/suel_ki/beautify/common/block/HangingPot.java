@@ -12,7 +12,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -29,10 +29,12 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.redstone.Orientation;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 public class HangingPot extends LanternBlock {
 	public static final List<Item> VALID_FLOWERS = Arrays.asList(Items.AIR, Items.ROSE_BUSH, Items.LILAC,
@@ -67,11 +69,11 @@ public class HangingPot extends LanternBlock {
 
 	@Override
 	public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block,
-			BlockPos blockPos, boolean bool) {
+								@Nullable Orientation orientation, boolean bool) {
 		//if the plant is grown long
 		if (state.getValue(GROWN)) {
 			//if the neighbour is a model that clips into the pot
-			if (blockPos.equals(pos.below())
+			if (!level.getBlockState(pos.below()).isAir()
 					&& level.getBlockState(pos.below()).isFaceSturdy(level, pos.below(), Direction.UP)) {
 				//make pot ungrown again
 				level.setBlock(pos, state.setValue(GROWN, false), 3);
@@ -83,12 +85,12 @@ public class HangingPot extends LanternBlock {
 				level.playSound(null, pos, SoundEvents.HANGING_ROOTS_BREAK, SoundSource.BLOCKS, 1, 1);
 			}
 		}
-		super.neighborChanged(state, level, pos, block, blockPos, bool);
+		super.neighborChanged(state, level, pos, block, orientation, bool);
 	}
 
 	@Override
-	public ItemInteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
-										   BlockHitResult result) {
+	public InteractionResult useItemOn(ItemStack stack, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand,
+									   BlockHitResult result) {
 
 		if (!level.isClientSide()) {
 			ItemStack playerStack = player.getItemInHand(hand); // saving ItemStack
@@ -104,7 +106,7 @@ public class HangingPot extends LanternBlock {
 						playerStack.shrink(1);
 					}
 					level.setBlock(pos, state.setValue(GROWN, true), 3);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 			}
 
@@ -116,7 +118,7 @@ public class HangingPot extends LanternBlock {
 				ItemEntity Item = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(),
 						new ItemStack(VALID_FLOWERS.get(state.getValue(POTFLOWER))));
 				level.addFreshEntity(Item);
-				return ItemInteractionResult.SUCCESS;
+				return InteractionResult.SUCCESS;
 			}
 
 			// if there is a flower
@@ -127,13 +129,13 @@ public class HangingPot extends LanternBlock {
 							state.getValue(GROWN) ? 2 : 1)); // giving 1 or 2 of plant (grown or not)
 					level.setBlock(pos, state.setValue(POTFLOWER, 0).setValue(GROWN, false), 3); // emptying the pot
 					level.playSound(null, pos, SoundEvents.COMPOSTER_READY, SoundSource.BLOCKS, 1, 1);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				} else if (playerStack.is(VALID_FLOWERS.get(state.getValue(POTFLOWER)))
 						&& playerStack.getCount() < playerStack.getMaxStackSize()) {
 					playerStack.grow(state.getValue(GROWN) ? 2 : 1); // giving 1 or 2 of plant (grown or not)
 					level.setBlock(pos, state.setValue(POTFLOWER, 0).setValue(GROWN, false), 3);
 					level.playSound(null, pos, SoundEvents.AZALEA_LEAVES_BREAK, SoundSource.BLOCKS, 1, 1);
-					return ItemInteractionResult.SUCCESS;
+					return InteractionResult.SUCCESS;
 				}
 
 				// else just return
@@ -150,15 +152,15 @@ public class HangingPot extends LanternBlock {
 						if (!player.getAbilities().instabuild) {
 							playerStack.shrink(1);
 						}
-						return ItemInteractionResult.SUCCESS;
+						return InteractionResult.SUCCESS;
 					}
 				}
 				// if the flower is not a valid one
 			}
-			return ItemInteractionResult.CONSUME;
+			return InteractionResult.CONSUME;
 		}
 		// end of statement
-		return ItemInteractionResult.CONSUME;
+		return InteractionResult.CONSUME;
 	}
 
 	@Override

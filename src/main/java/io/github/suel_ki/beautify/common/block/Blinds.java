@@ -12,6 +12,7 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -80,7 +81,7 @@ public class Blinds extends HorizontalDirectionalBlock {
 	}
 	
 	@Override
-	public boolean propagatesSkylightDown(BlockState state, BlockGetter level, BlockPos pos) {
+	public boolean propagatesSkylightDown(BlockState state) {
 		return true;
 	}
 
@@ -273,7 +274,7 @@ public class Blinds extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void wasExploded(Level level, BlockPos pos, Explosion explosion) {
+	public void wasExploded(ServerLevel level, BlockPos pos, Explosion explosion) {
 		BlockState state = level.getBlockState(pos);
 		if (sameBlindType(level, pos.below(), state)) {
 			switchOpenUpdateHidden(level, pos.below(), state, true);
