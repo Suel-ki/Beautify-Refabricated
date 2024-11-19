@@ -1,15 +1,11 @@
 {
-    "type": "minecraft:crafting_shapeless",
-    "ingredients": [
-        {
-            "item": "minecraft:glowstone_dust"
-        },
-        {
-            "item": "minecraft:glass_bottle"
-        }
-    ],
-    "result": {
-        "id": "beautify:lamp_jar",
-        "count": 1
-    }
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:glowstone_dust",
+    "minecraft:glass_bottle"
+  ],
+  "result": {
+    "id": "beautify:lamp_jar",
+    "count": 1
+  }
 }

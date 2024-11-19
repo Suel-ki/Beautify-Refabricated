@@ -1,20 +1,16 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "/_/",
-        "/_/"
-    ],
-    "key": {
-        "/": {
-            "item": "minecraft:stick"
-        },
-        "_": {
-            "item": "minecraft:cherry_slab"
-        }
-    },
-    "result": {
-        "id": "beautify:cherry_blinds",
-        "count": 1
-    },
-    "group": "blinds"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/_/",
+    "/_/"
+  ],
+  "key": {
+    "/": "minecraft:stick",
+    "_": "minecraft:cherry_slab"
+  },
+  "result": {
+    "id": "beautify:cherry_blinds",
+    "count": 1
+  },
+  "group": "blinds"
 }

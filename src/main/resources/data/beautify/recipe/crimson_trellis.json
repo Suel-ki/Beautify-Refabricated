@@ -1,21 +1,17 @@
 {
-    "type": "minecraft:crafting_shaped",
-    "pattern": [
-        "/ /",
-        " O ",
-        "/ /"
-    ],
-    "key": {
-        "/": {
-            "item": "minecraft:stick"
-        },
-        "O": {
-            "item": "minecraft:crimson_stem"
-        }
-    },
-    "result": {
-        "id": "beautify:crimson_trellis",
-        "count": 4
-    },
-    "group": "trellis"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "/ /",
+    " O ",
+    "/ /"
+  ],
+  "key": {
+    "/": "minecraft:stick",
+    "O": "minecraft:crimson_stem"
+  },
+  "result": {
+    "id": "beautify:crimson_trellis",
+    "count": 4
+  },
+  "group": "trellis"
 }
