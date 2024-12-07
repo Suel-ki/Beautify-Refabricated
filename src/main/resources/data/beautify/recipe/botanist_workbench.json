@@ -5,14 +5,8 @@
         "PP"
     ],
     "key": {
-        "#": {
-            "item": "minecraft:flower_pot"
-        },
-        "P": [
-            {
-                "tag": "minecraft:planks"
-            }
-        ]
+        "#": "minecraft:flower_pot",
+        "P": "#minecraft:planks"
     },
     "result": {
         "id": "beautify:botanist_workbench",

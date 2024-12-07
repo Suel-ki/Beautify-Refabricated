@@ -1,24 +1,18 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		" _ ",
-		" W ",
-		" _/"
-	],
-	"key": {
-		"_": {
-			"item": "minecraft:jungle_slab"
-		},
-		"W": {
-			"item": "minecraft:white_wool"
-		},
-		"/": {
-			"item": "minecraft:stick"
-		}
-	},
-	"result": {
-		"id": "beautify:jungle_picture_frame",
-		"count": 1
-	},
-	"group": "frames"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " _ ",
+    " W ",
+    " _/"
+  ],
+  "key": {
+    "_": "minecraft:jungle_slab",
+    "W": "minecraft:white_wool",
+    "/": "minecraft:stick"
+  },
+  "result": {
+    "id": "beautify:jungle_picture_frame",
+    "count": 1
+  },
+  "group": "frames"
 }

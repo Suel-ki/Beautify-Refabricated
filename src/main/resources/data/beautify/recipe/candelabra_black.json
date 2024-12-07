@@ -1,21 +1,17 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"###",
-		"III",
-		" I "
-	],
-	"key": {
-		"#": {
-			"item": "minecraft:black_candle"
-		},
-		"I": {
-			"item": "minecraft:iron_nugget"
-		}
-	},
-	"result": {
-		"id": "beautify:lamp_candelabra_black",
-		"count": 1
-	},
-	"group": "candelabras"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "III",
+    " I "
+  ],
+  "key": {
+    "#": "minecraft:black_candle",
+    "I": "minecraft:iron_nugget"
+  },
+  "result": {
+    "id": "beautify:lamp_candelabra_black",
+    "count": 1
+  },
+  "group": "candelabras"
 }

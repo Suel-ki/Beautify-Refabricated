@@ -1,20 +1,16 @@
 {
-	"type": "minecraft:crafting_shaped",
-	"pattern": [
-		"#",
-		"F"
-	],
-	"key": {
-		"#": {
-			"item": "beautify:rope"
-		},
-		"F": {
-			"item": "minecraft:flower_pot"
-		}
-	},
-	"result": {
-		"id": "beautify:hanging_pot",
-		"count": 1
-	},
-	"group": "hanging_pot"
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#",
+    "F"
+  ],
+  "key": {
+    "#": "beautify:rope",
+    "F": "minecraft:flower_pot"
+  },
+  "result": {
+    "id": "beautify:hanging_pot",
+    "count": 1
+  },
+  "group": "hanging_pot"
 }
