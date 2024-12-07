@@ -164,8 +164,8 @@ public class HangingPot extends LanternBlock {
 	}
 
 	@Override
-	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
-		return this.isEmpty(state) ? super.getCloneItemStack(level, pos, state) : new ItemStack(getContent(state));
+	public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean bl) {
+		return this.isEmpty(state) ? super.getCloneItemStack(level, pos, state, bl) : new ItemStack(getContent(state));
 	}
 
 	private boolean isEmpty(BlockState state) {
