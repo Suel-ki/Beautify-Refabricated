@@ -57,7 +57,7 @@
   "block.beautify.warped_trellis": "Pannello reticolato distorto",
   "block.beautify.botanist_workbench": "Banco da lavoro del botanico",
 
-  "entity.minecraft.villager.botanist": "Botanico",
+  "entity.beautify.villager.botanist": "Botanico",
 
   "sounds.beautify.bookstack_break": "Pila di libri rotta",
   "sounds.beautify.bookstack_step": "Passi su pila di libri",

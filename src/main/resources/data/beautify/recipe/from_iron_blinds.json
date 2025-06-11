@@ -1,9 +1,7 @@
 {
   "type": "minecraft:smelting",
   "category": "blocks",
-  "ingredient": {
-    "item": "beautify:iron_blinds"
-  },
+  "ingredient": "beautify:iron_blinds",
   "result": {
     "id": "minecraft:iron_ingot"
   },

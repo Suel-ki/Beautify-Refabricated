@@ -2,11 +2,13 @@ package io.github.suel_ki.beautify.common.block;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Consumer;
 
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -20,6 +22,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
@@ -36,7 +39,7 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.Nullable;
 
-public class HangingPot extends LanternBlock {
+public class HangingPot extends LanternBlock implements TooltipProvider {
 	public static final List<Item> VALID_FLOWERS = Arrays.asList(Items.AIR, Items.ROSE_BUSH, Items.LILAC,
 			Items.BLUE_ORCHID, Items.VINE, Items.SUNFLOWER, Items.PEONY, Items.AZURE_BLUET, Items.RED_TULIP,
 			Items.ORANGE_TULIP, Items.WHITE_TULIP, Items.PINK_TULIP, Items.ALLIUM, Items.DANDELION, Items.POPPY,
@@ -184,20 +187,19 @@ public class HangingPot extends LanternBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
+	public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
 		if (!Screen.hasShiftDown() && !Screen.hasControlDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-			component.add(Component.translatable("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
+			consumer.accept(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			consumer.accept(Component.translatable("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.1")
+			consumer.accept(Component.translatable("tooltip.beautify.hanging_pot.1")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.2").
+			consumer.accept(Component.translatable("tooltip.beautify.hanging_pot.2").
 					withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.hanging_pot.3")
+			consumer.accept(Component.translatable("tooltip.beautify.hanging_pot.3")
 					.withStyle(ChatFormatting.GRAY));
 		}
-		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

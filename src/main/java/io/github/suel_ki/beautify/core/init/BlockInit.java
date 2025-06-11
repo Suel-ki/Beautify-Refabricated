@@ -36,7 +36,8 @@ public class BlockInit {
 
     public static final Rope ROPE = register("rope",
             Rope::new, BlockBehaviour.Properties.of().mapColor(MapColor.NONE)
-                    .strength(0.2F, 0.2F).sound(SoundType.WOOL).noOcclusion());
+                    .strength(0.2F, 0.2F).sound(SoundType.WOOL)
+                    .pushReaction(PushReaction.DESTROY).noOcclusion());
 
     public static final HangingPot HANGING_POT = register("hanging_pot",
             HangingPot::new, BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN)

@@ -57,7 +57,7 @@
 	"block.beautify.warped_trellis": "뒤틀린 넝쿨지지대",
 	"block.beautify.botanist_workbench": "식물학자 작업대",
 
-	"entity.minecraft.villager.botanist": "식물학자",
+	"entity.beautify.villager.botanist": "식물학자",
 
 	"sounds.beautify.bookstack_break": "책 더미가 부셔짐",
 	"sounds.beautify.bookstack_step": "책 더미를 밟음",

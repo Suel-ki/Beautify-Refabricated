@@ -57,7 +57,7 @@
 	"block.beautify.warped_trellis": "Enrejado distorcionado",
 	"block.beautify.botanist_workbench": "Mesa de floricultor",
 
-	"entity.minecraft.villager.botanist": "Floricultor",
+	"entity.beautify.villager.botanist": "Floricultor",
 
 	"sounds.beautify.bookstack_break": "Romper pila de libros",
 	"sounds.beautify.bookstack_step": "Caminar sobre pila de libros",
