@@ -12,7 +12,7 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.IDisplayHelper;
-import snownee.jade.api.ui.IElementHelper;
+import snownee.jade.api.ui.JadeUI;
 
 public enum HangingPotProvider implements IBlockComponentProvider {
 
@@ -27,7 +27,7 @@ public enum HangingPotProvider implements IBlockComponentProvider {
                 ItemStack iconFlower = new ItemStack(hangingPot.getValidFlowers().get(state.getValue(HangingPot.POTFLOWER)));
                 if (iconFlower.isEmpty())
                     return;
-                tooltip.add(IElementHelper.get().smallItem(iconFlower));
+                tooltip.add(JadeUI.smallItem(iconFlower));
                 tooltip.append(IDisplayHelper.get().stripColor(iconFlower.getHoverName()));
             }
             if (state.getValue(HangingPot.GROWN)) {

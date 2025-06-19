@@ -41,8 +41,8 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
         int x = tooltipX;
         int y = tooltipY + font.lineHeight + 3;
 
+        graphics.drawString(font, TEXT, tooltipX, tooltipY, -1, true);
         for (var plant : this.plants) {
-
             graphics.blitSprite(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, x - 1, y - 1, 0, 18, 20);
             graphics.renderItem(plant, x, y);
             graphics.renderItemDecorations(font, plant, x, y);
@@ -54,8 +54,6 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
                 y += slotSize;
             }
         }
-
-        graphics.drawString(font, TEXT, tooltipX, tooltipY, 0);
     }
 
     @Override

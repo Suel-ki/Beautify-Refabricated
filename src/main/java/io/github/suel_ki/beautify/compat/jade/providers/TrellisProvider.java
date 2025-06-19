@@ -10,7 +10,7 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.IDisplayHelper;
-import snownee.jade.api.ui.IElementHelper;
+import snownee.jade.api.ui.JadeUI;
 
 public enum TrellisProvider implements IBlockComponentProvider {
 
@@ -25,7 +25,7 @@ public enum TrellisProvider implements IBlockComponentProvider {
                 ItemStack iconFlower = new ItemStack(trellis.getValidFlowers().get(state.getValue(Trellis.FLOWERS)));
                 if (iconFlower.isEmpty())
                     return;
-                tooltip.add(IElementHelper.get().smallItem(iconFlower));
+                tooltip.add(JadeUI.smallItem(iconFlower));
                 tooltip.append(IDisplayHelper.get().stripColor(iconFlower.getHoverName()));
             }
         }
