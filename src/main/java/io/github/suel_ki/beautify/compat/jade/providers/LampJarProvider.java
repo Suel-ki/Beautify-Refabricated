@@ -12,7 +12,8 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.IDisplayHelper;
-import snownee.jade.api.ui.IElementHelper;
+import snownee.jade.api.ui.JadeUI;
+import snownee.jade.impl.ui.ItemStackElement;
 
 public enum  LampJarProvider implements IBlockComponentProvider {
 
@@ -28,7 +29,7 @@ public enum  LampJarProvider implements IBlockComponentProvider {
                 if (icon.isEmpty())
                     return;
                 int count = currentLevel / 5;
-                tooltip.add(IElementHelper.get().smallItem(icon));
+                tooltip.add(JadeUI.smallItem(icon));
                 tooltip.append(IDisplayHelper.get().stripColor(Component.literal(count + "× ")));
                 tooltip.append(IDisplayHelper.get().stripColor(icon.getHoverName()));
             }

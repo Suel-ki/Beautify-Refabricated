@@ -5,7 +5,7 @@ import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
@@ -43,7 +43,7 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
 
         for (var plant : this.plants) {
 
-            graphics.blitSprite(RenderType::guiTextured, TEXTURE_LOCATION, x - 1, y - 1, 0, 18, 20);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, x - 1, y - 1, 0, 18, 20);
             graphics.renderItem(plant, x, y);
             graphics.renderItemDecorations(font, plant, x, y);
 
