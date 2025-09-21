@@ -76,7 +76,6 @@
     "tooltip.beautify.hanging_pot.1": "Может быть размещен, вися на блоках, веревках или на земле, как обычно.",
     "tooltip.beautify.hanging_pot.2": "Щелкните правой кнопкой мыши, чтобы посадить растения.",
     "tooltip.beautify.hanging_pot.3": "Щелкните правой кнопкой мыши с костным муком, чтобы дальше вырастить растение. Обрежьте ножницами, чтобы укоротить и получить предмет растения.",
-    "tooltip.beautify.hanging_pot.plant_header": "Сажаемые растения:",
     "tooltip.beautify.hanging_pot.plants": "Все обычные цветы + розовые кусты, лилаки, пионы, подсолнухи, лозы, плакучие лозы, искрящиеся лозы, светящиеся лишайники, светящиеся ягоды, сладкие ягоды.",
     "tooltip.beautify.lamp.1": "Может быть размещен, вися и стоя, как фонари.",
     "tooltip.beautify.lamp.2": "Щелкните правой кнопкой мыши, чтобы включить или выключить.",
@@ -94,6 +93,36 @@
     "tooltip.beautify.rope.2": "Отлично сочетается с висячими горшками.",
     "tooltip.beautify.trellis.1": "Может быть размещен на стене или потолке и может быть забором.",
     "tooltip.beautify.trellis.2": "Щелкните правой кнопкой мыши на растения в вашей руке, чтобы посадить его.",
-    "tooltip.beautify.trellis.plant_header": "Сажаемые растения:",
-    "tooltip.beautify.trellis.plants": "Розовые кусты, подсолнухи, пионы, лилаки, лозы, плакучие лозы, искрящиеся лозы, светящиеся лишайники."
+
+	"advancements.beautify.blinds.title": "Ослепленный светом",
+	"advancements.beautify.blinds.description": "Создайте жалюзи, чтобы фильтровать свет",
+	"advancements.beautify.bookstack.title": "Никакой организации полок",
+	"advancements.beautify.bookstack.description": "Кому вообще нужны полки? Создайте книжную полку",
+	"advancements.beautify.candelabra.title": "Злодей!",
+	"advancements.beautify.candelabra.description": "Создайте канделябр",
+	"advancements.beautify.hanging_pot.title": "Оставленный висеть",
+	"advancements.beautify.hanging_pot.description": "Создайте подвесной горшок",
+	"advancements.beautify.light.title": "Горит!",
+	"advancements.beautify.light.description": "Создайте источник света из Beautify.",
+	"advancements.beautify.root.title": "Давайте Украшать!",
+	"advancements.beautify.root.description": "Дьявол кроется в детализации.",
+	"advancements.beautify.rope.title": "А вы могли бы завязать узел?",
+	"advancements.beautify.rope.description": "Свяжите веревку, чтобы получить веревку.",
+
+	"config.jade.plugin_beautify.lamp_jar.glowstone_dust": "Количество светящейся пыли",
+	"config.jade.plugin_beautify.trellis.pot_plant": "Показать посадочное растение",
+	"config.jade.plugin_beautify.hanging_pot.pot_flower": "Показать посадочное растение",
+	
+	"text.autoconfig.beautify.title": "Beautify",
+
+	"text.autoconfig.beautify.option.blinds": "Жалюзи",
+	"text.autoconfig.beautify.option.blinds.searchRadius": "Радиус поиска",
+	"text.autoconfig.beautify.option.blinds.opensFromRoot": "Открывается из корня",
+
+	"text.autoconfig.beautify.option.houses": "Дома",
+	"text.autoconfig.beautify.option.houses.botanistSpawnWeight": "Вес создания ботаника",
+
+	"text.autoconfig.beautify.option.blinds.searchRadius.@Tooltip": "Ищет X-блоки (x = радиус поиска) ниже и X/2 по сторонам от нажатой шторы для других и открывает/закрывает их тоже.",
+	"text.autoconfig.beautify.option.blinds.opensFromRoot.@Tooltip": "Открывает жалюзи от самых верхних жалюзи, если true.",
+	"text.autoconfig.beautify.option.houses.botanistSpawnWeight.@Tooltip": "Определяет вероятность появления дома ботаника в деревне."
 }
