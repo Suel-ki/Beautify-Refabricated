@@ -70,9 +70,9 @@
 
     "tooltip.beautify.shift": "Удерживайте SHIFT для получения дополнительной информации.",
     "tooltip.beautify.plantlist": "Удерживайте CTRL для списка растений.",
+	"tooltip.beautify.plantable": "Растения, которые можно посадить:",
     "tooltip.beautify.bookstack.1": "Разместите случайную стопку книг, зажмите правую кнопку мыши на блоке, чтобы изменить модель.",
     "tooltip.beautify.bookstack.2": "Увеличивает мощность стола зачарований, как книжные полки.",
-	"tooltip.beautify.plantable": "Растения, которые можно посадить:",
     "tooltip.beautify.botanist_workbench.1": "Стол для ботанических деревень, также подходит для декора.",
     "tooltip.beautify.hanging_pot.1": "Может быть размещен, вися на блоках, веревках или на земле, как обычно.",
     "tooltip.beautify.hanging_pot.2": "Щелкните правой кнопкой мыши, чтобы посадить растения.",
