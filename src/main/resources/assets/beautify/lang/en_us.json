@@ -57,7 +57,7 @@
 	"block.beautify.warped_trellis": "Warped Lattice",
 	"block.beautify.botanist_workbench": "Botanist Workbench",
 
-	"entity.minecraft.villager.botanist": "Botanist",
+	"entity.beautify.villager.botanist": "Botanist",
 
 	"sounds.beautify.bookstack_break": "Bookstack broken",
 	"sounds.beautify.bookstack_step": "Steps on Bookstack",

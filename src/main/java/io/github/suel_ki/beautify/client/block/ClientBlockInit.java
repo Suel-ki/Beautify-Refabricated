@@ -1,13 +1,13 @@
 package io.github.suel_ki.beautify.client.block;
 
 import io.github.suel_ki.beautify.core.init.BlockInit;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
-import net.minecraft.client.renderer.RenderType;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 
 public class ClientBlockInit {
 
     public static void registerBlockRenderLayer() {
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(),
+        BlockRenderLayerMap.putBlocks(ChunkSectionLayer.CUTOUT,
                 // BLOCKS
                 BlockInit.BOOKSTACK,
                 BlockInit.HANGING_POT,

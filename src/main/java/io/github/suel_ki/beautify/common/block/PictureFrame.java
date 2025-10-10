@@ -1,21 +1,22 @@
 package io.github.suel_ki.beautify.common.block;
 
-import java.util.List;
 import java.util.Random;
+import java.util.function.Consumer;
 
 import com.mojang.serialization.MapCodec;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -29,7 +30,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PictureFrame extends HorizontalDirectionalBlock {
+public class PictureFrame extends HorizontalDirectionalBlock implements TooltipProvider {
 	private static final int MODELCOUNT = 13; // number of models the frame has
 	public static final IntegerProperty FRAME_MOTIVE = IntegerProperty.create("frame_motive", 0, MODELCOUNT - 1);
 	protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 8, 11);
@@ -71,7 +72,7 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public VoxelShape getOcclusionShape(BlockState state, BlockGetter level, BlockPos pos) {
+	public VoxelShape getOcclusionShape(BlockState blockState) {
 		return Shapes.empty();
 	}
 
@@ -80,7 +81,8 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 		Random rand = new Random();
 		int randomNum = rand.nextInt((MODELCOUNT));
 
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())
+		return this.defaultBlockState()
+				.setValue(FACING, context.getHorizontalDirection().getOpposite())
 				.setValue(FRAME_MOTIVE, randomNum);
 	}
 
@@ -92,17 +94,16 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 	}
 
 	@Override
-	public void appendHoverText(ItemStack stack, Item.TooltipContext tooltipContext, List<Component> component, TooltipFlag flag) {
+	public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
 		if (!Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
+			consumer.accept(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
 		}
 
 		if (Screen.hasShiftDown()) {
-			component.add(Component.translatable("tooltip.beautify.picture_frame.1")
+			consumer.accept(Component.translatable("tooltip.beautify.picture_frame.1")
 					.withStyle(ChatFormatting.GRAY));
-			component.add(Component.translatable("tooltip.beautify.picture_frame.2")
+			consumer.accept(Component.translatable("tooltip.beautify.picture_frame.2")
 					.withStyle(ChatFormatting.GRAY));
 		}
-		super.appendHoverText(stack, tooltipContext, component, flag);
 	}
 }

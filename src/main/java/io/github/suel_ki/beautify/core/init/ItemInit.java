@@ -4,10 +4,12 @@ import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.HangingPot;
 import io.github.suel_ki.beautify.common.block.Trellis;
 import io.github.suel_ki.beautify.common.tooltip.PlantableItemStackTooltip;
-import net.fabricmc.fabric.api.registry.FuelRegistry;
+import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.BlockItem;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.*;
+import java.util.function.Function;
 
 public final class ItemInit {
 
@@ -93,8 +96,8 @@ public final class ItemInit {
 	public static BlockItem ROPE_ITEM = registerBlockItem("rope", BlockInit.ROPE);
 
 	public static final BlockItem HANGING_POT_ITEM = register("hanging_pot",
-			new BlockItem(BlockInit.HANGING_POT,
-					new Item.Properties()) {
+			properties -> new BlockItem(BlockInit.HANGING_POT,
+					properties) {
 				@Override
 				public Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
 					if (Screen.hasControlDown()) {
@@ -110,7 +113,7 @@ public final class ItemInit {
 					}
 				}
 
-			});
+			}, new Item.Properties().useBlockDescriptionPrefix());
 
 	public static final BlockItem BOOKSTACK_ITEM = registerBlockItem("bookstack", BlockInit.BOOKSTACK);
 
@@ -158,17 +161,19 @@ public final class ItemInit {
 	// workbench
 	public static final BlockItem BOTANIST_WORKBENCH_ITEM = registerBlockItem("botanist_workbench", BlockInit.BOTANIST_WORKBENCH);
 
-	private static <T extends Item> T register(String name, T item) {
+	private static <T extends Item> T register(String name, Function<Item.Properties, T> factory, Item.Properties properties) {
+		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, Beautify.id(name));
+		T item = factory.apply(properties.setId(key));
 		ITEMS.put(item, Beautify.id(name));
-		return Registry.register(BuiltInRegistries.ITEM, Beautify.id(name), item);
+		return Registry.register(BuiltInRegistries.ITEM, key, item);
 	}
 
 	private static BlockItem registerBlockItem(String name, Block block) {
-		return register(name, new BlockItem(block, new Item.Properties()));
+		return register(name, properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
 	}
 
 	private static BlockItem registerTrellis(String name, Block block) {
-		return register(name, new BlockItem(block, new Item.Properties()) {
+		return register(name, properties -> new BlockItem(block, properties) {
 			@Override
 			public Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
 				if (Screen.hasControlDown()) {
@@ -184,40 +189,42 @@ public final class ItemInit {
 				}
 			}
 
-		});
+		}, new Item.Properties().useBlockDescriptionPrefix());
 	}
 
 	public static void registerFuel() {
-		FuelRegistry.INSTANCE.add(OAK_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(SPRUCE_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(BIRCH_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(JUNGLE_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(ACACIA_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(DARK_OAK_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(MANGROVE_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(CHERRY_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(CRIMSON_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(WARPED_TRELLIS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(OAK_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(SPRUCE_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(BIRCH_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(JUNGLE_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(ACACIA_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(DARK_OAK_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(CHERRY_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(MANGROVE_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(CRIMSON_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(WARPED_BLINDS_ITEM, 300);
-		FuelRegistry.INSTANCE.add(OAK_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(SPRUCE_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(BIRCH_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(JUNGLE_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(ACACIA_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(DARK_OAK_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(MANGROVE_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(CHERRY_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(CRIMSON_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(WARPED_PICTURE_FRAME_ITEM, 300);
-		FuelRegistry.INSTANCE.add(ROPE_ITEM, 100);
+		FuelRegistryEvents.BUILD.register((builder, context) -> {
+			builder.add(OAK_TRELLIS_ITEM, 300);
+			builder.add(SPRUCE_TRELLIS_ITEM, 300);
+			builder.add(BIRCH_TRELLIS_ITEM, 300);
+			builder.add(JUNGLE_TRELLIS_ITEM, 300);
+			builder.add(ACACIA_TRELLIS_ITEM, 300);
+			builder.add(DARK_OAK_TRELLIS_ITEM, 300);
+			builder.add(MANGROVE_TRELLIS_ITEM, 300);
+			builder.add(CHERRY_TRELLIS_ITEM, 300);
+			builder.add(CRIMSON_TRELLIS_ITEM, 300);
+			builder.add(WARPED_TRELLIS_ITEM, 300);
+			builder.add(OAK_BLINDS_ITEM, 300);
+			builder.add(SPRUCE_BLINDS_ITEM, 300);
+			builder.add(BIRCH_BLINDS_ITEM, 300);
+			builder.add(JUNGLE_BLINDS_ITEM, 300);
+			builder.add(ACACIA_BLINDS_ITEM, 300);
+			builder.add(DARK_OAK_BLINDS_ITEM, 300);
+			builder.add(CHERRY_BLINDS_ITEM, 300);
+			builder.add(MANGROVE_BLINDS_ITEM, 300);
+			builder.add(CRIMSON_BLINDS_ITEM, 300);
+			builder.add(WARPED_BLINDS_ITEM, 300);
+			builder.add(OAK_PICTURE_FRAME_ITEM, 300);
+			builder.add(SPRUCE_PICTURE_FRAME_ITEM, 300);
+			builder.add(BIRCH_PICTURE_FRAME_ITEM, 300);
+			builder.add(JUNGLE_PICTURE_FRAME_ITEM, 300);
+			builder.add(ACACIA_PICTURE_FRAME_ITEM, 300);
+			builder.add(DARK_OAK_PICTURE_FRAME_ITEM, 300);
+			builder.add(MANGROVE_PICTURE_FRAME_ITEM, 300);
+			builder.add(CHERRY_PICTURE_FRAME_ITEM, 300);
+			builder.add(CRIMSON_PICTURE_FRAME_ITEM, 300);
+			builder.add(WARPED_PICTURE_FRAME_ITEM, 300);
+			builder.add(ROPE_ITEM, 100);
+		});
 	}
 }

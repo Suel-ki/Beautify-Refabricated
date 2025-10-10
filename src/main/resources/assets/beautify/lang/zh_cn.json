@@ -57,7 +57,7 @@
   "block.beautify.warped_trellis": "诡异木花爬架",
   "block.beautify.botanist_workbench": "植物学家工作台",
 
-  "entity.minecraft.villager.botanist": "植物学家",
+  "entity.beautify.villager.botanist": "植物学家",
 
   "sounds.beautify.bookstack_break": "书堆：被破坏",
   "sounds.beautify.bookstack_step": "书堆：脚步声",

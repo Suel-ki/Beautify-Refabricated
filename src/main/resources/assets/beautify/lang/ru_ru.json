@@ -57,7 +57,7 @@
     "block.beautify.warped_trellis": "Искаженный решетчатый экран",
     "block.beautify.botanist_workbench": "Стол для ботаника",
 
-    "entity.minecraft.villager.botanist": "Beautify",
+    "entity.beautify.villager.botanist": "Beautify",
 
     "sounds.beautify.bookstack_break": "Разрушение стопки книг",
     "sounds.beautify.bookstack_step": "Шаги по стопке книг",

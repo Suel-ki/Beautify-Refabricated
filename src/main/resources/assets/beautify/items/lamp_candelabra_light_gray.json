@@ -1,0 +1,7 @@
+{
+	"model": {
+		"type": "minecraft:model",
+		"model": "beautify:item/lamp_candelabra_light_gray"
+	},
+	"parent": "beautify:block/lamps/candelabras/standing_lamp_candelabra_off_light_gray"
+}

@@ -86,10 +86,10 @@ public class Beautify implements ModInitializer {
 		// The reason why is the empty processor list in the world's registry is not the
 		// same instance as in that field once the world is started up.
 		Holder<StructureProcessorList> emptyProcessorList = processorListRegistry
-				.getHolderOrThrow(EMPTY_PROCESSOR_LIST_KEY);
+				.getOrThrow(EMPTY_PROCESSOR_LIST_KEY);
 
 		// Grab the pool we want to add to
-		StructureTemplatePool pool = templatePoolRegistry.get(poolRL);
+		StructureTemplatePool pool = templatePoolRegistry.getValue(poolRL);
 		if (pool == null) {
 			return;
 		}
@@ -126,9 +126,9 @@ public class Beautify implements ModInitializer {
 	 */
 	public void addNewVillageBuilding(MinecraftServer server) {
 		Registry<StructureTemplatePool> templatePoolRegistry = server.registryAccess()
-				.registry(Registries.TEMPLATE_POOL).orElseThrow();
+				.lookupOrThrow(Registries.TEMPLATE_POOL);
 		Registry<StructureProcessorList> processorListRegistry = server.registryAccess()
-				.registry(Registries.PROCESSOR_LIST).orElseThrow();
+				.lookupOrThrow(Registries.PROCESSOR_LIST);
 
 		int weight = CONFIG.houses.botanistSpawnWeight;
 
