@@ -5,19 +5,20 @@ import net.fabricmc.api.Environment;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleProvider;
-import net.minecraft.client.particle.ParticleRenderType;
 import net.minecraft.client.particle.SpriteSet;
-import net.minecraft.client.particle.TextureSheetParticle;
+import net.minecraft.client.particle.SingleQuadParticle;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.RandomSource;
+import org.jetbrains.annotations.NotNull;
 
 @Environment(EnvType.CLIENT)
-public class GlowEssenceParticles extends TextureSheetParticle {
+public class GlowEssenceParticles extends SingleQuadParticle {
 
 	private static final float size = 0.07f;
 
-	protected GlowEssenceParticles(ClientLevel level, double xCoord, double yCoord, double zCoord, SpriteSet spriteSet,
-			double xd, double yd, double zd) {
-		super(level, xCoord, yCoord, zCoord, xd, yd, zd);
+	protected GlowEssenceParticles(ClientLevel level, double xCoord, double yCoord, double zCoord,
+			double xd, double yd, double zd, SpriteSet spriteSet) {
+		super(level, xCoord, yCoord, zCoord, xd, yd, zd, spriteSet.first());
 
 		this.friction = 0.8F;
 		this.xd = xd;
@@ -32,7 +33,12 @@ public class GlowEssenceParticles extends TextureSheetParticle {
 		this.bCol = 1f;
 	}
 
-	private void fadeOut() {
+    @Override
+    protected @NotNull Layer getLayer() {
+        return Layer.OPAQUE;
+    }
+
+    private void fadeOut() {
 		float fadeValue = (float) Math.sin(Math.PI * ((float) this.age / this.lifetime));
 
 		this.alpha = 1 * fadeValue;
@@ -52,11 +58,6 @@ public class GlowEssenceParticles extends TextureSheetParticle {
 	}
 
 	@Override
-	public ParticleRenderType getRenderType() {
-		return ParticleRenderType.PARTICLE_SHEET_OPAQUE;
-	}
-
-	@Override
 	public void tick() {
 		super.tick();
 
@@ -73,9 +74,9 @@ public class GlowEssenceParticles extends TextureSheetParticle {
 		}
 
 		public Particle createParticle(SimpleParticleType particleType, ClientLevel level, double x, double y, double z,
-				double dx, double dy, double dz) {
-			return new GlowEssenceParticles(level, x, y, z, this.sprites, dx, dy, dz);
+				double dx, double dy, double dz, RandomSource randomSource) {
+			return new GlowEssenceParticles(level, x, y, z, dx, dy, dz, this.sprites);
 		}
-	}
+    }
 
 }
