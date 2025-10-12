@@ -1,6 +1,7 @@
 package io.github.suel_ki.beautify;
 
 import io.github.suel_ki.beautify.core.init.BlockInit;
+import io.github.suel_ki.beautify.core.init.ComponentInit;
 import io.github.suel_ki.beautify.core.init.ItemInit;
 import io.github.suel_ki.beautify.core.init.TradesInit;
 import io.github.suel_ki.beautify.particle.ParticleInit;
@@ -51,6 +52,7 @@ public class Beautify implements ModInitializer {
 
 		AutoConfig.register(BeautifyConfig.class, GsonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(BeautifyConfig.class).getConfig();
+        ComponentInit.init();
 		// Fuel
 		ItemInit.registerFuel();
 		// Trades

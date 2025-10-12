@@ -1,19 +1,21 @@
 package io.github.suel_ki.beautify.common.block;
 
-import java.util.Map;
-import java.util.function.Consumer;
-
 import com.google.common.collect.ImmutableMap;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import io.github.suel_ki.beautify.client.tooltip.BaseTooltipComponent;
+import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
+import io.github.suel_ki.beautify.core.init.ComponentInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -24,7 +26,10 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BotanistWorkbench extends HorizontalDirectionalBlock implements TooltipProvider {
+import java.util.Map;
+import java.util.function.Consumer;
+
+public class BotanistWorkbench extends HorizontalDirectionalBlock implements BlockTooltip<BotanistWorkbench.TooltipComponent> {
 	//Map of hitboxes for direction the model can be facing
 	private static final Map<Direction, VoxelShape> SHAPES_FOR_MODEL = ImmutableMap.of(
 			Direction.NORTH, Shapes.or(box(2, 0, 0, 16, 12, 14.25),
@@ -65,15 +70,28 @@ public class BotanistWorkbench extends HorizontalDirectionalBlock implements Too
 		pBuilder.add(FACING);
 	}
 
-	@Override
-	public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
-		if (!Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-		}
+    @Override
+    public DataComponentType<TooltipComponent> getTooltipType() {
+        return ComponentInit.BOTANIST_WORKBENCH_TOOLTIP;
+    }
 
-		if (Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.botanist_workbench.1")
-					.withStyle(ChatFormatting.GRAY));
-		}
-	}
+    @Override
+    public TooltipComponent getTooltipComponent() {
+        return TooltipComponent.INSTANCE;
+    }
+
+    public static final class TooltipComponent extends BaseTooltipComponent {
+        public static final TooltipComponent INSTANCE = new TooltipComponent();
+
+        private TooltipComponent() {}
+
+        public static final Codec<TooltipComponent> CODEC = Codec.unit(TooltipComponent::new);
+        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipComponent> STREAM_CODEC = StreamCodec.unit(INSTANCE);
+
+        @Override
+        public void addShiftTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
+            consumer.accept(Component.translatable("tooltip.beautify.botanist_workbench.1")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+    }
 }

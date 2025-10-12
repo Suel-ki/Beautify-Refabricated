@@ -1,25 +1,28 @@
 package io.github.suel_ki.beautify.core.init;
 
 import io.github.suel_ki.beautify.Beautify;
-import io.github.suel_ki.beautify.common.block.HangingPot;
-import io.github.suel_ki.beautify.common.block.Trellis;
+import io.github.suel_ki.beautify.common.block.*;
+import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.common.tooltip.PlantableItemStackTooltip;
 import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 public final class ItemInit {
@@ -98,9 +101,14 @@ public final class ItemInit {
 	public static final BlockItem HANGING_POT_ITEM = register("hanging_pot",
 			properties -> new BlockItem(BlockInit.HANGING_POT,
 					properties) {
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> consumer, TooltipFlag flag) {
+                    stack.addToTooltip(ComponentInit.HANGING_POT_TOOLTIP, context, display, consumer, flag);
+                }
+
 				@Override
 				public Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
-					if (Screen.hasControlDown()) {
+					if (Minecraft.getInstance().hasControlDown()) {
 
 						List<ItemStack> plants = HangingPot.VALID_FLOWERS
 								.stream()
@@ -113,7 +121,7 @@ public final class ItemInit {
 					}
 				}
 
-			}, new Item.Properties().useBlockDescriptionPrefix());
+			}, new Item.Properties().useBlockDescriptionPrefix().component(ComponentInit.HANGING_POT_TOOLTIP, HangingPot.TooltipComponent.INSTANCE));
 
 	public static final BlockItem BOOKSTACK_ITEM = registerBlockItem("bookstack", BlockInit.BOOKSTACK);
 
@@ -169,14 +177,27 @@ public final class ItemInit {
 	}
 
 	private static BlockItem registerBlockItem(String name, Block block) {
-		return register(name, properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
+        if (block instanceof BlockTooltip<?> hasTooltip) {
+            return register(name, properties -> new BlockItem(block, properties) {
+                @Override
+                public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> consumer, TooltipFlag flag) {
+                    stack.addToTooltip(hasTooltip.getTooltipType(), context, display, consumer, flag);
+                }
+            }, new Item.Properties().useBlockDescriptionPrefix().component((DataComponentType<Object>) hasTooltip.getTooltipType(), hasTooltip.getTooltipComponent()));
+        }
+        return register(name, properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
 	}
 
 	private static BlockItem registerTrellis(String name, Block block) {
 		return register(name, properties -> new BlockItem(block, properties) {
+            @Override
+            public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> consumer, TooltipFlag flag) {
+                stack.addToTooltip(ComponentInit.TRELLIS_TOOLTIP, context, display, consumer, flag);
+            }
+
 			@Override
 			public Optional<TooltipComponent> getTooltipImage(@NotNull ItemStack stack) {
-				if (Screen.hasControlDown()) {
+				if (Minecraft.getInstance().hasControlDown()) {
 
 					List<ItemStack> plants = Trellis.VALID_FLOWERS
 							.stream()
@@ -189,7 +210,7 @@ public final class ItemInit {
 				}
 			}
 
-		}, new Item.Properties().useBlockDescriptionPrefix());
+		}, new Item.Properties().useBlockDescriptionPrefix().component(ComponentInit.TRELLIS_TOOLTIP, Trellis.TooltipComponent.INSTANCE));
 	}
 
 	public static void registerFuel() {

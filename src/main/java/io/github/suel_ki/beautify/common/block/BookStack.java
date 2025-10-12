@@ -1,18 +1,20 @@
 package io.github.suel_ki.beautify.common.block;
 
-import java.util.Map;
-import java.util.Random;
-import java.util.function.Consumer;
-
 import com.google.common.collect.ImmutableMap;
+import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
+import io.github.suel_ki.beautify.client.tooltip.BaseTooltipComponent;
+import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
+import io.github.suel_ki.beautify.core.init.ComponentInit;
 import io.github.suel_ki.beautify.core.init.SoundInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -21,9 +23,11 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.*;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -34,7 +38,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BookStack extends HorizontalDirectionalBlock implements TooltipProvider {
+import java.util.Map;
+import java.util.Random;
+import java.util.function.Consumer;
+
+public class BookStack extends HorizontalDirectionalBlock implements BlockTooltip<BookStack.TooltipComponent> {
 	private static final int MODELCOUNT = 7; // number of models the bookstack has
 	public static final IntegerProperty BOOKSTACK_MODEL = IntegerProperty.create("bookstack_model", 0, MODELCOUNT - 1);
 
@@ -130,17 +138,29 @@ public class BookStack extends HorizontalDirectionalBlock implements TooltipProv
 		builder.add(BOOKSTACK_MODEL, FACING);
 	}
 
-	@Override
-	public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
-		if (!Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-		}
+    @Override
+    public DataComponentType<TooltipComponent> getTooltipType() {
+        return ComponentInit.BOOKSTACK_TOOLTIP;
+    }
 
-		if (Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.bookstack.1")
-					.withStyle(ChatFormatting.GRAY));
-			consumer.accept(Component.translatable("tooltip.beautify.bookstack.2")
-					.withStyle(ChatFormatting.GRAY));
-		}
-	}
+    @Override
+    public TooltipComponent getTooltipComponent() {
+        return TooltipComponent.INSTANCE;
+    }
+
+    public static final class TooltipComponent extends BaseTooltipComponent {
+        public static final TooltipComponent INSTANCE = new TooltipComponent();
+
+        private TooltipComponent() {}
+        public static final Codec<TooltipComponent> CODEC = Codec.unit(TooltipComponent::new);
+        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipComponent> STREAM_CODEC = StreamCodec.unit(INSTANCE);
+
+        @Override
+        public void addShiftTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
+            consumer.accept(Component.translatable("tooltip.beautify.bookstack.1")
+                    .withStyle(ChatFormatting.GRAY));
+            consumer.accept(Component.translatable("tooltip.beautify.bookstack.2")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+    }
 }
