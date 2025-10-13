@@ -55,7 +55,7 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
             }
         }
 
-        graphics.drawString(font, TEXT, tooltipX, tooltipY, 0);
+        graphics.drawString(font, TEXT, tooltipX, tooltipY, -1);
     }
 
     @Override

@@ -1,19 +1,22 @@
 package io.github.suel_ki.beautify.common.block;
 
-import java.util.function.Consumer;
-
+import com.mojang.serialization.Codec;
+import io.github.suel_ki.beautify.client.tooltip.BaseTooltipComponent;
+import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
+import io.github.suel_ki.beautify.core.init.ComponentInit;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -25,7 +28,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class LampBamboo extends LanternBlock implements TooltipProvider {
+import java.util.function.Consumer;
+
+public class LampBamboo extends LanternBlock implements BlockTooltip<LampBamboo.TooltipComponent> {
 	public static final BooleanProperty ON = BooleanProperty.create("on");
 
 	private static final VoxelShape SHAPE_HANGING = Block.box(2, 1, 2, 14, 12, 14);
@@ -59,17 +64,30 @@ public class LampBamboo extends LanternBlock implements TooltipProvider {
 		pBuilder.add(ON);
 	}
 
-	@Override
-	public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
-		if (!Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-		}
+    @Override
+    public DataComponentType<TooltipComponent> getTooltipType() {
+        return ComponentInit.LAMP_BAMBOO_TOOLTIP;
+    }
 
-		if (Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.lamp.1")
-					.withStyle(ChatFormatting.GRAY));
-			consumer.accept(Component.translatable("tooltip.beautify.lamp.2")
-					.withStyle(ChatFormatting.GRAY));
-		}
-	}
+    @Override
+    public TooltipComponent getTooltipComponent() {
+        return TooltipComponent.INSTANCE;
+    }
+
+    public static final class TooltipComponent extends BaseTooltipComponent {
+        public static final TooltipComponent INSTANCE = new TooltipComponent();
+
+        private TooltipComponent() {}
+
+        public static final Codec<TooltipComponent> CODEC = Codec.unit(TooltipComponent::new);
+        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipComponent> STREAM_CODEC = StreamCodec.unit(INSTANCE);
+
+        @Override
+        public void addShiftTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
+            consumer.accept(Component.translatable("tooltip.beautify.lamp.1")
+                    .withStyle(ChatFormatting.GRAY));
+            consumer.accept(Component.translatable("tooltip.beautify.lamp.2")
+                    .withStyle(ChatFormatting.GRAY));
+        }
+    }
 }

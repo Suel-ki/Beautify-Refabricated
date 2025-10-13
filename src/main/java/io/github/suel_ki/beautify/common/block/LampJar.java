@@ -1,15 +1,19 @@
 package io.github.suel_ki.beautify.common.block;
 
-import java.util.function.Consumer;
-
+import com.mojang.serialization.Codec;
+import io.github.suel_ki.beautify.client.tooltip.BaseTooltipComponent;
+import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
+import io.github.suel_ki.beautify.core.init.ComponentInit;
 import io.github.suel_ki.beautify.particle.ParticleInit;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentType;
+import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -20,7 +24,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipProvider;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LanternBlock;
@@ -29,7 +32,9 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class LampJar extends LanternBlock implements TooltipProvider {
+import java.util.function.Consumer;
+
+public class LampJar extends LanternBlock implements BlockTooltip<LampJar.TooltipComponent> {
 	private static final int maxLevel = 15;
 	public static final IntegerProperty FILL_LEVEL = IntegerProperty.create("fill_level", 0, maxLevel);
 
@@ -111,16 +116,28 @@ public class LampJar extends LanternBlock implements TooltipProvider {
 		return (rand.nextIntBetweenInclusive(0, 2) - 1) * rand.nextFloat() / 34;
 	}
 
-	@Override
-	public void addToTooltip(Item.TooltipContext tooltipContext, Consumer<Component> consumer, TooltipFlag tooltipFlag, DataComponentGetter dataComponentGetter) {
-		if (!Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.shift").withStyle(ChatFormatting.YELLOW));
-		}
+    @Override
+    public DataComponentType<TooltipComponent> getTooltipType() {
+        return ComponentInit.LAMP_JAR_TOOLTIP;
+    }
 
-		if (Screen.hasShiftDown()) {
-			consumer.accept(Component.translatable("tooltip.beautify.lamp_jar.1").withStyle(ChatFormatting.GRAY));
-			consumer.accept(Component.translatable("tooltip.beautify.lamp_jar.2").withStyle(ChatFormatting.GRAY));
-			consumer.accept(Component.translatable("tooltip.beautify.lamp_jar.3").withStyle(ChatFormatting.GRAY));
-		}
-	}
+    @Override
+    public TooltipComponent getTooltipComponent() {
+        return TooltipComponent.INSTANCE;
+    }
+
+    public static final class TooltipComponent extends BaseTooltipComponent {
+        public static final TooltipComponent INSTANCE = new TooltipComponent();
+
+        private TooltipComponent() {}
+        public static final Codec<TooltipComponent> CODEC = Codec.unit(TooltipComponent::new);
+        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipComponent> STREAM_CODEC = StreamCodec.unit(INSTANCE);
+
+        @Override
+        public void addShiftTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
+            consumer.accept(Component.translatable("tooltip.beautify.lamp_jar.1").withStyle(ChatFormatting.GRAY));
+            consumer.accept(Component.translatable("tooltip.beautify.lamp_jar.2").withStyle(ChatFormatting.GRAY));
+            consumer.accept(Component.translatable("tooltip.beautify.lamp_jar.3").withStyle(ChatFormatting.GRAY));
+        }
+    }
 }
