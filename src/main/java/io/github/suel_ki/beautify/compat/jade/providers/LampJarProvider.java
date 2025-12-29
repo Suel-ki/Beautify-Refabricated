@@ -3,7 +3,7 @@ package io.github.suel_ki.beautify.compat.jade.providers;
 import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.LampJar;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,7 +37,7 @@ public enum  LampJarProvider implements IBlockComponentProvider {
     }
 
     @Override
-    public ResourceLocation getUid() {
+    public Identifier getUid() {
         return Beautify.id("lamp_jar.glowstone_dust");
     }
 }

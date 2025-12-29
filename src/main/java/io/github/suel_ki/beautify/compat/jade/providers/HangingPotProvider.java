@@ -4,7 +4,7 @@ import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.HangingPot;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import snownee.jade.api.BlockAccessor;
@@ -13,7 +13,6 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 import snownee.jade.api.ui.IDisplayHelper;
 import snownee.jade.api.ui.JadeUI;
-import snownee.jade.impl.ui.ItemStackElement;
 
 public enum HangingPotProvider implements IBlockComponentProvider {
 
@@ -38,7 +37,7 @@ public enum HangingPotProvider implements IBlockComponentProvider {
     }
 
     @Override
-    public ResourceLocation getUid() {
+    public Identifier getUid() {
         return Beautify.id("hanging_pot.pot_flower");
     }
 }

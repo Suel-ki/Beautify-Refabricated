@@ -3,13 +3,11 @@ package io.github.suel_ki.beautify.common.block;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import io.github.suel_ki.beautify.client.tooltip.BaseTooltipComponent;
+import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -23,7 +21,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -41,9 +38,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Consumer;
 
-public class Trellis extends HorizontalDirectionalBlock implements BlockTooltip<Trellis.TooltipComponent> {
+public class Trellis extends HorizontalDirectionalBlock implements BlockTooltip {
 	public static final List<Item> VALID_FLOWERS = Arrays.asList(Items.AIR, Items.ROSE_BUSH, Items.SUNFLOWER,
 			Items.PEONY, Items.LILAC, Items.VINE, Items.WEEPING_VINES, Items.TWISTING_VINES, Items.GLOW_LICHEN);
 
@@ -166,34 +162,25 @@ public class Trellis extends HorizontalDirectionalBlock implements BlockTooltip<
 	}
 
     @Override
-    public DataComponentType<TooltipComponent> getTooltipType() {
+    public DataComponentType<TooltipLore> getTooltipType() {
         return ComponentInit.TRELLIS_TOOLTIP;
     }
 
     @Override
-    public TooltipComponent getTooltipComponent() {
+    public TooltipLore getTooltipComponent() {
         return TooltipComponent.INSTANCE;
     }
 
-    public static final class TooltipComponent extends BaseTooltipComponent {
-        public static final TooltipComponent INSTANCE = new TooltipComponent();
+    public static final class TooltipComponent {
+        public static final TooltipLore INSTANCE = TooltipLore.create(
+                List.of(Component.translatable("tooltip.beautify.shift"),
+                        Component.translatable("tooltip.beautify.plantlist")),
+                List.of(Component.translatable("tooltip.beautify.trellis.1"),
+                        Component.translatable("tooltip.beautify.trellis.2")),
+                List.of()
+        );
 
-        private TooltipComponent() {}
-
-        public static final Codec<TooltipComponent> CODEC = Codec.unit(TooltipComponent::new);
-        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipComponent> STREAM_CODEC = StreamCodec.unit(INSTANCE);
-
-
-        @Override
-        public void addDefaultTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
-            super.addDefaultTooltips(context, consumer, flag, data);
-            consumer.accept(Component.translatable("tooltip.beautify.plantlist").withStyle(ChatFormatting.YELLOW));
-        }
-
-        @Override
-        public void addShiftTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
-            consumer.accept(Component.translatable("tooltip.beautify.trellis.1").withStyle(ChatFormatting.GRAY));
-            consumer.accept(Component.translatable("tooltip.beautify.trellis.2").withStyle(ChatFormatting.GRAY));
-        }
+        public static final Codec<TooltipLore> CODEC = TooltipLore.CODEC;
+        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipLore> STREAM_CODEC = StreamCodec.unit(INSTANCE);
     }
 }

@@ -9,7 +9,7 @@
     "description": {
       "translate": "advancements.beautify.root.description"
     },
-    "background": "minecraft:textures/block/spruce_planks.png",
+    "background": "minecraft:block/spruce_planks",
     "frame": "task",
     "show_toast": false,
     "announce_to_chat": false,

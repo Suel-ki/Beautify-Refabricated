@@ -2,7 +2,7 @@ package io.github.suel_ki.beautify.compat.jade.providers;
 
 import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.Trellis;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import snownee.jade.api.BlockAccessor;
@@ -32,7 +32,7 @@ public enum TrellisProvider implements IBlockComponentProvider {
     }
 
     @Override
-    public ResourceLocation getUid() {
+    public Identifier getUid() {
         return Beautify.id("trellis.pot_plant");
     }
 }

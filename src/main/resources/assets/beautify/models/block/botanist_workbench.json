@@ -1,17 +1,17 @@
 {
+	"format_version": "1.21.11",
 	"credit": "Made with Blockbench",
+	"render_type": "cutout",
 	"texture_size": [64, 64],
 	"textures": {
 		"0": "beautify:block/pots/dandelion_pot_grown",
-		"1": "minecraft:block/barrel_bottom",
-		"2": "minecraft:block/beehive_end",
-		"3": "minecraft:block/dark_oak_log",
-		"4": "minecraft:block/dirt",
-		"5": "minecraft:item/sweet_berries",
-		"6": "beautify:block/trellis_lilac_front",
+		"1": "block/barrel_bottom",
+		"2": "block/beehive_end",
+		"3": "block/dark_oak_log",
+		"4": "block/dirt",
+		"5": "beautify:block/trellis_lilac_front",
 		"particle": "beautify:block/pots/dandelion_pot_grown"
 	},
-	"render_type": "cutout",
 	"elements": [
 		{
 			"from": [2, 10, 0.25],
@@ -236,27 +236,15 @@
 			}
 		},
 		{
-			"from": [7.75, 6.25, 4.5],
-			"to": [15.75, 6.25, 12.5],
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#5"},
-				"down": {"uv": [0, 16, 16, 0], "texture": "#5"}
-			}
-		},
-		{
 			"from": [2.5, 12.25, 4.75],
 			"to": [15.5, 12.25, 14.75],
 			"faces": {
-				"north": {"uv": [0, 0, 3.25, 0], "texture": "#6"},
-				"east": {"uv": [0, 0, 2.5, 0], "texture": "#6"},
-				"south": {"uv": [0, 0, 3.25, 0], "texture": "#6"},
-				"west": {"uv": [0, 0, 2.5, 0], "texture": "#6"},
-				"up": {"uv": [6, 1, 16, 9], "texture": "#6"},
-				"down": {"uv": [6, 1, 16, 9], "texture": "#6"}
+				"north": {"uv": [0, 0, 3.25, 0], "texture": "#5"},
+				"east": {"uv": [0, 0, 2.5, 0], "texture": "#5"},
+				"south": {"uv": [0, 0, 3.25, 0], "texture": "#5"},
+				"west": {"uv": [0, 0, 2.5, 0], "texture": "#5"},
+				"up": {"uv": [6, 1, 16, 9], "texture": "#5"},
+				"down": {"uv": [6, 1, 16, 9], "texture": "#5"}
 			}
 		},
 		{
@@ -374,7 +362,7 @@
 					"name": "Deco",
 					"origin": [0, 0, 0],
 					"color": 0,
-					"children": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22]
+					"children": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
 				}
 			]
 		}

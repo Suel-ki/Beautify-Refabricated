@@ -3,14 +3,12 @@ package io.github.suel_ki.beautify.common.block;
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import io.github.suel_ki.beautify.client.tooltip.BaseTooltipComponent;
+import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
 import io.github.suel_ki.beautify.core.init.SoundInit;
-import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -21,8 +19,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -38,11 +34,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import java.util.function.Consumer;
 
-public class BookStack extends HorizontalDirectionalBlock implements BlockTooltip<BookStack.TooltipComponent> {
+public class BookStack extends HorizontalDirectionalBlock implements BlockTooltip {
 	private static final int MODELCOUNT = 7; // number of models the bookstack has
 	public static final IntegerProperty BOOKSTACK_MODEL = IntegerProperty.create("bookstack_model", 0, MODELCOUNT - 1);
 
@@ -139,28 +135,23 @@ public class BookStack extends HorizontalDirectionalBlock implements BlockToolti
 	}
 
     @Override
-    public DataComponentType<TooltipComponent> getTooltipType() {
+    public DataComponentType<TooltipLore> getTooltipType() {
         return ComponentInit.BOOKSTACK_TOOLTIP;
     }
 
     @Override
-    public TooltipComponent getTooltipComponent() {
+    public TooltipLore getTooltipComponent() {
         return TooltipComponent.INSTANCE;
     }
 
-    public static final class TooltipComponent extends BaseTooltipComponent {
-        public static final TooltipComponent INSTANCE = new TooltipComponent();
+    public static final class TooltipComponent {
+        public static final TooltipLore INSTANCE = TooltipLore.create(
+                List.of(Component.translatable("tooltip.beautify.bookstack.1"),
+                        Component.translatable("tooltip.beautify.bookstack.2")),
+                List.of()
+        );
 
-        private TooltipComponent() {}
-        public static final Codec<TooltipComponent> CODEC = Codec.unit(TooltipComponent::new);
-        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipComponent> STREAM_CODEC = StreamCodec.unit(INSTANCE);
-
-        @Override
-        public void addShiftTooltips(Item.TooltipContext context, Consumer<Component> consumer, TooltipFlag flag, DataComponentGetter data) {
-            consumer.accept(Component.translatable("tooltip.beautify.bookstack.1")
-                    .withStyle(ChatFormatting.GRAY));
-            consumer.accept(Component.translatable("tooltip.beautify.bookstack.2")
-                    .withStyle(ChatFormatting.GRAY));
-        }
+        public static final Codec<TooltipLore> CODEC = TooltipLore.CODEC;
+        public static final StreamCodec<RegistryFriendlyByteBuf, TooltipLore> STREAM_CODEC = StreamCodec.unit(INSTANCE);
     }
 }

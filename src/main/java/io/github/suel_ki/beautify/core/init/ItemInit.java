@@ -12,7 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.TooltipDisplay;
@@ -27,7 +27,7 @@ import java.util.function.Function;
 
 public final class ItemInit {
 
-	public static final Map<Item, ResourceLocation> ITEMS = new LinkedHashMap<>();
+	public static final Map<Item, Identifier> ITEMS = new LinkedHashMap<>();
 
 	// trellis
 	public static final BlockItem OAK_TRELLIS_ITEM = registerTrellis("oak_trellis", BlockInit.OAK_TRELLIS);
@@ -177,13 +177,13 @@ public final class ItemInit {
 	}
 
 	private static BlockItem registerBlockItem(String name, Block block) {
-        if (block instanceof BlockTooltip<?> hasTooltip) {
+        if (block instanceof BlockTooltip hasTooltip) {
             return register(name, properties -> new BlockItem(block, properties) {
                 @Override
                 public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> consumer, TooltipFlag flag) {
                     stack.addToTooltip(hasTooltip.getTooltipType(), context, display, consumer, flag);
                 }
-            }, new Item.Properties().useBlockDescriptionPrefix().component((DataComponentType<Object>) hasTooltip.getTooltipType(), hasTooltip.getTooltipComponent()));
+            }, new Item.Properties().useBlockDescriptionPrefix().component(hasTooltip.getTooltipType(), hasTooltip.getTooltipComponent()));
         }
         return register(name, properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
 	}

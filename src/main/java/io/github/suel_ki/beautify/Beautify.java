@@ -17,8 +17,8 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
@@ -65,12 +65,12 @@ public class Beautify implements ModInitializer {
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Beautify.id("group"), BEAUTIFY_TAB);
 	}
 
-	public static ResourceLocation id(String name) {
-		return ResourceLocation.fromNamespaceAndPath(MODID, name);
+	public static Identifier id(String name) {
+		return Identifier.fromNamespaceAndPath(MODID, name);
 	}
 
 	private static final ResourceKey<StructureProcessorList> EMPTY_PROCESSOR_LIST_KEY = ResourceKey
-			.create(Registries.PROCESSOR_LIST, ResourceLocation.withDefaultNamespace("empty"));
+			.create(Registries.PROCESSOR_LIST, Identifier.withDefaultNamespace("empty"));
 
 	/**
 	 * Adds the building to the targeted pool. We will call this in
@@ -79,7 +79,7 @@ public class Beautify implements ModInitializer {
 	 * they stack with each other safely.
 	 */
 	private static void addBuildingToPool(Registry<StructureTemplatePool> templatePoolRegistry,
-										  Registry<StructureProcessorList> processorListRegistry, ResourceLocation poolRL, String nbtPieceRL,
+										  Registry<StructureProcessorList> processorListRegistry, Identifier poolRL, String nbtPieceRL,
 										  int weight) {
 
 		// Grabs the processor list we want to use along with our piece.
@@ -135,22 +135,22 @@ public class Beautify implements ModInitializer {
 		int weight = CONFIG.houses.botanistSpawnWeight;
 
 		// Adds our piece to all village houses pool
-		// Note, the resourcelocation is getting the pool files from the data folder.
+		// Note, the Identifier is getting the pool files from the data folder.
 		// Not assets folder.
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				ResourceLocation.withDefaultNamespace("village/plains/houses"), "beautify:botanist_house_plains", weight);
+				Identifier.withDefaultNamespace("village/plains/houses"), "beautify:botanist_house_plains", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				ResourceLocation.withDefaultNamespace("village/snowy/houses"), "beautify:botanist_house_snowy", weight);
+				Identifier.withDefaultNamespace("village/snowy/houses"), "beautify:botanist_house_snowy", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				ResourceLocation.withDefaultNamespace("village/savanna/houses"), "beautify:botanist_house_savanna", weight);
+				Identifier.withDefaultNamespace("village/savanna/houses"), "beautify:botanist_house_savanna", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				ResourceLocation.withDefaultNamespace("village/taiga/houses"), "beautify:botanist_house_taiga", weight);
+				Identifier.withDefaultNamespace("village/taiga/houses"), "beautify:botanist_house_taiga", weight);
 
 		addBuildingToPool(templatePoolRegistry, processorListRegistry,
-				ResourceLocation.withDefaultNamespace("village/desert/houses"), "beautify:botanist_house_desert", weight);
+				Identifier.withDefaultNamespace("village/desert/houses"), "beautify:botanist_house_desert", weight);
 	}
 
 }
