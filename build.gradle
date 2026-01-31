@@ -1,5 +1,5 @@
 plugins {
-	id 'fabric-loom' version '1.7.+'
+	id 'fabric-loom' version '1.14-SNAPSHOT'
 	id 'maven-publish'
 }
 
@@ -11,7 +11,7 @@ loom {
 }
 
 base {
-	archivesName = project.archives_base_name
+	archivesName = project.archivesName
 }
 
 repositories {
@@ -23,13 +23,13 @@ repositories {
 		name = 'TerraformersMC Maven'
 		url = 'https://maven.terraformersmc.com/releases'
 	}
-	maven {
-		name = "Curse Maven"
-		url "https://www.cursemaven.com"
-		content {
-			includeGroup "curse.maven"
-		}
-	}
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 loom {
@@ -54,7 +54,9 @@ dependencies {
 
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
 
-	modImplementation "curse.maven:jade-324717:${jade_id}"
+    modImplementation "maven.modrinth:jade:${jade_version}+fabric"
+    modCompileOnly "maven.modrinth:every-compat:${every_compat_version}"
+    modCompileOnly "maven.modrinth:moonlight:${moonlight_version}"
 
 	modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
 		exclude(group: "net.fabricmc.fabric-api")
@@ -90,7 +92,7 @@ java {
 
 jar {
 	from("LICENSE") {
-		rename { "${it}_${project.archivesBaseName}"}
+		rename { "${it}_${project.archivesName}"}
 	}
 }
 

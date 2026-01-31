@@ -1,5 +1,6 @@
 package io.github.suel_ki.beautify;
 
+import io.github.suel_ki.beautify.compat.every_compat.EveryCompatIntegration;
 import io.github.suel_ki.beautify.core.init.BlockInit;
 import io.github.suel_ki.beautify.core.init.ItemInit;
 import io.github.suel_ki.beautify.core.init.TradesInit;
@@ -11,6 +12,7 @@ import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -61,6 +63,10 @@ public class Beautify implements ModInitializer {
 		// Add new buildings to villages
 		ServerLifecycleEvents.SERVER_STARTED.register(this::addNewVillageBuilding);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Beautify.id("group"), BEAUTIFY_TAB);
+
+        if (FabricLoader.getInstance().isModLoaded("everycomp")) {
+            EveryCompatIntegration.register();
+        }
 	}
 
 	public static ResourceLocation id(String name) {

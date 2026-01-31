@@ -56,7 +56,9 @@
   "block.beautify.cherry_trellis": "Cherry Lattice",
   "block.beautify.warped_trellis": "Warped Lattice",
   "block.beautify.botanist_workbench": "Botanist Workbench",
+
   "entity.minecraft.villager.botanist": "Botanist",
+
   "sounds.beautify.bookstack_break": "Bookstack broken",
   "sounds.beautify.bookstack_step": "Steps on Bookstack",
   "sounds.beautify.bookstack_place": "Bookstack placed",
@@ -65,6 +67,7 @@
   "sounds.beautify.bookstack_next": "Bookstack switched",
   "sounds.beautify.blinds_open": "Blinds opened",
   "sounds.beautify.blinds_close": "Blinds closed",
+
   "tooltip.beautify.shift": "Hold SHIFT for more info.",
   "tooltip.beautify.plantlist": "Hold CTRL for a list of plants.",
   "tooltip.beautify.plantable": "Plantable plants:",
@@ -90,6 +93,7 @@
   "tooltip.beautify.rope.2": "Great with Hanging Pots.",
   "tooltip.beautify.trellis.1": "Can be placed on wall or ceiling and can be climbed.",
   "tooltip.beautify.trellis.2": "Right click on plants in your hand to place it in.",
+
   "advancements.beautify.blinds.title": "Blinded by the lights",
   "advancements.beautify.blinds.description": "Craft blinds to filter some light.",
   "advancements.beautify.bookstack.title": "No shelf organization",
@@ -104,15 +108,20 @@
   "advancements.beautify.root.description": "The devil is in the detailing.",
   "advancements.beautify.rope.title": "Could you knot?",
   "advancements.beautify.rope.description": "Tie String together to receive Rope.",
+
   "config.jade.plugin_beautify.lamp_jar.glowstone_dust": "Amount of Glowstone Dust",
   "config.jade.plugin_beautify.trellis.pot_plant": "Show planting plant",
   "config.jade.plugin_beautify.hanging_pot.pot_flower": "Show planting plant",
+
   "text.autoconfig.beautify.title": "Beautify",
+
   "text.autoconfig.beautify.option.blinds": "Blinds",
   "text.autoconfig.beautify.option.blinds.searchRadius": "Search Radius",
   "text.autoconfig.beautify.option.blinds.opensFromRoot": "Opens From Root",
+
   "text.autoconfig.beautify.option.houses": "Houses",
   "text.autoconfig.beautify.option.houses.botanistSpawnWeight": "Botanist Spawn Weight",
+
   "text.autoconfig.beautify.option.blinds.searchRadius.@Tooltip": "Searches X-Blocks(x = Search Radius) below and X/2 to the sides of the clicked blind for others and opens/closes them too.",
   "text.autoconfig.beautify.option.blinds.opensFromRoot.@Tooltip": "Opens blinds from the topmost blind on if true.",
   "text.autoconfig.beautify.option.houses.botanistSpawnWeight.@Tooltip": "Defines the chance of a Botanist Villager House inside a village."
