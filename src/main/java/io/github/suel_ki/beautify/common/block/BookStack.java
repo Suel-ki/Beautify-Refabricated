@@ -70,11 +70,10 @@ public class BookStack extends HorizontalDirectionalBlock {
 		return super.updateShape(state, direction, neighborState, level, currentPos, neighborPos);
 	}
 
-	@Override
-	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-		return canSupportRigidBlock(level, pos.below());
-	}
-
+//	@Override
+//	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+//		return canSupportRigidBlock(level, pos.below());
+//	}
 
 	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
