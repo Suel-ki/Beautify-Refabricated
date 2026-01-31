@@ -94,7 +94,7 @@
   "tooltip.beautify.trellis.1": "可以放置在墙上或天花板上，可攀爬。",
   "tooltip.beautify.trellis.2": "手持植物右击可将其放入其中",
 
-  "advancements.beautify.blinds.title": "被灯光蒙蔽了双眼",
+  "advancements.beautify.blinds.title": "被光蒙蔽了双眼",
   "advancements.beautify.blinds.description": "制作百叶窗来过滤一些光线。",
   "advancements.beautify.bookstack.title": "不在书架上的书",
   "advancements.beautify.bookstack.description": "谁需要书架呢？制作一个书架。",
@@ -108,6 +108,10 @@
   "advancements.beautify.root.description": "恶魔就在细节之中。",
   "advancements.beautify.rope.title": "你能打结吗?",
   "advancements.beautify.rope.description": "把绳子系在一起来接收绳子。",
+
+  "config.jade.plugin_beautify.lamp_jar.glowstone_dust": "显示荧石粉数量",
+  "config.jade.plugin_beautify.trellis.pot_plant": "显示所种植植物",
+  "config.jade.plugin_beautify.hanging_pot.pot_flower": "显示所种植植物",
 
   "text.autoconfig.beautify.title": "美化",
 
