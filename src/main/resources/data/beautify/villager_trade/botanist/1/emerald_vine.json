@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "id": "minecraft:vine",
+    "count": 3
+  },
+  "max_uses": 16.0,
+  "reputation_discount": 0.02,
+  "wants": {
+    "count": 2.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 4.0
+}

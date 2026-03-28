@@ -3,7 +3,7 @@ package io.github.suel_ki.beautify.client.tooltip;
 import io.github.suel_ki.beautify.common.tooltip.PlantableItemStackTooltip;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.Font;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.Component;
@@ -15,10 +15,10 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
-    private static final Identifier TEXTURE_LOCATION = Identifier.withDefaultNamespace("container/bundle/slot");
+    private static final Identifier TEXTURE_LOCATION = Identifier.withDefaultNamespace("container/bundle/slot_background");
     private static final Component TEXT = Component.translatable("tooltip.beautify.plantable").withStyle(ChatFormatting.GREEN);
 
-    private static final int SLOT_SIZE = 18;
+    private static final int SLOT_SIZE = 24;
     private final int columns;
     private final List<ItemStack> plants;
 
@@ -36,16 +36,16 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
     }
 
     @Override
-    public void renderImage(Font font, int tooltipX, int tooltipY, int k, int l, GuiGraphics graphics) {
+    public void extractImage(Font font, int tooltipX, int tooltipY, int k, int l, GuiGraphicsExtractor graphics) {
         int slotSize = SLOT_SIZE;
         int x = tooltipX;
         int y = tooltipY + font.lineHeight + 3;
 
         for (var plant : this.plants) {
 
-            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, x - 1, y - 1, 0, 18, 20);
-            graphics.renderItem(plant, x, y);
-            graphics.renderItemDecorations(font, plant, x, y);
+            graphics.blitSprite(RenderPipelines.GUI_TEXTURED, TEXTURE_LOCATION, x - 1, y - 1, 24, 24);
+            graphics.item(plant, x + 3, y + 3);
+            graphics.itemDecorations(font, plant, x + 3, y + 3);
 
             x += slotSize;
 
@@ -55,7 +55,7 @@ public class ClientPlantableItemStackTooltip implements ClientTooltipComponent {
             }
         }
 
-        graphics.drawString(font, TEXT, tooltipX, tooltipY, -1);
+        graphics.text(font, TEXT, tooltipX, tooltipY, -1);
     }
 
     @Override

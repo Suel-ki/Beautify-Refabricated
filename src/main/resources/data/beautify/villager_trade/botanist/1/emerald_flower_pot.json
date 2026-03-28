@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "id": "minecraft:flower_pot",
+    "count": 2
+  },
+  "max_uses": 12.0,
+  "reputation_discount": 0.02,
+  "wants": {
+    "count": 3.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 5.0
+}

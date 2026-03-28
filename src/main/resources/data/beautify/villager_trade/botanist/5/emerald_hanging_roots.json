@@ -1,0 +1,13 @@
+{
+  "gives": {
+    "id": "minecraft:hanging_roots",
+    "count": 3
+  },
+  "max_uses": 10.0,
+  "reputation_discount": 0.02,
+  "wants": {
+    "count": 1.0,
+    "id": "minecraft:emerald"
+  },
+  "xp": 7.0
+}

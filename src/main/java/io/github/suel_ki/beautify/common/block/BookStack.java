@@ -80,11 +80,6 @@ public class BookStack extends HorizontalDirectionalBlock implements BlockToolti
 	}
 
 	@Override
-	public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-		return canSupportRigidBlock(level, pos.below());
-	}
-
-	@Override
 	public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource rand) {
 		if (!state.canSurvive(level, pos)) {
 			level.destroyBlock(pos, true);

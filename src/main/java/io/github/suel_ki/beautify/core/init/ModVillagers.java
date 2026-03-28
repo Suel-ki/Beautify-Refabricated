@@ -2,7 +2,9 @@ package io.github.suel_ki.beautify.core.init;
 
 import io.github.suel_ki.beautify.Beautify;
 import com.google.common.collect.ImmutableSet;
-import net.fabricmc.fabric.api.object.builder.v1.world.poi.PointOfInterestHelper;
+import it.unimi.dsi.fastutil.ints.Int2ObjectMap;
+import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap;
+import net.fabricmc.fabric.api.object.builder.v1.world.poi.PoiHelper;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -31,7 +33,7 @@ public class ModVillagers {
 					SoundEvents.CAVE_VINES_PLACE);
 
 	private static ResourceKey<PoiType> poi(String name, Iterable<BlockState> blocks) {
-		PointOfInterestHelper.register(Beautify.id(name), 1, 1, blocks);
+		PoiHelper.register(Beautify.id(name), 1, 1, blocks);
 		return ResourceKey.create(Registries.POINT_OF_INTEREST_TYPE, Beautify.id(name));
 	}
 
@@ -47,8 +49,11 @@ public class ModVillagers {
 
 		Registry.register(BuiltInRegistries.VILLAGER_PROFESSION, key, new VillagerProfession(
 				Component.translatable("entity." + key.identifier().getNamespace() + ".villager." + key.identifier().getPath()),
-				heldWorkstation, acquirableWorkstation, gatherableItems, secondaryJobSites, workSound)
+				heldWorkstation, acquirableWorkstation, gatherableItems, secondaryJobSites, workSound,
+				new Int2ObjectOpenHashMap<>(Int2ObjectMap.ofEntries(Int2ObjectMap.entry(1, TradesInit.BOTANIST_LEVEL_1), Int2ObjectMap.entry(2, TradesInit.BOTANIST_LEVEL_2), Int2ObjectMap.entry(3, TradesInit.BOTANIST_LEVEL_3), Int2ObjectMap.entry(4, TradesInit.BOTANIST_LEVEL_4), Int2ObjectMap.entry(5, TradesInit.BOTANIST_LEVEL_5))))
 		);
 		return key;
 	}
+
+	public static void init() {}
 }

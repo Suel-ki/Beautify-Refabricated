@@ -18,7 +18,7 @@
   "license": "MIT",
   "icon": "icon.png",
   "environment": "*",
-  "accessWidener": "beautify.accesswidener",
+  "accessWidener": "beautify.classtweaker",
   "entrypoints": {
     "main": [
       "io.github.suel_ki.beautify.Beautify"
@@ -39,8 +39,8 @@
   "depends": {
     "fabricloader": ">=0.16.14",
     "fabric-api": "*",
-    "minecraft": "~1.21",
-    "java": ">=21",
+    "minecraft": "~26.1",
+    "java": ">=25",
     "cloth-config": "*"
   },
   "custom": {

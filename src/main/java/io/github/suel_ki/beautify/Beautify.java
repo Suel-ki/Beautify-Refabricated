@@ -1,17 +1,14 @@
 package io.github.suel_ki.beautify;
 
-import io.github.suel_ki.beautify.core.init.BlockInit;
-import io.github.suel_ki.beautify.core.init.ComponentInit;
-import io.github.suel_ki.beautify.core.init.ItemInit;
-import io.github.suel_ki.beautify.core.init.TradesInit;
+import io.github.suel_ki.beautify.core.init.*;
 import io.github.suel_ki.beautify.particle.ParticleInit;
 import io.github.suel_ki.beautify.util.BeautifyConfig;
 import com.mojang.datafixers.util.Pair;
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.creativetab.v1.FabricCreativeModeTab;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
-import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -41,10 +38,10 @@ public class Beautify implements ModInitializer {
 	public static final Logger LOGGER = LoggerFactory.getLogger(MODID);
 
 	// TAB
-	public static final CreativeModeTab BEAUTIFY_TAB = FabricItemGroup.builder()
+	public static final CreativeModeTab BEAUTIFY_TAB = FabricCreativeModeTab.builder()
 			.title(Component.translatable("itemGroup.beautify.group"))
 			.icon(ItemInit.HANGING_POT_ITEM::getDefaultInstance)
-			.displayItems((enabledFeatures, entries) -> entries.acceptAll(ItemInit.ITEMS.keySet().stream().map(ItemStack::new).toList())) // adds items to itemgroup
+			.displayItems((enabledFeatures, entries) -> entries.acceptAll(ItemInit.ITEMS.keySet().stream().map(ItemStack::new).toList())) // adds items to creative tab
 			.build();
 
 	@Override
@@ -55,11 +52,10 @@ public class Beautify implements ModInitializer {
         ComponentInit.init();
 		// Fuel
 		ItemInit.registerFuel();
-		// Trades
-		TradesInit.addCustomTrades();
 		// Flammable
 		BlockInit.registerFlammableBlock();
 		ParticleInit.ensureLoadedServerside();
+		ModVillagers.init();
 		// Add new buildings to villages
 		ServerLifecycleEvents.SERVER_STARTED.register(this::addNewVillageBuilding);
 		Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, Beautify.id("group"), BEAUTIFY_TAB);

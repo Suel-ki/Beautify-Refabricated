@@ -4,10 +4,9 @@ import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.*;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.common.tooltip.PlantableItemStackTooltip;
-import net.fabricmc.fabric.api.registry.FuelRegistryEvents;
+import net.fabricmc.fabric.api.registry.FuelValueEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
-import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -214,7 +213,7 @@ public final class ItemInit {
 	}
 
 	public static void registerFuel() {
-		FuelRegistryEvents.BUILD.register((builder, context) -> {
+		FuelValueEvents.BUILD.register((builder, context) -> {
 			builder.add(OAK_TRELLIS_ITEM, 300);
 			builder.add(SPRUCE_TRELLIS_ITEM, 300);
 			builder.add(BIRCH_TRELLIS_ITEM, 300);
