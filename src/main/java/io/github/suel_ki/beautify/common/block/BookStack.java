@@ -2,7 +2,6 @@ package io.github.suel_ki.beautify.common.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
@@ -53,17 +52,10 @@ public class BookStack extends HorizontalDirectionalBlock implements BlockToolti
 			6, Shapes.or(Block.box(1, 0, 1, 15, 12, 15))
 	);
 
-	public static final MapCodec<BookStack> CODEC = simpleCodec(BookStack::new);
-
 	public BookStack(Properties properties) {
 		super(properties);
 		this.registerDefaultState(
 				this.defaultBlockState().setValue(BOOKSTACK_MODEL, 0).setValue(FACING, Direction.NORTH));
-	}
-
-	@Override
-	protected MapCodec<BookStack> codec() {
-		return CODEC;
 	}
 
 	@Override

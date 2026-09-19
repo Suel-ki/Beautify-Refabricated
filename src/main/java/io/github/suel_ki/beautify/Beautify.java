@@ -50,8 +50,6 @@ public class Beautify implements ModInitializer {
 		AutoConfig.register(BeautifyConfig.class, GsonConfigSerializer::new);
 		CONFIG = AutoConfig.getConfigHolder(BeautifyConfig.class).getConfig();
         ComponentInit.init();
-		// Fuel
-		ItemInit.registerFuel();
 		// Flammable
 		BlockInit.registerFlammableBlock();
 		ParticleInit.ensureLoadedServerside();

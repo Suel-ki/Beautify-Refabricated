@@ -1,7 +1,6 @@
 package io.github.suel_ki.beautify.common.block;
 
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
@@ -36,18 +35,11 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 	public static final IntegerProperty FRAME_MOTIVE = IntegerProperty.create("frame_motive", 0, MODELCOUNT - 1);
 	protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 8, 11);
 
-	public static final MapCodec<PictureFrame> CODEC = simpleCodec(PictureFrame::new);
-
 	public PictureFrame(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState()
                 .setValue(FRAME_MOTIVE, 0)
                 .setValue(FACING, Direction.NORTH));
-	}
-
-	@Override
-	protected MapCodec<PictureFrame> codec() {
-		return CODEC;
 	}
 
 	// changing the model of the picture frame by shift-rightclicking

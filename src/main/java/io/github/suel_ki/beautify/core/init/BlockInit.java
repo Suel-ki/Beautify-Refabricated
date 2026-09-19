@@ -37,7 +37,7 @@ public class BlockInit {
     public static final Rope ROPE = register("rope",
             Rope::new, BlockBehaviour.Properties.of().mapColor(MapColor.NONE)
                     .strength(0.2F, 0.2F).sound(SoundType.WOOL)
-                    .pushReaction(PushReaction.DESTROY).noOcclusion());
+                    .pushReaction(PushReaction.POPPED).noOcclusion());
 
     public static final HangingPot HANGING_POT = register("hanging_pot",
             HangingPot::new, BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_BROWN)
@@ -236,7 +236,7 @@ public class BlockInit {
 
     private static PictureFrame registerPictureFrame(String name, MapColor color, SoundType type) {
         return register(name, PictureFrame::new, BlockBehaviour.Properties.of().mapColor(color).noOcclusion()
-                .strength(0.1f, 0.1f).sound(type).noOcclusion().pushReaction(PushReaction.DESTROY));
+                .strength(0.1f, 0.1f).sound(type).noOcclusion().pushReaction(PushReaction.POPPED));
     }
 
     private static Blinds registerBlinds(String name, MapColor color, SoundType type) {

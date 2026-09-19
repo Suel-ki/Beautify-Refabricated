@@ -2,7 +2,6 @@ package io.github.suel_ki.beautify.common.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
@@ -58,18 +57,11 @@ public class Blinds extends HorizontalDirectionalBlock implements BlockTooltip {
 	public static final BooleanProperty OPEN = BooleanProperty.create("open");
 	public static final BooleanProperty HIDDEN = BooleanProperty.create("hidden");
 
-	public static final MapCodec<Blinds> CODEC = simpleCodec(Blinds::new);
-
 	// constructor
 	public Blinds(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(OPEN, false).setValue(FACING, Direction.NORTH)
 				.setValue(HIDDEN, false));
-	}
-
-	@Override
-	protected MapCodec<Blinds> codec() {
-		return CODEC;
 	}
 
 	@Override

@@ -2,7 +2,6 @@ package io.github.suel_ki.beautify.common.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.serialization.Codec;
-import com.mojang.serialization.MapCodec;
 import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
@@ -38,16 +37,9 @@ public class BotanistWorkbench extends HorizontalDirectionalBlock implements Blo
 					box(3.5, 12, 9.5, 7.5, 16, 13.5))
 	);
 
-	public static final MapCodec<BotanistWorkbench> CODEC = simpleCodec(BotanistWorkbench::new);
-
 	public BotanistWorkbench(Properties properties) {
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
-	}
-
-	@Override
-	protected MapCodec<BotanistWorkbench> codec() {
-		return CODEC;
 	}
 
 	@Override

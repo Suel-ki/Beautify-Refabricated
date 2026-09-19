@@ -4,9 +4,9 @@ import io.github.suel_ki.beautify.Beautify;
 import io.github.suel_ki.beautify.common.block.*;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.common.tooltip.PlantableItemStackTooltip;
-import net.fabricmc.fabric.api.registry.FuelValueEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -14,8 +14,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.CookingFuel;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.providers.number.floats.ResolvableFloat;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ResolvableInt;
 import org.jetbrains.annotations.NotNull;
 
 import java.awt.*;
@@ -50,52 +53,52 @@ public final class ItemInit {
 	public static final BlockItem WARPED_TRELLIS_ITEM = registerTrellis("warped_trellis", BlockInit.WARPED_TRELLIS);
 
 	// blinds
-	public static final BlockItem OAK_BLINDS_ITEM = registerBlockItem("oak_blinds", BlockInit.OAK_BLINDS);
+	public static final BlockItem OAK_BLINDS_ITEM = registerFuelBlockItem("oak_blinds", BlockInit.OAK_BLINDS);
 
-	public static final BlockItem SPRUCE_BLINDS_ITEM = registerBlockItem("spruce_blinds", BlockInit.SPRUCE_BLINDS);
+	public static final BlockItem SPRUCE_BLINDS_ITEM = registerFuelBlockItem("spruce_blinds", BlockInit.SPRUCE_BLINDS);
 
-	public static final BlockItem BIRCH_BLINDS_ITEM = registerBlockItem("birch_blinds", BlockInit.BIRCH_BLINDS);
+	public static final BlockItem BIRCH_BLINDS_ITEM = registerFuelBlockItem("birch_blinds", BlockInit.BIRCH_BLINDS);
 
-	public static final BlockItem JUNGLE_BLINDS_ITEM = registerBlockItem("jungle_blinds", BlockInit.JUNGLE_BLINDS);
+	public static final BlockItem JUNGLE_BLINDS_ITEM = registerFuelBlockItem("jungle_blinds", BlockInit.JUNGLE_BLINDS);
 
-	public static final BlockItem ACACIA_BLINDS_ITEM = registerBlockItem("acacia_blinds", BlockInit.ACACIA_BLINDS);
+	public static final BlockItem ACACIA_BLINDS_ITEM = registerFuelBlockItem("acacia_blinds", BlockInit.ACACIA_BLINDS);
 
-	public static final BlockItem DARK_OAK_BLINDS_ITEM = registerBlockItem("dark_oak_blinds", BlockInit.DARK_OAK_BLINDS);
+	public static final BlockItem DARK_OAK_BLINDS_ITEM = registerFuelBlockItem("dark_oak_blinds", BlockInit.DARK_OAK_BLINDS);
 
-	public static final BlockItem CRIMSON_BLINDS_ITEM = registerBlockItem("crimson_blinds", BlockInit.CRIMSON_BLINDS);
+	public static final BlockItem CRIMSON_BLINDS_ITEM = registerFuelBlockItem("crimson_blinds", BlockInit.CRIMSON_BLINDS);
 
-	public static final BlockItem CHERRY_BLINDS_ITEM = registerBlockItem("cherry_blinds", BlockInit.CHERRY_BLINDS);
+	public static final BlockItem CHERRY_BLINDS_ITEM = registerFuelBlockItem("cherry_blinds", BlockInit.CHERRY_BLINDS);
 
-	public static final BlockItem WARPED_BLINDS_ITEM = registerBlockItem("warped_blinds", BlockInit.WARPED_BLINDS);
+	public static final BlockItem WARPED_BLINDS_ITEM = registerFuelBlockItem("warped_blinds", BlockInit.WARPED_BLINDS);
 
-	public static final BlockItem MANGROVE_BLINDS_ITEM = registerBlockItem("mangrove_blinds", BlockInit.MANGROVE_BLINDS);
+	public static final BlockItem MANGROVE_BLINDS_ITEM = registerFuelBlockItem("mangrove_blinds", BlockInit.MANGROVE_BLINDS);
 
 	public static final BlockItem IRON_BLINDS_ITEM = registerBlockItem("iron_blinds", BlockInit.IRON_BLINDS);
 
 	// picture frame
-	public static final BlockItem OAK_PICTURE_FRAME_ITEM = registerBlockItem("oak_picture_frame", BlockInit.OAK_PICTURE_FRAME);
+	public static final BlockItem OAK_PICTURE_FRAME_ITEM = registerFuelBlockItem("oak_picture_frame", BlockInit.OAK_PICTURE_FRAME);
 
-	public static final BlockItem SPRUCE_PICTURE_FRAME_ITEM = registerBlockItem("spruce_picture_frame", BlockInit.SPRUCE_PICTURE_FRAME);
+	public static final BlockItem SPRUCE_PICTURE_FRAME_ITEM = registerFuelBlockItem("spruce_picture_frame", BlockInit.SPRUCE_PICTURE_FRAME);
 
-	public static final BlockItem BIRCH_PICTURE_FRAME_ITEM = registerBlockItem("birch_picture_frame", BlockInit.BIRCH_PICTURE_FRAME);
+	public static final BlockItem BIRCH_PICTURE_FRAME_ITEM = registerFuelBlockItem("birch_picture_frame", BlockInit.BIRCH_PICTURE_FRAME);
 
-	public static final BlockItem JUNGLE_PICTURE_FRAME_ITEM = registerBlockItem("jungle_picture_frame", BlockInit.JUNGLE_PICTURE_FRAME);
+	public static final BlockItem JUNGLE_PICTURE_FRAME_ITEM = registerFuelBlockItem("jungle_picture_frame", BlockInit.JUNGLE_PICTURE_FRAME);
 
-	public static final BlockItem ACACIA_PICTURE_FRAME_ITEM = registerBlockItem("acacia_picture_frame", BlockInit.ACACIA_PICTURE_FRAME);
+	public static final BlockItem ACACIA_PICTURE_FRAME_ITEM = registerFuelBlockItem("acacia_picture_frame", BlockInit.ACACIA_PICTURE_FRAME);
 
-	public static final BlockItem DARK_OAK_PICTURE_FRAME_ITEM = registerBlockItem("dark_oak_picture_frame", BlockInit.DARK_OAK_PICTURE_FRAME);
+	public static final BlockItem DARK_OAK_PICTURE_FRAME_ITEM = registerFuelBlockItem("dark_oak_picture_frame", BlockInit.DARK_OAK_PICTURE_FRAME);
 
-	public static final BlockItem CRIMSON_PICTURE_FRAME_ITEM = registerBlockItem("crimson_picture_frame", BlockInit.CRIMSON_PICTURE_FRAME);
+	public static final BlockItem CRIMSON_PICTURE_FRAME_ITEM = registerFuelBlockItem("crimson_picture_frame", BlockInit.CRIMSON_PICTURE_FRAME);
 
-	public static final BlockItem CHERRY_PICTURE_FRAME_ITEM = registerBlockItem("cherry_picture_frame", BlockInit.CHERRY_PICTURE_FRAME);
+	public static final BlockItem CHERRY_PICTURE_FRAME_ITEM = registerFuelBlockItem("cherry_picture_frame", BlockInit.CHERRY_PICTURE_FRAME);
 
-	public static final BlockItem WARPED_PICTURE_FRAME_ITEM = registerBlockItem("warped_picture_frame", BlockInit.WARPED_PICTURE_FRAME);
+	public static final BlockItem WARPED_PICTURE_FRAME_ITEM = registerFuelBlockItem("warped_picture_frame", BlockInit.WARPED_PICTURE_FRAME);
 
-	public static final BlockItem MANGROVE_PICTURE_FRAME_ITEM = registerBlockItem("mangrove_picture_frame", BlockInit.MANGROVE_PICTURE_FRAME);
+	public static final BlockItem MANGROVE_PICTURE_FRAME_ITEM = registerFuelBlockItem("mangrove_picture_frame", BlockInit.MANGROVE_PICTURE_FRAME);
 
 	public static final BlockItem QUARTZ_PICTURE_FRAME_ITEM = registerBlockItem("quartz_picture_frame", BlockInit.QUARTZ_PICTURE_FRAME);
 
-	public static BlockItem ROPE_ITEM = registerBlockItem("rope", BlockInit.ROPE);
+	public static BlockItem ROPE_ITEM = registerFuelBlockItem("rope", BlockInit.ROPE, 100);
 
 	public static final BlockItem HANGING_POT_ITEM = register("hanging_pot",
 			properties -> new BlockItem(BlockInit.HANGING_POT,
@@ -122,7 +125,7 @@ public final class ItemInit {
 
 			}, new Item.Properties().useBlockDescriptionPrefix().component(ComponentInit.HANGING_POT_TOOLTIP, HangingPot.TooltipComponent.INSTANCE));
 
-	public static final BlockItem BOOKSTACK_ITEM = registerBlockItem("bookstack", BlockInit.BOOKSTACK);
+	public static final BlockItem BOOKSTACK_ITEM = registerFuelBlockItem("bookstack", BlockInit.BOOKSTACK);
 
 	public static final BlockItem LAMP_LIGHT_BULB_ITEM = registerBlockItem("lamp_light_bulb", BlockInit.LAMP_LIGHT_BULB);
 
@@ -175,16 +178,32 @@ public final class ItemInit {
 		return Registry.register(BuiltInRegistries.ITEM, key, item);
 	}
 
+	private static BlockItem registerBlockItem(String name, Block block, Item.Properties properties) {
+		if (block instanceof BlockTooltip hasTooltip) {
+			properties = properties.component(hasTooltip.getTooltipType(), hasTooltip.getTooltipComponent());
+			return register(name, props -> new BlockItem(block, props) {
+				@Override
+				public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> consumer, TooltipFlag flag) {
+					stack.addToTooltip(hasTooltip.getTooltipType(), context, display, consumer, flag);
+				}
+			}, properties);
+		}
+		return register(name, props -> new BlockItem(block, props), properties);
+	}
+
 	private static BlockItem registerBlockItem(String name, Block block) {
-        if (block instanceof BlockTooltip hasTooltip) {
-            return register(name, properties -> new BlockItem(block, properties) {
-                @Override
-                public void appendHoverText(ItemStack stack, TooltipContext context, TooltipDisplay display, Consumer<Component> consumer, TooltipFlag flag) {
-                    stack.addToTooltip(hasTooltip.getTooltipType(), context, display, consumer, flag);
-                }
-            }, new Item.Properties().useBlockDescriptionPrefix().component(hasTooltip.getTooltipType(), hasTooltip.getTooltipComponent()));
-        }
-        return register(name, properties -> new BlockItem(block, properties), new Item.Properties().useBlockDescriptionPrefix());
+		return registerBlockItem(name, block, new Item.Properties().useBlockDescriptionPrefix());
+	}
+
+	private static BlockItem registerFuelBlockItem(String name, Block block, int burnTime) {
+		Item.Properties properties = new Item.Properties()
+				.useBlockDescriptionPrefix()
+				.component(DataComponents.COOKING_FUEL, new CookingFuel(new ResolvableInt.Constant(burnTime), new ResolvableFloat.Constant(1.0f)));
+		return registerBlockItem(name, block, properties);
+	}
+
+	private static BlockItem registerFuelBlockItem(String name, Block block) {
+		return registerFuelBlockItem(name, block, 300);
 	}
 
 	private static BlockItem registerTrellis(String name, Block block) {
@@ -209,42 +228,13 @@ public final class ItemInit {
 				}
 			}
 
-		}, new Item.Properties().useBlockDescriptionPrefix().component(ComponentInit.TRELLIS_TOOLTIP, Trellis.TooltipComponent.INSTANCE));
-	}
-
-	public static void registerFuel() {
-		FuelValueEvents.BUILD.register((builder, context) -> {
-			builder.add(OAK_TRELLIS_ITEM, 300);
-			builder.add(SPRUCE_TRELLIS_ITEM, 300);
-			builder.add(BIRCH_TRELLIS_ITEM, 300);
-			builder.add(JUNGLE_TRELLIS_ITEM, 300);
-			builder.add(ACACIA_TRELLIS_ITEM, 300);
-			builder.add(DARK_OAK_TRELLIS_ITEM, 300);
-			builder.add(MANGROVE_TRELLIS_ITEM, 300);
-			builder.add(CHERRY_TRELLIS_ITEM, 300);
-			builder.add(CRIMSON_TRELLIS_ITEM, 300);
-			builder.add(WARPED_TRELLIS_ITEM, 300);
-			builder.add(OAK_BLINDS_ITEM, 300);
-			builder.add(SPRUCE_BLINDS_ITEM, 300);
-			builder.add(BIRCH_BLINDS_ITEM, 300);
-			builder.add(JUNGLE_BLINDS_ITEM, 300);
-			builder.add(ACACIA_BLINDS_ITEM, 300);
-			builder.add(DARK_OAK_BLINDS_ITEM, 300);
-			builder.add(CHERRY_BLINDS_ITEM, 300);
-			builder.add(MANGROVE_BLINDS_ITEM, 300);
-			builder.add(CRIMSON_BLINDS_ITEM, 300);
-			builder.add(WARPED_BLINDS_ITEM, 300);
-			builder.add(OAK_PICTURE_FRAME_ITEM, 300);
-			builder.add(SPRUCE_PICTURE_FRAME_ITEM, 300);
-			builder.add(BIRCH_PICTURE_FRAME_ITEM, 300);
-			builder.add(JUNGLE_PICTURE_FRAME_ITEM, 300);
-			builder.add(ACACIA_PICTURE_FRAME_ITEM, 300);
-			builder.add(DARK_OAK_PICTURE_FRAME_ITEM, 300);
-			builder.add(MANGROVE_PICTURE_FRAME_ITEM, 300);
-			builder.add(CHERRY_PICTURE_FRAME_ITEM, 300);
-			builder.add(CRIMSON_PICTURE_FRAME_ITEM, 300);
-			builder.add(WARPED_PICTURE_FRAME_ITEM, 300);
-			builder.add(ROPE_ITEM, 100);
-		});
+		}, new Item.Properties()
+				.useBlockDescriptionPrefix()
+				.component(ComponentInit.TRELLIS_TOOLTIP,
+						Trellis.TooltipComponent.INSTANCE)
+				.component(
+						DataComponents.COOKING_FUEL,
+						new CookingFuel(new ResolvableInt.Constant(300),
+								new ResolvableFloat.Constant(1.0f))));
 	}
 }
