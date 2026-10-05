@@ -25,15 +25,13 @@
 				{
 					"type": "minecraft:item",
 					"name": "minecraft:azure_bluet",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"grown": "true"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"grown": "true"
 						}
-					]
+					}
 				}
 			]
 		}

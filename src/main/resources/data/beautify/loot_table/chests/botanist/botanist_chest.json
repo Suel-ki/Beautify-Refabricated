@@ -8,9 +8,9 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:iron_hoe",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:enchant_randomly"
+              "type": "minecraft:enchant_randomly"
             }
           ]
         }
@@ -28,10 +28,11 @@
           "type": "minecraft:item",
           "weight": 15,
           "name": "minecraft:cornflower",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
+                "type": "minecraft:uniform",
                 "min": 2,
                 "max": 7
               },
@@ -43,9 +44,9 @@
           "type": "minecraft:item",
           "weight": 15,
           "name": "minecraft:dandelion",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -59,9 +60,9 @@
           "type": "minecraft:item",
           "weight": 8,
           "name": "minecraft:oak_sapling",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -74,9 +75,9 @@
           "type": "minecraft:item",
           "weight": 8,
           "name": "minecraft:birch_sapling",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -94,9 +95,9 @@
           "type": "minecraft:item",
           "weight": 15,
           "name": "beautify:hanging_pot",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -109,9 +110,9 @@
           "type": "minecraft:item",
           "weight": 10,
           "name": "minecraft:flower_pot",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 1,
@@ -124,9 +125,9 @@
           "type": "minecraft:item",
           "weight": 7,
           "name": "beautify:oak_trellis",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -139,9 +140,9 @@
           "type": "minecraft:item",
           "weight": 7,
           "name": "beautify:birch_trellis",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 2,
@@ -158,9 +159,9 @@
         {
           "type": "minecraft:item",
           "name": "minecraft:bone_meal",
-          "functions": [
+          "modifier": [
             {
-              "function": "minecraft:set_count",
+              "type": "minecraft:set_count",
               "count": {
                 "type": "minecraft:uniform",
                 "min": 5,

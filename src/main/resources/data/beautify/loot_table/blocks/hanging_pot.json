@@ -7,353 +7,299 @@
 				{
 					"type": "minecraft:item",
 					"name": "beautify:hanging_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "0"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "0"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/rose_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "1"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "1"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/lilac_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "2"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "2"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/orchid_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "3"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "3"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/vines_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "4"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "4"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/sunflower_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "5"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "5"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/peony_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "6"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "6"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/azure_bluet_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "7"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "7"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/red_tulip_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "8"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "8"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/orange_tulip_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "9"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "9"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/white_tulip_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "10"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "10"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/pink_tulip_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "11"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "11"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/allium_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "12"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "12"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/dandelion_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "13"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "13"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/poppy_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "14"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "14"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/poppy_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "14"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "14"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/glow_lichen_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "15"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "15"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/oxeye_daisy_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "16"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "16"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/lily_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "17"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "17"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/cornflower_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "18"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "18"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/weeping_vines_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "19"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "19"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/twisting_vines_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "20"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "20"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/wither_rose_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "21"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "21"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/glowberry_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "22"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "22"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/berry_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "23"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "23"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/grass_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "24"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "24"
 						}
-					]
+					}
 				},
 				{
 					"type": "minecraft:loot_table",
 					"value": "beautify:blocks/fern_pot",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"potflower": "25"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"potflower": "25"
 						}
-					]
+					}
 				}
 			]
 		}

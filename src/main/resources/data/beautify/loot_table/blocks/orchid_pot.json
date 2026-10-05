@@ -6,9 +6,9 @@
 				{
 					"type": "minecraft:item",
 					"name": "minecraft:blue_orchid",
-					"functions": [
+					"modifier": [
 						{
-							"function": "minecraft:set_count",
+							"type": "minecraft:set_count",
 							"count": 1
 						}
 					]
@@ -21,9 +21,9 @@
 				{
 					"type": "minecraft:item",
 					"name": "beautify:hanging_pot",
-					"functions": [
+					"modifier": [
 						{
-							"function": "minecraft:set_count",
+							"type": "minecraft:set_count",
 							"count": 1
 						}
 					]
@@ -36,15 +36,13 @@
 				{
 					"type": "minecraft:item",
 					"name": "minecraft:blue_orchid",
-					"conditions": [
-						{
-							"condition": "minecraft:match_block",
-							"blocks": "beautify:hanging_pot",
-							"state": {
-								"grown": "true"
-							}
+					"condition": {
+						"type": "minecraft:match_block",
+						"blocks": "beautify:hanging_pot",
+						"state": {
+							"grown": "true"
 						}
-					]
+					}
 				}
 			]
 		}
