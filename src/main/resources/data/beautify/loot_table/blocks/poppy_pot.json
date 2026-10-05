@@ -27,9 +27,9 @@
 					"name": "minecraft:poppy",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:hanging_pot",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:hanging_pot",
+							"state": {
 								"grown": "true"
 							}
 						}

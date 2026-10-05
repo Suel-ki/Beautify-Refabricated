@@ -9,9 +9,9 @@
 					"name": "beautify:lamp_jar",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:lamp_jar",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:lamp_jar",
+							"state": {
 								"fill_level": "0"
 							}
 						}
@@ -22,9 +22,9 @@
 					"value": "beautify:blocks/lamp_jar1",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:lamp_jar",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:lamp_jar",
+							"state": {
 								"fill_level": "5"
 							}
 						}
@@ -35,9 +35,9 @@
 					"value": "beautify:blocks/lamp_jar2",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:lamp_jar",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:lamp_jar",
+							"state": {
 								"fill_level": "10"
 							}
 						}
@@ -48,9 +48,9 @@
 					"value": "beautify:blocks/lamp_jar3",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:lamp_jar",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:lamp_jar",
+							"state": {
 								"fill_level": "15"
 							}
 						}

@@ -9,9 +9,9 @@
 					"name": "beautify:acacia_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "0"
 							}
 						}
@@ -22,9 +22,9 @@
 					"value": "beautify:blocks/acacia_rose_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "1"
 							}
 						}
@@ -35,9 +35,9 @@
 					"value": "beautify:blocks/acacia_sunflower_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "2"
 							}
 						}
@@ -48,9 +48,9 @@
 					"value": "beautify:blocks/acacia_peony_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "3"
 							}
 						}
@@ -61,9 +61,9 @@
 					"value": "beautify:blocks/acacia_lilac_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "4"
 							}
 						}
@@ -74,9 +74,9 @@
 					"value": "beautify:blocks/acacia_vine_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "5"
 							}
 						}
@@ -87,9 +87,9 @@
 					"value": "beautify:blocks/acacia_weeping_vines_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "6"
 							}
 						}
@@ -100,9 +100,9 @@
 					"value": "beautify:blocks/acacia_twisting_vines_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "7"
 							}
 						}
@@ -113,9 +113,9 @@
 					"value": "beautify:blocks/acacia_lichen_trellis",
 					"conditions": [
 						{
-							"condition": "minecraft:block_state_property",
-							"block": "beautify:acacia_trellis",
-							"properties": {
+							"condition": "minecraft:match_block",
+							"blocks": "beautify:acacia_trellis",
+							"state": {
 								"flowers": "8"
 							}
 						}
