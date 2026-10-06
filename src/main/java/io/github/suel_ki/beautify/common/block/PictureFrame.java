@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
+import it.unimi.dsi.fastutil.HashCommon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentType;
@@ -29,7 +30,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
-import java.util.Random;
 
 public class PictureFrame extends HorizontalDirectionalBlock implements BlockTooltip {
 	private static final int MODELCOUNT = 13; // number of models the frame has
@@ -77,8 +77,7 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		Random rand = new Random();
-		int randomNum = rand.nextInt((MODELCOUNT));
+		int randomNum = randomMotive(context);
 
 		// 8-way placement: the frame turns to face the player, like signs and armour stands.
 		// yaw 0 = south and increases clockwise, so 45 degree steps are 0=south, 1=south-west, ...
@@ -94,6 +93,16 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
                 .setValue(FACING, facing)
 				.setValue(DIAGONAL, diagonal)
 				.setValue(FRAME_MOTIVE, randomNum);
+	}
+
+	private static int randomMotive(BlockPlaceContext context) {
+		long key = context.getClickedPos().asLong();
+		Player player = context.getPlayer();
+		if (player != null) {
+			key ^= (long) player.getUUID().hashCode() << 32;
+		}
+		key ^= context.getHorizontalDirection().get2DDataValue();
+		return Math.floorMod(HashCommon.murmurHash3(key), MODELCOUNT);
 	}
 
 	// creates blockstate
