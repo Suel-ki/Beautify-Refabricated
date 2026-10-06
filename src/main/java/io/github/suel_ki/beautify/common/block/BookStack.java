@@ -2,10 +2,10 @@ package io.github.suel_ki.beautify.common.block;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import com.google.common.collect.ImmutableMap;
 import io.github.suel_ki.beautify.core.init.SoundInit;
+import it.unimi.dsi.fastutil.HashCommon;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -24,7 +24,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -109,11 +108,18 @@ public class BookStack extends HorizontalDirectionalBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		Random rand = new Random();
-		int randomNum = rand.nextInt(MODELCOUNT);
-
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())
-				.setValue(BOOKSTACK_MODEL, randomNum);
+				.setValue(BOOKSTACK_MODEL, randomModel(context));
+	}
+
+	private static int randomModel(BlockPlaceContext context) {
+		long key = context.getClickedPos().asLong();
+		Player player = context.getPlayer();
+		if (player != null) {
+			key ^= (long) player.getUUID().hashCode() << 32;
+		}
+		key ^= context.getHorizontalDirection().get2DDataValue();
+		return Math.floorMod(HashCommon.murmurHash3(key), MODELCOUNT);
 	}
 
 	// creates blockstate
