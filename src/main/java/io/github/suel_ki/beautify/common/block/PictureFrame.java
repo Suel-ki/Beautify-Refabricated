@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -34,6 +35,8 @@ import java.util.List;
 public class PictureFrame extends HorizontalDirectionalBlock implements BlockTooltip {
 	private static final int MODELCOUNT = 13; // number of models the frame has
 	public static final IntegerProperty FRAME_MOTIVE = IntegerProperty.create("frame_motive", 0, MODELCOUNT - 1);
+	/** true when the frame stands turned 45 degrees past FACING */
+	public static final BooleanProperty DIAGONAL = BooleanProperty.create("diagonal");
 	protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 8, 11);
 
 	public static final MapCodec<PictureFrame> CODEC = simpleCodec(PictureFrame::new);
@@ -42,7 +45,8 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState()
                 .setValue(FRAME_MOTIVE, 0)
-                .setValue(FACING, Direction.NORTH));
+                .setValue(FACING, Direction.NORTH)
+                .setValue(DIAGONAL, false));
 	}
 
 	@Override
@@ -81,8 +85,14 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
+		// getRotation() is the player's yaw: 0 = south, increasing clockwise, so the 45 degree steps
+		// are 0 = south, 1 = south-west, ... Standing signs place themselves from the same value.
+		int step = Math.round(context.getRotation() / 45.0F) & 7;
+		int front8 = (step + 4) & 7;      // the frame faces back at the player
+		int base = front8 - (front8 & 1); // even step: cardinal, odd step: 45 degrees past it
 		return this.defaultBlockState()
-                .setValue(FACING, context.getHorizontalDirection().getOpposite())
+                .setValue(FACING, Direction.fromYRot(base * 45.0))
+				.setValue(DIAGONAL, (front8 & 1) == 1)
 				.setValue(FRAME_MOTIVE, randomMotive(context));
 	}
 
@@ -102,7 +112,7 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FRAME_MOTIVE, FACING);
+		builder.add(FRAME_MOTIVE, FACING, DIAGONAL);
 	}
 
     @Override
