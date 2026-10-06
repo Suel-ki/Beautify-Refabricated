@@ -33,9 +33,6 @@
       "io.github.suel_ki.beautify.util.ModMenuConfig"
     ]
   },
-  "mixins": [
-    "beautify.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.16.14",
     "fabric-api": "*",
