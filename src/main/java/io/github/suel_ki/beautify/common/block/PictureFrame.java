@@ -80,9 +80,10 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 		int randomNum = randomMotive(context);
 
 		// 8-way placement: the frame turns to face the player, like signs and armour stands.
-		// yaw 0 = south and increases clockwise, so 45 degree steps are 0=south, 1=south-west, ...
-		Player player = context.getPlayer();
-		float yaw = player != null ? player.getYRot() : context.getHorizontalDirection().getOpposite().toYRot();
+		// getRotation() is the player's yaw, or 0 when there is no player (dispenser, structure
+		// block). yaw 0 = south and increases clockwise, so the 45 degree steps are 0=south,
+		// 1=south-west, ... Standing signs place themselves from exactly the same value.
+		float yaw = context.getRotation();
 		int step = Math.round(yaw / 45.0F) & 7;
 		int front8 = (step + 4) & 7;      // the frame's front points back at the player
 		int base = front8 - (front8 & 1); // even step: cardinal, odd step: 45 degrees past that cardinal
