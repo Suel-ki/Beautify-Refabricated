@@ -6,8 +6,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": "minecraft:stick",
-						"count": 1
+						"items": "minecraft:stick"
 					}
 				]
 			}
@@ -18,7 +17,7 @@
 			"beautify:oak_blinds",
 			"beautify:spruce_blinds",
 			"beautify:birch_blinds",
-			"beautify:dar_oak_blinds",
+			"beautify:dark_oak_blinds",
 			"beautify:jungle_blinds",
 			"beautify:crimson_blinds",
 			"beautify:cherry_blinds",
