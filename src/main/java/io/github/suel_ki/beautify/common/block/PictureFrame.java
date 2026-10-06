@@ -1,9 +1,9 @@
 package io.github.suel_ki.beautify.common.block;
 
 import java.util.List;
-import java.util.Random;
 
 import com.mojang.serialization.MapCodec;
+import it.unimi.dsi.fastutil.HashCommon;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.core.BlockPos;
@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -32,13 +33,16 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class PictureFrame extends HorizontalDirectionalBlock {
 	private static final int MODELCOUNT = 13; // number of models the frame has
 	public static final IntegerProperty FRAME_MOTIVE = IntegerProperty.create("frame_motive", 0, MODELCOUNT - 1);
+	/** true when the frame stands turned 45 degrees past FACING, so it can face the 4 diagonal directions too */
+	public static final BooleanProperty DIAGONAL = BooleanProperty.create("diagonal");
 	protected static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 8, 11);
 
 	public static final MapCodec<PictureFrame> CODEC = simpleCodec(PictureFrame::new);
 
 	public PictureFrame(Properties properties) {
 		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(FRAME_MOTIVE, 0).setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.defaultBlockState().setValue(FRAME_MOTIVE, 0)
+				.setValue(FACING, Direction.NORTH).setValue(DIAGONAL, false));
 	}
 
 	@Override
@@ -77,18 +81,38 @@ public class PictureFrame extends HorizontalDirectionalBlock {
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		Random rand = new Random();
-		int randomNum = rand.nextInt((MODELCOUNT));
+		// 8-way placement: the frame turns to face the player, like signs and armour stands.
+		// getRotation() is the player's yaw, or 0 when there is no player (dispenser, structure
+		// block). yaw 0 = south and increases clockwise, so the 45 degree steps are 0=south,
+		// 1=south-west, ... Standing signs place themselves from exactly the same value.
+		float yaw = context.getRotation();
+		int step = Math.round(yaw / 45.0F) & 7;
+		int front8 = (step + 4) & 7;      // the frame's front points back at the player
+		int base = front8 - (front8 & 1); // even step: cardinal, odd step: 45 degrees past that cardinal
+		Direction facing = Direction.fromYRot(base * 45.0);
+		boolean diagonal = (front8 & 1) == 1;
 
-		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())
-				.setValue(FRAME_MOTIVE, randomNum);
+		return this.defaultBlockState()
+				.setValue(FACING, facing)
+				.setValue(DIAGONAL, diagonal)
+				.setValue(FRAME_MOTIVE, randomMotive(context));
+	}
+
+	private static int randomMotive(BlockPlaceContext context) {
+		long key = context.getClickedPos().asLong();
+		Player player = context.getPlayer();
+		if (player != null) {
+			key ^= (long) player.getUUID().hashCode() << 32;
+		}
+		key ^= context.getHorizontalDirection().get2DDataValue();
+		return Math.floorMod(HashCommon.murmurHash3(key), MODELCOUNT);
 	}
 
 	// creates blockstate
 	@Override
 	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
 		super.createBlockStateDefinition(builder);
-		builder.add(FRAME_MOTIVE, FACING);
+		builder.add(FRAME_MOTIVE, FACING, DIAGONAL);
 	}
 
 	@Override
