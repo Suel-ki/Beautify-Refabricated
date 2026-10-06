@@ -7,6 +7,7 @@ import io.github.suel_ki.beautify.client.tooltip.TooltipLore;
 import io.github.suel_ki.beautify.common.tooltip.BlockTooltip;
 import io.github.suel_ki.beautify.core.init.ComponentInit;
 import io.github.suel_ki.beautify.core.init.SoundInit;
+import it.unimi.dsi.fastutil.HashCommon;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponentType;
@@ -36,7 +37,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 public class BookStack extends HorizontalDirectionalBlock implements BlockTooltip {
 	private static final int MODELCOUNT = 7; // number of models the bookstack has
@@ -115,11 +115,20 @@ public class BookStack extends HorizontalDirectionalBlock implements BlockToolti
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		Random rand = new Random();
-		int randomNum = rand.nextInt((MODELCOUNT));
-
 		return this.defaultBlockState().setValue(FACING, context.getHorizontalDirection().getOpposite())
-				.setValue(BOOKSTACK_MODEL, randomNum);
+				.setValue(BOOKSTACK_MODEL, randomModel(context));
+	}
+
+	// same as the picture frame: a Random here made the client's prediction and the server's state
+	// disagree, so the model is derived from values both sides know
+	private static int randomModel(BlockPlaceContext context) {
+		long key = context.getClickedPos().asLong();
+		Player player = context.getPlayer();
+		if (player != null) {
+			key ^= (long) player.getUUID().hashCode() << 32;
+		}
+		key ^= context.getHorizontalDirection().get2DDataValue();
+		return Math.floorMod(HashCommon.murmurHash3(key), MODELCOUNT);
 	}
 
 	// creates blockstate
