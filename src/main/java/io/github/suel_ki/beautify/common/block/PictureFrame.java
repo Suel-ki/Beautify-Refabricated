@@ -28,8 +28,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
+import it.unimi.dsi.fastutil.HashCommon;
+
 import java.util.List;
-import java.util.Random;
 
 public class PictureFrame extends HorizontalDirectionalBlock implements BlockTooltip {
 	private static final int MODELCOUNT = 13; // number of models the frame has
@@ -81,11 +82,21 @@ public class PictureFrame extends HorizontalDirectionalBlock implements BlockToo
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		Random rand = new Random();
-		int randomNum = rand.nextInt((MODELCOUNT));
 		return this.defaultBlockState()
                 .setValue(FACING, context.getHorizontalDirection().getOpposite())
-				.setValue(FRAME_MOTIVE, randomNum);
+				.setValue(FRAME_MOTIVE, randomMotive(context));
+	}
+
+	// getStateForPlacement runs on both sides; a Random pick made the client's prediction and the
+	// server's state disagree, so the motive is derived from values both sides know instead
+	private static int randomMotive(BlockPlaceContext context) {
+		long key = context.getClickedPos().asLong();
+		Player player = context.getPlayer();
+		if (player != null) {
+			key ^= (long) player.getUUID().hashCode() << 32;
+		}
+		key ^= context.getHorizontalDirection().get2DDataValue();
+		return Math.floorMod(HashCommon.murmurHash3(key), MODELCOUNT);
 	}
 
 	// creates blockstate
