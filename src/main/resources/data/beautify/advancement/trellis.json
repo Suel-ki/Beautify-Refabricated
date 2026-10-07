@@ -6,8 +6,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": "minecraft:stick",
-						"count": 1
+						"items": "minecraft:stick"
 					}
 				]
 			}

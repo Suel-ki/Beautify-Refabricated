@@ -6,8 +6,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": "minecraft:book",
-						"count": 1
+						"items": "minecraft:book"
 					}
 				]
 			}

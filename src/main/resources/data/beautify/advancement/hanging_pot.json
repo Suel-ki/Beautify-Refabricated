@@ -6,8 +6,7 @@
 			"conditions": {
 				"items": [
 					{
-						"items": "beautify:rope",
-						"count": 1
+						"items": "beautify:rope"
 					}
 				]
 			}
